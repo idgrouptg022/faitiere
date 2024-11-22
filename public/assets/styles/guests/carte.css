@@ -1,0 +1,214 @@
+.map {
+    overflow: hidden;
+}
+
+.map__image {
+    /* width: 43vw;
+    position: absolute;
+    top: 0.8rem;
+    left: 30%;
+    overflow: hidden; */
+    width: 100%;
+    text-align: center;
+    margin-left: 20%;
+}
+
+@media screen and (max-width: 769px) {
+    .map__image {
+        /* width: 120vw;
+        position: absolute;
+        top: 0.8rem;
+        left: 25%;
+        overflow: hidden; */
+    }
+}
+
+@media only screen and (min-width: 992px){
+    .map__image {
+        /* width: 50vw;
+        position: absolute;
+        top: 0.8rem;
+        left: 17%;
+        overflow: hidden; */
+        width: 80%;
+        /* margin-left: 15%; */
+    }
+}
+
+.map__image .map_path {
+    fill: #212447;
+    stroke: #fff;
+    stroke-width: 2px;
+    transition: fill 0.3s;
+}
+
+.map__image .is-active .map_path{
+    fill: #036c89;
+    stroke-width: 0.5rem;
+}
+
+.map__image .map__link:hover .map_path, .map__image .map__link:focus .map_path, .map__image .map_path:hover {
+    fill: #036c89;
+    stroke-width: 0.5rem;
+}
+
+.map_path.alert {
+    fill: #b32727;
+    animation: animateAlert 0.6s infinite ;
+}
+
+.map_path.alert__normal {
+    fill: #006A4D;
+}
+
+.map_path.alert__attention {
+    fill: #d8d110;
+}
+
+.map_path.alert__danger {
+    fill: #b32727;
+}
+
+@keyframes animateAlert {
+    from {
+        fill: #006A4D;
+    }
+    to {
+        fill: #b32727;
+    }
+}
+
+.map__image text {
+    z-index: 9999999;
+}
+
+.map__list {
+    float: right;
+    width: 50%;
+}
+
+.map__list ul {
+    list-style: decimal;
+}
+
+.map__list li {
+    font-size: 2rem;
+}
+
+.map__list a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+.map__list a.is-active {
+    color: #036c89;
+    transition: color 0.3s;
+}
+
+.maritimeMeteo, .savaneMeteo, .karaMeteo, .centraleMeteo, .plateauMeteo {
+    display: none;
+}
+
+.segment5 {
+    transform: translate(11rem, 10rem) scale3d(2, 2, 2);
+    width: 30rem;
+}
+
+.segment4 {
+    transform: translate(20rem, 35rem) scale3d(2, 2, 2);
+    width: 30rem;
+}
+
+.segment3 {
+    transform: translate(25rem, 60rem) scale3d(2, 2, 2);
+    width: 30rem;
+}
+
+.segment2 {
+    transform: translate(29rem, 90rem) scale3d(2, 2, 2);
+    width: 30rem;
+}
+
+.segment1 {
+    transform: translate(29rem, 115rem) scale3d(2, 2, 2);
+    width: 30rem;
+}
+
+text.matin {
+    fill: #b32727;
+    font-weight: bold;
+}
+
+text.soir {
+    fill: #284b88;
+    font-weight: bold;
+}
+
+.maritimeMeteo text:first-of-type {
+    transform: translate(38rem, 125rem);
+}
+
+.plateauMeteo text:first-of-type {
+    transform: translate(25rem, 100rem);
+}
+
+.centraleMeteo text:first-of-type {
+    transform: translate(25rem, 73.75rem);
+}
+
+.karaMeteo text:first-of-type {
+    transform: translate(30rem, 40.625rem);
+}
+
+.savaneMeteo text:first-of-type {
+    transform: translate(15.625rem, 22.5rem);
+}
+
+.savaneMeteo.vent text:first-of-type {
+    transform: translate(9.625rem, 9.5rem);
+}
+
+.karaMeteo.vent text:first-of-type {
+    transform: translate(25rem, 35.625rem);
+}
+
+text {
+    font-size: 4rem;
+}
+
+.vent text {
+    font-size: 3rem;
+}
+
+.region-name {
+    fill: var(--white);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+}
+
+tspan {
+    font-family: montserrat-bold;
+}
+
+#savanes {
+    transform: translate(3.5rem, 10rem);
+}
+
+#kara {
+    transform: translate(17rem, 40rem);
+}
+
+#centrale {
+    transform: translate(21rem, 65rem);
+}
+
+#plateau {
+    transform: translate(21rem, 95rem);
+}
+
+#maritime {
+    transform: translate(27rem, 120rem);
+}
+

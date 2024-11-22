@@ -1,0 +1,9 @@
+.lois-section > h1, .lois-section > h1 {
+    font-family: montserrat-bold;
+    margin-bottom: 1.5rem;
+}
+
+.lois-text-container {
+    line-height: 2rem;
+    text-align: justify;
+}

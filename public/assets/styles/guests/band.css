@@ -1,0 +1,5 @@
+.band-container {
+    background-image: linear-gradient(to right, color-mix(in srgb, var(--primary) 40%, var(--blue) 60%), color-mix(in srgb, var(--blue) 40%, var(--primary) 60%) 70%);
+    width: 100%;
+    height: 15dvh;
+}

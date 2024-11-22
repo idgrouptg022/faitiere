@@ -1,0 +1,131 @@
+
+
+form {
+    margin-top: 1.2rem;
+}
+
+.contact-form-group {
+    margin-bottom: 1rem;
+}
+
+.contact-form-group label {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.contact-form-group input {
+    width: 100%;
+    padding: .8rem .4rem;
+    font-size: 1rem;
+    margin-bottom: .3rem;
+    border: 1.5px solid #ddd;
+    font-family: montserrat;
+    border-radius: .5rem;
+}
+
+.contact-form-group textarea {
+    width: 100%;
+    padding: .8rem .4rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 1.5px solid #ddd;
+    font-family: montserrat;
+    border-radius: .5rem;
+}
+
+.contact-button {
+    all: unset;
+    text-align: center;
+    display: block;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background-color: var(--primary);
+    width: 100%;
+    border-radius: .5rem;
+}
+
+.contact-right {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.contact-right h3 {
+    font-family: montserrat-bold;
+    margin-bottom: .5rem;
+    font-size: 1.3rem;
+}
+
+.contact-social-container ul{
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.contact-social-container ul li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.contact-social-container ul li a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    & i {
+        width: 3rem;
+        height: 3rem;
+        background-color: #333;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: .5rem;
+    }
+
+    & span {
+        margin-left: .5rem;
+        color: var(--primary);
+        font-family: montserrat-bold;
+        font-size: .95rem;
+    }
+}
+
+.alert.alert-success {
+    margin-block: .7rem;
+    width: fit-content;
+    text-align: center;
+    padding: .5rem 1rem;
+    background-color: var(--primary-light);
+    font-size: .9rem;
+}
+
+.alert.alert-success span {
+    text-align: center;
+}
+
+@media only screen and (min-width:992px) {
+    .contact-header-container {
+        padding: 4rem 2rem;
+    }
+
+    .contact-header-cover h1 {
+        font-size: 3rem;
+    }
+
+    .contact-container {
+        display: flex;
+        column-gap: 2.5rem;
+    }
+
+    .contact-left {
+        flex: 1 1 55%;
+    }
+
+    .contact-right {
+        flex: 1 1 40%;
+    }
+}

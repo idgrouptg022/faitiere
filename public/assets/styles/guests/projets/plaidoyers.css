@@ -1,0 +1,58 @@
+.plaidoyers-section > h1, .plaidoyers-section > h1 {
+    font-family: montserrat-bold;
+    margin-bottom: 1.5rem;
+}
+
+.plaidoyers-text-container {
+    line-height: 2rem;
+    text-align: justify;
+}
+
+.plaidoyers-container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1.5rem;
+}
+
+.plaidoyers-item {
+    width: calc(100% - .5rem);
+    padding: 1rem;
+    border: 2px solid var(--blue);
+    border-radius: .5rem;
+}
+
+.plaidoyers-title {
+    font-family: montserrat-semi-bold;
+    margin-bottom: .8rem;
+    font-size: 1.2rem;
+}
+
+.plaidoyer-download {
+    margin-top: 2rem;
+}
+
+.plaidoyer-download-btn {
+    background-color: var(--blue);
+    color: white;
+    padding: .5rem 1.5rem;
+    border-radius: .3rem;
+    font-family: montserrat-semi-bold;
+    cursor: pointer;
+    font-size: .8rem;
+    text-decoration: none;
+}
+
+@media only screen and (min-width: 992px) {
+
+    .plaidoyers-container {
+        column-gap: 1.5rem;
+    }
+
+    .plaidoyers-item {
+        width: calc(30% - 1rem);
+    }
+
+    .plaidoyers-title {
+        font-size: 1.1rem;
+    }
+}

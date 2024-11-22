@@ -1,0 +1,227 @@
+@font-face {
+    font-family: montserrat;
+    src: url("../fonts/Montserrat/static/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: montserrat-medium;
+    src: url("../fonts/Montserrat/static/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    font-family: montserrat-bold;
+    src: url("../fonts/Montserrat/static/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: montserrat-semi-bold;
+    src: url('../fonts/Montserrat/static/Montserrat-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: montserrat-black;
+    src: url("../fonts/Montserrat/static/Montserrat-Black.ttf");
+}
+
+/* body {
+    position: relative;
+} */
+
+:root {
+    --primary: #2b694b;
+    --primary-50: #f1f8f4;
+    --primary-100: #dcefe2;
+    --primary-200: #bcdec8;
+    --primary-300: #8fc6a6;
+    --primary-400: #60a781;
+    --primary-500: #3f8a64;
+    --primary-700: #245840;
+    --primary-800: #1f4634;
+    --primary-900: #1a3a2c;
+
+    --primary-custom: #236c4e;
+
+    --secondary: #e62138;
+    --secondary-50: #fff1f3;
+    --secondary-100: #ffe1e5;
+    --secondary-200: #ffc7ce;
+    --secondary-300: #ffa0ab;
+    --secondary-400: #ff6a7b;
+    --secondary-500: #f83b51;
+    --secondary-700: #c11428;
+    --secondary-800: #a01424;
+    --secondary-900: #841825;
+
+    --tertiary: #fdcf10;
+    --tertiary-50: #fefce8;
+    --tertiary-100: #fffac2;
+    --tertiary-200: #ffe345;
+    --tertiary-300: #ffe345;
+    --tertiary-500: #edb705;
+    --tertiary-600: #cd8c01;
+    --tertiary-700: #a36305;
+    --tertiary-800: #874e0c;
+    --tertiary-900: #724011;
+
+    --tertiary-custom: #ffefad;
+
+    --blue: #212447;
+    --blue-lighted: #212447e7;
+
+    --white: #ffffff;
+    --black: #000000;
+    --gray: #f2f2f2;
+    --light-gray: #cccccc;
+    --dark-gray: #808080;
+    --semi-black: #333333;
+}
+
+* {
+    font-family: montserrat;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.sm-hide {
+    display: none;
+}
+
+.section-container {
+    padding: 2rem 1rem;
+}
+
+.breadcrumb {
+    list-style-type: none;
+    display: flex;
+    column-gap: 1rem;
+}
+
+.breadcrumb-item::after {
+    content: "/";
+    color: var(--black);
+    margin-left: 1rem;
+}
+
+.breadcrumb-item:last-of-type::after {
+    content: "";
+}
+
+.breadcrumb-item a {
+    color: var(--primary);
+    font-family: montserrat-semi-bold;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    opacity: .7;
+    font-family: montserrat-semi-bold;
+}
+
+.whatsapp-container {
+    position: fixed;
+    bottom: 1rem;
+    right: .3rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background-color: var(--primary);
+    border-radius: 50%;
+    text-decoration: none;
+    z-index: 9999;
+}
+
+.whatsapp-container i {
+    font-size: 2rem;
+}
+
+.social-icons {
+    position: fixed;
+    top: 15%;
+    right: 0;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary);
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+}
+
+.social-icons a:not(:last-of-type) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.564);
+}
+
+@media only screen and (min-width: 992px) {
+    .lg-hide {
+        display: none;
+    }
+
+    .sm-hide {
+        display: block;
+    }
+
+    .section-container {
+        padding: 2rem 7rem;
+    }
+
+    .whatsapp-container {
+        position: fixed;
+        bottom: 5rem;
+        right: 2rem;
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--white);
+        background-color: var(--primary);
+        border-radius: 50%;
+        text-decoration: none;
+        z-index: 9999;
+    }
+
+    .whatsapp-container i {
+        font-size: 2rem;
+    }
+
+    .social-icons {
+        position: fixed;
+        top: 15%;
+        right: 0;
+        z-index: 5000;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--primary);
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+    }
+
+    .social-icons a {
+        text-decoration: none;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+        height: 3rem;
+        font-size: 1rem;
+    }
+
+    .social-icons a:not(:last-of-type) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.564);
+    }
+}
