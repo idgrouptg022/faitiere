@@ -9,6 +9,7 @@
 @endsection
 
 @push('extra-scripts')
+    
     <script>
         $(document).ready(function () {
             $('#content').summernote({
