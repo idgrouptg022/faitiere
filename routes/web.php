@@ -6,6 +6,7 @@ use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\WordController;
 
 Route::prefix("/")->as("guests:")->group(function () {
@@ -66,6 +67,8 @@ Route::prefix("/")->as("guests:")->group(function () {
 Route::prefix("auth/")->as("auth:")->group(function () {
 
     Route::get("tableau-de-bord", [DashboardController::class, "dashboard"])->name("dashboard");
+    Route::get('presentations', [PresentationController::class, 'index'])->name('presentations.index');
+    Route::post('newPresentation', [PresentationController::class, 'updatePresentation'])->name('presentation.process');
 
     Route::prefix("bannieres/")->as("banner:")->group(function () {
 
