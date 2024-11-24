@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
 use App\Http\Controllers\Auth\ActuVideoController;
+use App\Http\Controllers\Auth\ContentController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\WordController;
@@ -67,8 +68,6 @@ Route::prefix("/")->as("guests:")->group(function () {
 Route::prefix("auth/")->as("auth:")->group(function () {
 
     Route::get("tableau-de-bord", [DashboardController::class, "dashboard"])->name("dashboard");
-    Route::get('presentations', [PresentationController::class, 'index'])->name('presentations.index');
-    Route::post('newPresentation', [PresentationController::class, 'updatePresentation'])->name('presentation.process');
 
     Route::prefix("bannieres/")->as("banner:")->group(function () {
 
@@ -82,15 +81,18 @@ Route::prefix("auth/")->as("auth:")->group(function () {
     });
 
 
-    Route::prefix("words/")->as("word:")->group(function () {
+    Route::prefix("presentation/")->as("presentation:")->group(function () {
 
-        Route::get("", [WordController::class, "index"])->name("index");
+        Route::get("", [ContentController::class, "presentationView"])->name("view");
 
-        Route::post("store", [WordController::class, "store"])->name("store");
+        Route::post("store", [ContentController::class, "presentationStore"])->name("store");
+    });
 
-        Route::patch("{word}/update-processing", [WordController::class, "update"])->name("update");
+    Route::prefix("mot-president/")->as("presidentWord:")->group(function () {
 
-        Route::delete("{word}/destroy-processing", [WordController::class, "destroy"])->name("destroy");
+        Route::get("", [ContentController::class, "presidentWordView"])->name("view");
+
+        Route::post("store", [ContentController::class, "presidentWordStore"])->name("store");
     });
 
     Route::prefix("actu-videos/")->as("actuVideo:")->group(function() {

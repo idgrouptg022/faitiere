@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('words', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->string('body');
+            $table->longText('body');
             $table->string('image')->nullable();
-            $table->enum('type', ['presentation', 'mot de la presidente'])->default('presentation');
+            $table->enum("type", ["presentation", "president-word"])->default("presentation");
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('words');
+        Schema::dropIfExists('contents');
     }
 };
