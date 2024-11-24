@@ -92,6 +92,11 @@ body.collapsed main {
     transition: margin-left 5s ease-in-out infinite;
 }
 
+figure {
+    margin-block: 0;
+    margin-inline: 0;
+}
+
 .page-title {
     font-family: montserrat-bold;
     font-size: 1.5rem;
@@ -112,6 +117,28 @@ body.collapsed main {
 
 .page-subheader-btn i {
     margin-right: 0.5rem;
+}
+
+.page-header-breadcrumb {
+    list-style: none;
+    display: flex;
+    column-gap: .5rem;
+}
+
+.breadcrumb-item {
+    font-family: montserrat-bold;
+    font-size: .9rem;
+    color: #555;
+}
+
+.breadcrumb-item a {
+    color: #0d5cbd;
+    text-decoration: none;
+}
+
+.breadcrumb-item:not(:last-of-type)::after {
+    content: ' > ';
+    margin-left: 0.5rem;
 }
 
 .modal__container {
@@ -153,10 +180,24 @@ body.collapsed main {
     margin-bottom: 1rem;
 }
 
+.form__row {
+    display: flex;
+    column-gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.form__col {
+    flex: 1 1 calc(50% - 1.5rem);
+}
+
 .form__label {
     display: block;
     font-weight: 600;
     margin-bottom: .6rem;
+}
+
+select.input__form {
+    width: 98%;
 }
 
 .input__form {
@@ -246,4 +287,63 @@ body.collapsed main {
     font-size: .8rem;
     margin-top: .5rem;
     font-family: outfitBold;
+}
+
+.table-container {
+    margin-block: 1.5rem;
+    width: 100%;
+    margin-top: 3rem;
+}
+
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.table-custom thead {
+    background-color: #131313;
+    color: white;
+}
+
+.table-custom thead th {
+    padding: .8rem;
+    font-size: .9rem;
+    text-align: center;
+}
+
+.table-custom td {
+    padding: .8rem;
+    text-align: center;
+}
+
+.edit-new {
+    text-decoration: none;
+    background-color: var(--tertiary-500);
+    font-size: .8rem;
+    text-align: center;
+    color: #131313;
+    padding: .3rem .5rem;
+    font-weight: bold;
+}
+
+.destroy-new {
+    text-decoration: none;
+    background-color: var(--secondary);
+    font-size: .8rem;
+    text-align: center;
+    color: white;
+    padding: .3rem .5rem;
+}
+
+
+.table-custom td:nth-of-type(3) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

@@ -30,6 +30,24 @@
                     <span class="tooltip__content">Bannieres</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('auth:actuVideo:index') }}" title="actu videos" class="tooltip">
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
+                    </svg>
+                    <span class="link hide">Actu Videos</span>
+                    <span class="tooltip__content">Actu Videos</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('auth:evenements:index') }}" title="evenements" class="tooltip">
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M512 32c0 113.6-84.6 207.5-194.2 222c-7.1-53.4-30.6-101.6-65.3-139.3C290.8 46.3 364 0 448 0h32c17.7 0 32 14.3 32 32zM0 96C0 78.3 14.3 64 32 64H64c123.7 0 224 100.3 224 224v32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V320C100.3 320 0 219.7 0 96z"></path>
+                    </svg>
+                    <span class="link hide">Evenements</span>
+                    <span class="tooltip__content">Evenements</span>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="sidebar-bottom">

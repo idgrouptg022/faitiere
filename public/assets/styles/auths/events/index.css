@@ -1,0 +1,26 @@
+.table-custom thead th:first-of-type,
+.table-custom td:first-of-type {
+    width: 5%;
+}
+
+.table-custom thead th:nth-of-type(2),
+.table-custom td:nth-of-type(2) {
+    width: 10%;
+}
+
+.table-custom thead th:nth-of-type(4),
+.table-custom td:nth-of-type(4) {
+    width: 15%;
+}
+
+.table-custom thead th:nth-of-type(5),
+.table-custom td:nth-of-type(5) {
+    width: 15%;
+}
+
+.table-custom thead th:nth-of-type(6),
+.table-custom td:nth-of-type(6) {
+    width: 15%;
+}
+
+

@@ -19,13 +19,48 @@
                     <figure class="banner-item">
                         <img src="{{ asset('storage/' . $banner->image) }}" alt="">
                         <figcaption>
-                            <h2 class="banner-title"></h2>
+                            <h2 class="banner-title">{{  $banner->title }}</h2>
                             <div class="banner-actions">
-                                <a href="#">Editer</a>
-                                <a href="#">Supprimer</a>
+                                <a href="#" onclick="modalOpener(this)" data-target="#editBanner{{ $banner->id }}">Editer</a>
+                                <a href="#!" onclick="event.preventDefault(); confirm('Etes-vous sûr de vouloir supprimer cette bannière ?') ? document.getElementById('deleteBanner{{ $banner->id }}').submit() : ''">Supprimer</a>
+                                <form action="{{ route('auth:banner:destroy', $banner) }}" method="POST" id="deleteBanner{{ $banner->id }}">
+                                    @csrf
+                                    @method("DELETE")
+                                </form>
                             </div>
                         </figcaption>
                     </figure>
+
+                    <div class="modal__container" id="editBanner{{ $banner->id }}">
+                        <div class="modal">
+                            <div class="modal__body">
+                                <form action="{{ route('auth:banner:update', $banner) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method("PATCH")
+                                    <div class="form__group">
+                                        <label for="title" class="form__label">Titre</label>
+                                        <textarea name="title" id="title" rows="3" placeholder="Titre de la bannière" class="input__form">{!! $banner->title !!}</textarea>
+                                    </div>
+                                    <div class="form__group">
+                                        <label for="" class="form__label">Image de la bannière</label>
+                                        <label for="" class="input__file__container">
+                                            <i class="fa fa-image"></i>
+                                            <input type="file" name="image" id="" class="input__file" onchange="uploadFile(this)">
+                                            <span class="file__name">Choisir une image</span>
+                                        </label>
+                                    </div>
+                                    <div class="form__group">
+                                        <label for="link" class="form__label">Lien</label>
+                                        <input type="url" name="link" id="link" placeholder="Lien..." class="input__form" value="{!! $banner->link !!}">
+                                    </div>
+                                    <div class="form__button">
+                                        <button type="submit" class="button__green">Enregistrer la bannière</button>
+                                        <button type="button" class="close__button closeModal" onclick="closeModal(this)">Annuler</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
