@@ -6,6 +6,7 @@ use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\WordController;
 
 Route::prefix("/")->as("guests:")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
@@ -77,6 +78,18 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::delete("{banner}/destroy-processing", [BannerController::class, "destroy"])->name("destroy");
     });
 
+
+    Route::prefix("words/")->as("word:")->group(function () {
+
+        Route::get("", [WordController::class, "index"])->name("index");
+
+        Route::post("store", [WordController::class, "store"])->name("store");
+
+        Route::patch("{word}/update-processing", [WordController::class, "update"])->name("update");
+
+        Route::delete("{word}/destroy-processing", [WordController::class, "destroy"])->name("destroy");
+    });
+
     Route::prefix("actu-videos/")->as("actuVideo:")->group(function() {
 
         Route::get("", [ActuVideoController::class, "index"])->name("index");
@@ -101,5 +114,6 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::patch("{event}/update", [EventController::class, "update"])->name("update");
 
         Route::delete("{event}/destroy", [EventController::class, "destroy"])->name("destroy");
+
     });
 });
