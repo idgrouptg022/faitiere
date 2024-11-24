@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\Auth\BannerController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\MainController;
+use App\Http\Controllers\Auth\BannerController;
+use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\PresentationController;
+use App\Http\Controllers\Auth\WordController;
 
 Route::prefix("/")->as("guests:")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
@@ -76,5 +79,44 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::patch("{banner}/update-processing", [BannerController::class, "update"])->name("update");
 
         Route::delete("{banner}/destroy-processing", [BannerController::class, "destroy"])->name("destroy");
+    });
+
+
+    Route::prefix("words/")->as("word:")->group(function () {
+
+        Route::get("", [WordController::class, "index"])->name("index");
+
+        Route::post("store", [WordController::class, "store"])->name("store");
+
+        Route::patch("{word}/update-processing", [WordController::class, "update"])->name("update");
+
+        Route::delete("{word}/destroy-processing", [WordController::class, "destroy"])->name("destroy");
+    });
+
+    Route::prefix("actu-videos/")->as("actuVideo:")->group(function() {
+
+        Route::get("", [ActuVideoController::class, "index"])->name("index");
+
+        Route::post("store", [ActuVideoController::class, "store"])->name("store");
+
+        Route::patch("{actuVideo}/update", [ActuVideoController::class, "update"])->name("update");
+
+        Route::delete("{actuVideo}/destroy", [ActuVideoController::class, "destroy"])->name("destroy");
+    });
+
+    Route::prefix("evenements/")->as("evenements:")->group(function () {
+
+        Route::get("", [EventController::class, "index"])->name("index");
+
+        Route::get("ajout-nouveau", [EventController::class, "create"])->name("create");
+
+        Route::post("store", [EventController::class, "store"])->name("store");
+
+        Route::get("{event}/details", [EventController::class, "show"])->name("show");
+
+        Route::patch("{event}/update", [EventController::class, "update"])->name("update");
+
+        Route::delete("{event}/destroy", [EventController::class, "destroy"])->name("destroy");
+
     });
 });
