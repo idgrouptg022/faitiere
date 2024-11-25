@@ -6,7 +6,7 @@
 
 @section('content')
     <h1 class="page-title">Plaidoyers</h1>
-
+    
     <div class="container">
 
     </div>

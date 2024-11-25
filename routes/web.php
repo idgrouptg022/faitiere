@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ActiviteAnnuelleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\MainController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Auth\BannerController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\ContentController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\RapportController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\WordController;
 
@@ -120,5 +122,26 @@ Route::prefix("auth/")->as("auth:")->group(function () {
 
         Route::delete("{event}/destroy", [EventController::class, "destroy"])->name("destroy");
 
+    });
+
+    Route::prefix("rapports-ag/")->as("rapports-ag:")->group(function () {
+        Route::get("", [RapportController::class, "index"])->name("index");
+
+        Route::post("store", [RapportController::class, "store"])->name("store");
+
+        Route::patch("{rapport}/update", [RapportController::class, "update"])->name("update");
+
+        Route::delete("{rapport}/destroy", [RapportController::class, "destroy"])->name("destroy");
+
+    });
+
+    Route::prefix("rapports-activites/")->as("rapports-activites:")->group(function () {
+        Route::get("", [ActiviteAnnuelleController::class, "index"])->name("index");
+
+        Route::post("store", [ActiviteAnnuelleController::class, "store"])->name("store");
+
+        Route::patch("{rapport}/update", [ActiviteAnnuelleController::class, "update"])->name("update");
+
+        Route::delete("{rapport}/destroy", [ActiviteAnnuelleController::class, "destroy"])->name("destroy");
     });
 });

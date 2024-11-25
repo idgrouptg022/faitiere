@@ -9,14 +9,13 @@ use App\Models\Rapport;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Termwind\Components\Raw;
 
-class RapportController extends Controller
+class ActiviteAnnuelleController extends Controller
 {
     public function index()
     {
-        $rapports = Rapport::where("type", RapportTypes::AssembleeGenerale)->latest()->get();
-        return view("auths.rapports.assemblee", [
+        $rapports = Rapport::where("type", RapportTypes::ActivitesAnnuelles)->latest()->get();
+        return view("auths.rapports.activites_annuelles", [
             'rapports' => $rapports
         ]);
     }
@@ -24,7 +23,7 @@ class RapportController extends Controller
     public function store(RapportRequest $request): RedirectResponse
     {
         $fields = $request->validated();
-        $fields["type"] = RapportTypes::AssembleeGenerale;
+        $fields["type"] = RapportTypes::ActivitesAnnuelles;
         $filePath = null;
         if (!$request->hasFile("filepath")) {
             return back()->withErrors(['filepath' => 'Veuillez ajouter un fichier pour le rapport.']);
@@ -40,7 +39,7 @@ class RapportController extends Controller
     public function update(RapportRequest $request, Rapport $rapport)
     {
         $fields = $request->validated();
-        $fields["type"] = RapportTypes::AssembleeGenerale;
+        $fields["type"] = RapportTypes::ActivitesAnnuelles;
         $oldRapport = $rapport->filepath;
         $filePath = $oldRapport;
         if ($request->has("filepath"))  {  
