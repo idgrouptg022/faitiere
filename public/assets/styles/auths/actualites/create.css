@@ -1,0 +1,49 @@
+.event-container {
+    display: flex;
+    column-gap: 1.5rem;
+    margin-top: 4rem;
+}
+
+.form-part {
+    flex: 1 1 65%;
+}
+
+.image-loader-part {
+    flex: 1 1 30%;
+}
+
+.input__file {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.image-loader-container {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border: 1.5px solid #000;
+    border-radius: 1rem;
+}
+
+.image-loader-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.file__name {
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-align: center;
+    display: inline-flex;
+}
+
+.form__button {
+    justify-content: center;
+}
