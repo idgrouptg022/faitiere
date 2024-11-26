@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Prefecture;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Commune extends Model
 {
@@ -12,14 +15,19 @@ class Commune extends Model
     protected $guarded=["id"];
 
 
-    public function prefecture()
+    public function prefecture(): BelongsTo
     {
         return $this->belongsTo(Prefecture::class);
     }
 
+    public function mapLocations(): HasOne
+    {
+        return $this->hasOne(MapLocation::class);
+    }
 
     public function actualite()
-{
-    return $this->hasMany(Actualite::class);
-}
+    {
+        return $this->hasMany(Actualite::class);
+    }
+
 }

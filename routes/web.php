@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\ProjectController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Auth\QuotationController;
 
 
@@ -234,6 +235,16 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::post("store", [QuotationController::class, 'store'])->name("store");
     });
 
+
+    Route::prefix("localisation/")->as("maploc:")->group(function () {
+      
+        Route::get("", [MapLocationController::class, "index"])->name("index");
+
+        Route::post("store", [MapLocationController::class, "store"])->name("store");
+
+        Route::delete("destroy", [MapLocationController::class, "destroy"])->name("destroy");
+    });
+  
     Route::prefix("actualites/")->as("actualites:")->group(function () {
 
         Route::get("", [ActualiteController::class, "index"])->name("index");
@@ -247,6 +258,5 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::patch("{actualite}/update", [ActualiteController::class, "update"])->name("update");
 
         Route::delete("{actualite}/destroy", [ActualiteController::class, "destroy"])->name("destroy");
-
     });
 });
