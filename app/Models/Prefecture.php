@@ -9,6 +9,7 @@ class Prefecture extends Model
 {
     use HasFactory;
 
+
     protected $guarded=["id"];
 
 
@@ -21,4 +22,5 @@ public function communes()
 {
     return $this->hasMany(Commune::class);
 }
+
 }
