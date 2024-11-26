@@ -1,17 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\WordController;
 use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
+
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\CommuneController;
 use App\Http\Controllers\Auth\ContentController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\RapportController;
+use App\Http\Controllers\Auth\ContentController;
+use App\Http\Controllers\Auth\ProjectController;
 use App\Http\Controllers\PresentationController;
-use App\Http\Controllers\Auth\WordController;
+use App\Http\Controllers\Auth\ActuVideoController;
+use App\Http\Controllers\Auth\DashboardController;
 
 Route::prefix("/")->as("guests:")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
@@ -125,6 +130,7 @@ Route::prefix("auth/")->as("auth:")->group(function () {
 
     });
 
+
     Route::prefix("activites_annuelles/")->as("activites_annuelles:")->group(function() {
 
         Route::get("", [RapportController::class, "activitesAnnuellesView"])->name("view");
@@ -180,5 +186,15 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::delete("{commune}/destroy", [CommuneController::class, "Destroy"])->name("destroy");
     });
 
+    Route::prefix("projets/{projectType}/")->as("projects:")->group(function () {
+
+        Route::get("", [ProjectController::class, "index"])->name("index");
+
+        Route::post("nouveau", [ProjectController::class, "store"])->name("store");
+
+        Route::patch("{project}/update", [ProjectController::class, "update"])->name("update");
+
+        Route::delete("{project}/destroy", [ProjectController::class, "destroy"])->name("destroy");
+    });
 
 });
