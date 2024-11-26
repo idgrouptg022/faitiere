@@ -68,6 +68,73 @@
                 </a>
             </li>
 
+            <h6>A Propos</h6>
+            <li>
+                <a href="{{ route('auth:about:index', 'historique') }}" title="Historique" class="tooltip">
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 80v48c0 17.7 14.3 32 32 32H48 96V80c0-26.5-21.5-48-48-48S0 53.5 0 80zM112 32c10 13.4 16 30 16 48V384c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96H112zM464 480c61.9 0 112-50.1 112-112c0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7V384c0 53-43 96-96 96H368h96z"></path>
+                    </svg>
+                    <span class="link hide">Historique</span>
+                    <span class="tooltip__content">Historique</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('auth:about:index', 'role-mission') }}" title="Rôle et Mission" class="tooltip">
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 80v48c0 17.7 14.3 32 32 32H48 96V80c0-26.5-21.5-48-48-48S0 53.5 0 80zM112 32c10 13.4 16 30 16 48V384c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96H112zM464 480c61.9 0 112-50.1 112-112c0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7V384c0 53-43 96-96 96H368h96z"></path>
+                    </svg>
+                    <span class="link hide">Rôle et Mission</span>
+                    <span class="tooltip__content">Rôle et Mission</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('auth:about:index', 'statut') }}" title="Statut" class="tooltip">
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 80v48c0 17.7 14.3 32 32 32H48 96V80c0-26.5-21.5-48-48-48S0 53.5 0 80zM112 32c10 13.4 16 30 16 48V384c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96H112zM464 480c61.9 0 112-50.1 112-112c0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7V384c0 53-43 96-96 96H368h96z"></path>
+                    </svg>
+                    <span class="link hide">Statut</span>
+                    <span class="tooltip__content">Statut</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('auth:about:index', 'reglement') }}" title="Règlement" class="tooltip">
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 80v48c0 17.7 14.3 32 32 32H48 96V80c0-26.5-21.5-48-48-48S0 53.5 0 80zM112 32c10 13.4 16 30 16 48V384c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96H112zM464 480c61.9 0 112-50.1 112-112c0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7V384c0 53-43 96-96 96H368h96z"></path>
+                    </svg>
+                    <span class="link hide">Règlement</span>
+                    <span class="tooltip__content">Règlement</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('auth:about:index', 'organigramme') }}" title="Organigramme" class="tooltip">
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 80v48c0 17.7 14.3 32 32 32H48 96V80c0-26.5-21.5-48-48-48S0 53.5 0 80zM112 32c10 13.4 16 30 16 48V384c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96H112zM464 480c61.9 0 112-50.1 112-112c0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7V384c0 53-43 96-96 96H368h96z"></path>
+                    </svg>
+                    <span class="link hide">Organigramme</span>
+                    <span class="tooltip__content">Organigramme</span>
+                </a>
+            </li>
+
+            <h6>Décentralisation</h6>
+            <li>
+                <a href="{{ route('auth:decentralisation:index', 'decentralisation-lois') }}" title="Lois" class="tooltip">
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 80v48c0 17.7 14.3 32 32 32H48 96V80c0-26.5-21.5-48-48-48S0 53.5 0 80zM112 32c10 13.4 16 30 16 48V384c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96H112zM464 480c61.9 0 112-50.1 112-112c0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7V384c0 53-43 96-96 96H368h96z"></path>
+                    </svg>
+                    <span class="link hide">Lois</span>
+                    <span class="tooltip__content">Lois</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('auth:decentralisation:index', 'decentralisation-info') }}" title="Informations" class="tooltip">
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 80v48c0 17.7 14.3 32 32 32H48 96V80c0-26.5-21.5-48-48-48S0 53.5 0 80zM112 32c10 13.4 16 30 16 48V384c0 35.3 28.7 64 64 64s64-28.7 64-64v-5.3c0-32.4 26.3-58.7 58.7-58.7H480V128c0-53-43-96-96-96H112zM464 480c61.9 0 112-50.1 112-112c0-8.8-7.2-16-16-16H314.7c-14.7 0-26.7 11.9-26.7 26.7V384c0 53-43 96-96 96H368h96z"></path>
+                    </svg>
+                    <span class="link hide">Informations</span>
+                    <span class="tooltip__content">Informations</span>
+                </a>
+            </li>
+
             <h6>Mediatheque</h6>
             <li>
                 <a href="" title="Centre national de ressources" class="tooltip">

@@ -1,0 +1,48 @@
+/* .page-content {
+    width: 80%;
+} */
+
+.quotation-container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.form-part {
+    flex: 1 1 calc(70%);
+}
+
+.files-part-loader {
+    flex: 1 1 calc(30%);
+}
+
+.top-bar {
+    margin-bottom: 1rem;
+}
+
+#pdf-renderer {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.input__file {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.file__name {
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-align: center;
+    display: inline-flex;
+}
+
+.form__button {
+    justify-content: center;
+}

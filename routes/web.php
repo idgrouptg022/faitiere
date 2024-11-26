@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ProjectController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\QuotationController;
 
 Route::prefix("/")->as("guests:")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
@@ -132,5 +133,19 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::patch("{project}/update", [ProjectController::class, "update"])->name("update");
 
         Route::delete("{project}/destroy", [ProjectController::class, "destroy"])->name("destroy");
+    });
+
+    Route::prefix("a-propos/{quotationType}/")->as("about:")->group(function () {
+
+        Route::get("", [QuotationController::class, 'index'])->name("index");
+
+        Route::post("store", [QuotationController::class, 'store'])->name("store");
+    });
+
+    Route::prefix("decentralisation/{quotationType}/")->as("decentralisation:")->group(function () {
+
+        Route::get("", [QuotationController::class, 'index'])->name("index");
+
+        Route::post("store", [QuotationController::class, 'store'])->name("store");
     });
 });
