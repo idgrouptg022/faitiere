@@ -11,7 +11,7 @@
 <div class="page__header__container">
     <ol class="page-header-breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('auth:actualites:index') }}">Actualités</a></li>
-        <li class="breadcrumb-item">Nouveau</li>
+        <li class="breadcrumb-item">Détails</li>
     </ol>
 </div>
 
@@ -21,20 +21,24 @@
     </div>
     <div class="event-container">
         <div class="form-part">
-            <form action="{{ route('auth:actualites:store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('auth:actualites:update', $actualite) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method("PATCH")
                 <div class="form__group">
                     <label for="title" class="form__label">Titre</label>
-                    <input type="text" name="title" id="title" placeholder="Titre de l'actualité..." class="input__form">
+                    <input type="text" name="title" id="title" placeholder="Titre de l'actualité..." class="input__form" value="{{ $actualite->title }}">
                 </div>
 
                 <div class="form__group">
 
                         <label for="commune" class="form__label">Commune de l'actualité</label>
-                        <select name="commune_id" id=commune" class="input__form">
-                            <option value="">Sélectionner une commune</option>
+
+                        <select name="commune_id" id="commune" class="input__form">
+
                             @forelse ($communes as $commune)
-                                <option value="{{ $commune->id }}">{{ $commune->name }}</option>
+                                <option value="{{ $commune->id }}"
+                                @if(old('prefecture', $commune->id ) == $commune->id ) selected @endif
+                                    >{{ $commune->name }}</option>
                             @empty
                                 <option value="">Pas de commune !</option>
                             @endforelse
@@ -52,22 +56,29 @@
                 </div>
                 <div class="form__group">
                     <label for="content" class="form__label">Description</label>
-                    <textarea name="description" id="content" rows="3" placeholder="Description de l'événement..." class="input__form"></textarea>
+                    <textarea name="description" id="content" rows="3" placeholder="Description de l'événement..." class="input__form">{!! $actualite->description !!}</textarea>
                 </div>
 
                 <div class="form__button">
                     <button type="submit" class="button__green">Enregistrer l'actualité</button>
                 </div>
+
             </form>
         </div>
-             <div class="image-loader-part">
-            <figure class="image-loader-container">
-                <img id="imagePreview" src="{{ asset('assets/images/preview.png') }}" alt="Image de l'événement">
-            </figure>
-        </div>
+
+            <div class="image-loader-part">
+                        <figure class="image-loader-container">
+                            @if ($actualite->image != null)
+                            <img id="imagePreview" src="{{ asset('storage/' . $actualite->image) }}" alt="Image de l'actualité">
+                        @else
+                            <img id="imagePreview" src="{{ asset('assets/images/preview.png') }}" alt="Image de l'actualité">
+                        @endif  </figure>
+                    </div>
+
         </div>
 
     </div>
+
 
 @endsection
 

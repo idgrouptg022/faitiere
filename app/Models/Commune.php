@@ -16,4 +16,10 @@ class Commune extends Model
     {
         return $this->belongsTo(Prefecture::class);
     }
+
+
+    public function actualite()
+{
+    return $this->hasMany(Actualite::class);
+}
 }
