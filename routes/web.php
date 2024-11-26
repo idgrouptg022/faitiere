@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
+use App\Http\Controllers\Auth\ActualiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\WordController;
 use App\Http\Controllers\Auth\EventController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Auth\QuotationController;
+
 
 Route::prefix("/")->as("guests:")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
@@ -233,11 +235,28 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::post("store", [QuotationController::class, 'store'])->name("store");
     });
 
+
     Route::prefix("localisation/")->as("maploc:")->group(function () {
+      
         Route::get("", [MapLocationController::class, "index"])->name("index");
 
         Route::post("store", [MapLocationController::class, "store"])->name("store");
 
         Route::delete("destroy", [MapLocationController::class, "destroy"])->name("destroy");
+    });
+  
+    Route::prefix("actualites/")->as("actualites:")->group(function () {
+
+        Route::get("", [ActualiteController::class, "index"])->name("index");
+
+        Route::get("ajout-nouveau", [ActualiteController::class, "create"])->name("create");
+
+        Route::post("store", [ActualiteController::class, "store"])->name("store");
+
+        Route::get("{actualite}/details", [ActualiteController::class, "show"])->name("show");
+
+        Route::patch("{actualite}/update", [ActualiteController::class, "update"])->name("update");
+
+        Route::delete("{actualite}/destroy", [ActualiteController::class, "destroy"])->name("destroy");
     });
 });
