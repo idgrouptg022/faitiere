@@ -42,7 +42,6 @@
                         </form>
                     </td>
                 </tr>
-
                 @php
                 $i++;
                 @endphp
@@ -54,6 +53,7 @@
             </tbody>
         </table>
     </div>
+    
     @foreach($rapports as $rapport)
     <div class="modal__container" id="editRapport{{ $rapport->id }}">
         <div class="modal">

@@ -2,16 +2,25 @@
 
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\WordController;
 use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
+
 use App\Http\Controllers\Auth\ActuVideoController;
+use App\Http\Controllers\Auth\CommuneController;
 use App\Http\Controllers\Auth\ContentController;
 use App\Http\Controllers\Auth\DashboardController;
+
 use App\Http\Controllers\Auth\MagazineController;
 use App\Http\Controllers\Auth\RapportController;
+use App\Http\Controllers\Auth\PrefectureController;
+use App\Http\Controllers\Auth\RapportController;
+use App\Http\Controllers\Auth\ContentController;
+use App\Http\Controllers\Auth\ProjectController;
 use App\Http\Controllers\PresentationController;
-use App\Http\Controllers\Auth\WordController;
+use App\Http\Controllers\Auth\ActuVideoController;
+use App\Http\Controllers\Auth\DashboardController;
 
 Route::prefix("/")->as("guests:")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
@@ -145,6 +154,7 @@ Route::prefix("auth/")->as("auth:")->group(function () {
 
         Route::delete("{rapport}/destroy", [ActiviteAnnuelleController::class, "destroy"])->name("destroy");
     });
+  
     Route::prefix("magazines/")->as("magazines:")->group(function () {
         Route::get("", [MagazineController::class, "index"])->name("index");
 
@@ -153,5 +163,61 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::patch("{magazine}/update", [MagazineController::class, "update"])->name("update");
 
         Route::delete("{magazine}/destroy", [MagazineController::class, "destroy"])->name("destroy");
+    });
+
+    Route::prefix("activites_annuelles/")->as("activites_annuelles:")->group(function() {
+
+        Route::get("", [RapportController::class, "activitesAnnuellesView"])->name("view");
+
+        Route::post("store", [RapportController::class, "activitesAnnuellesStore"])->name("store");
+
+        Route::patch("{activite}/update", [RapportController::class, "activitesAnnuellesUpdate"])->name("update");
+
+        Route::delete("{id}/destroy", [RapportController::class, "rapportDestroy"])->name("destroy");
+    });
+
+
+    Route::prefix("ressources/")->as("ressources:")->group(function() {
+
+        Route::get("", [RapportController::class, "ressourcesView"])->name("view");
+
+        Route::post("store", [RapportController::class, "ressourcesStore"])->name("store");
+
+        Route::patch("{ressource}/update", [RapportController::class, "ressourcesUpdate"])->name("update");
+
+        Route::delete("{id}/destroy", [RapportController::class, "rapportDestroy"])->name("destroy");
+    });
+
+    Route::prefix("prefectures/")->as("prefectures:")->group(function() {
+
+        Route::get("", [PrefectureController::class, "index"])->name("index");
+
+        Route::post("store", [PrefectureController::class, "Store"])->name("store");
+
+        Route::patch("{prefecture}/update", [PrefectureController::class, "Update"])->name("update");
+
+        Route::delete("{prefecture}/destroy", [PrefectureController::class, "Destroy"])->name("destroy");
+    });
+
+    Route::prefix("communes/")->as("communes:")->group(function() {
+
+        Route::get("", [CommuneController::class, "index"])->name("index");
+
+        Route::post("store", [CommuneController::class, "Store"])->name("store");
+
+        Route::patch("{commune}/update", [CommuneController::class, "Update"])->name("update");
+
+        Route::delete("{commune}/destroy", [CommuneController::class, "Destroy"])->name("destroy");
+    });
+
+    Route::prefix("projets/{projectType}/")->as("projects:")->group(function () {
+
+        Route::get("", [ProjectController::class, "index"])->name("index");
+
+        Route::post("nouveau", [ProjectController::class, "store"])->name("store");
+
+        Route::patch("{project}/update", [ProjectController::class, "update"])->name("update");
+
+        Route::delete("{project}/destroy", [ProjectController::class, "destroy"])->name("destroy");
     });
 });

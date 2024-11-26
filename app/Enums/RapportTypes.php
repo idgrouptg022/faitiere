@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum RapportTypes:string
 {
-    case Ressources = "ressouces";
+    case Ressources = "ressources";
     case AssembleeGenerale = "assemblee-generale";
     case ActivitesAnnuelles = "activites-annuelles";
 }

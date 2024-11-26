@@ -13,8 +13,9 @@
         <a href="{{ route('auth:evenements:create') }}" class="page-subheader-btn" onclick="modalOpener(this)" data-target="#addActuVideo"><i class="fas fa-plus-circle"></i> Ajouter un évènement</a>
     </div>
 
-    <div class="page-conten">
-        @include('includes.auths.flash')
+        <div class="page-content">
+            @include('includes.auths.flash')
+
 
         <div class="table-container">
             <table class="table-custom">
