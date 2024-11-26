@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ActiviteAnnuelleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\WordController;
 use App\Http\Controllers\Auth\EventController;
@@ -10,6 +11,9 @@ use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\CommuneController;
 use App\Http\Controllers\Auth\ContentController;
 use App\Http\Controllers\Auth\DashboardController;
+
+use App\Http\Controllers\Auth\MagazineController;
+use App\Http\Controllers\Auth\RapportController;
 use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\RapportController;
 use App\Http\Controllers\Auth\ContentController;
@@ -130,6 +134,36 @@ Route::prefix("auth/")->as("auth:")->group(function () {
 
     });
 
+    Route::prefix("rapports-ag/")->as("rapports-ag:")->group(function () {
+        Route::get("", [RapportController::class, "index"])->name("index");
+
+        Route::post("store", [RapportController::class, "store"])->name("store");
+
+        Route::patch("{rapport}/update", [RapportController::class, "update"])->name("update");
+
+        Route::delete("{rapport}/destroy", [RapportController::class, "destroy"])->name("destroy");
+
+    });
+
+    Route::prefix("rapports-activites/")->as("rapports-activites:")->group(function () {
+        Route::get("", [ActiviteAnnuelleController::class, "index"])->name("index");
+
+        Route::post("store", [ActiviteAnnuelleController::class, "store"])->name("store");
+
+        Route::patch("{rapport}/update", [ActiviteAnnuelleController::class, "update"])->name("update");
+
+        Route::delete("{rapport}/destroy", [ActiviteAnnuelleController::class, "destroy"])->name("destroy");
+    });
+  
+    Route::prefix("magazines/")->as("magazines:")->group(function () {
+        Route::get("", [MagazineController::class, "index"])->name("index");
+
+        Route::post("store", [MagazineController::class, "store"])->name("store");
+
+        Route::patch("{magazine}/update", [MagazineController::class, "update"])->name("update");
+
+        Route::delete("{magazine}/destroy", [MagazineController::class, "destroy"])->name("destroy");
+    });
 
     Route::prefix("activites_annuelles/")->as("activites_annuelles:")->group(function() {
 
@@ -142,16 +176,6 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::delete("{id}/destroy", [RapportController::class, "rapportDestroy"])->name("destroy");
     });
 
-    Route::prefix("assemblees/")->as("assemblees:")->group(function() {
-
-        Route::get("", [RapportController::class, "assembleeView"])->name("view");
-
-        Route::post("store", [RapportController::class, "assembleeStore"])->name("store");
-
-        Route::patch("{assemblee}/update", [RapportController::class, "assembleeUpdate"])->name("update");
-
-        Route::delete("{id}/destroy", [RapportController::class, "rapportDestroy"])->name("destroy");
-    });
 
     Route::prefix("ressources/")->as("ressources:")->group(function() {
 
@@ -196,5 +220,4 @@ Route::prefix("auth/")->as("auth:")->group(function () {
 
         Route::delete("{project}/destroy", [ProjectController::class, "destroy"])->name("destroy");
     });
-
 });

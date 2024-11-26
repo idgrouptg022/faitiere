@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
+
     public function index(string $projectType)
     {
         if (!in_array($projectType, array_map(fn($case) => $case->value, ProjectTypes::cases()))) {

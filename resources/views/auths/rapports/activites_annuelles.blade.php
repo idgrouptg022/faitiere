@@ -46,7 +46,7 @@
 
 
 
-        <div class="page-conten">
+        <div class="page-content">
             @include('includes.auths.flash')
 
             <div class="table-container">
@@ -125,11 +125,6 @@
             </div>
         </div>
 
-
-    </div>
-
-
-
 @endsection
 
 @push('extra-scripts')
@@ -140,7 +135,27 @@
             modal.style.display = "flex";
         };
 
+        const uploadFile = (element) => {
+            const fileInput = element;
 
+            const fileContainer = fileInput.parentNode;
+            const fileSpan = fileContainer.querySelector('.file__name');
+
+
+            if (fileInput.files.length >= 1) {
+                const fileName = fileInput.files[0].name;
+                let fileSize = fileInput.files[0].size;
+                fileSize = (fileSize / 1024).toFixed(2) + " ko";
+
+                fileContainer.style.borderColor = "#006ccb";
+                fileContainer.style.backgroundColor = "#dfeeff";
+                fileSpan.textContent = `${fileName}, ${fileSize}`;
+            } else {
+                fileContainer.style.borderColor = "#000";
+                fileContainer.style.backgroundColor = "#fff";
+                fileSpan.textContent = "Choisir un fichier";
+            }
+
+        }
     </script>
 @endpush
-

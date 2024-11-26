@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RapportRequest extends FormRequest
+class MagazineRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,26 +22,15 @@ class RapportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
+            'title' => 'required|string',
             'filepath' => 'nullable|mimes:pdf'
         ];
     }
     public function messages()
     {
         return [
-            'title.required' => 'Veuillez ajoutez le titre du rapport.',
+            'title.required' => 'Veullez ajoutez un titre.',
             'filepath.mimes' => 'type de fichier non pris en charge, veuillez ajouter un pdf.'
-            'title' => 'required|string',
-            'filepath' => 'nullable|mimes:pdf',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'title.required' => 'Le champ du titre est requis.',
-
-            'filepath.mimes' => 'Le type de ce ficher n\'est pas supporté',
         ];
     }
 }
