@@ -22,5 +22,10 @@
 .table-custom td:nth-of-type(6) {
     width: 15%;
 }
+.seeIcon{
+    width: 20px;
+    height: 20px;
+
+}
 
 

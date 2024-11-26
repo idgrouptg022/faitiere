@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\BannerController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\ContentController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\MagazineController;
 use App\Http\Controllers\Auth\RapportController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\WordController;
@@ -143,5 +144,14 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::patch("{rapport}/update", [ActiviteAnnuelleController::class, "update"])->name("update");
 
         Route::delete("{rapport}/destroy", [ActiviteAnnuelleController::class, "destroy"])->name("destroy");
+    });
+    Route::prefix("magazines/")->as("magazines:")->group(function () {
+        Route::get("", [MagazineController::class, "index"])->name("index");
+
+        Route::post("store", [MagazineController::class, "store"])->name("store");
+
+        Route::patch("{magazine}/update", [MagazineController::class, "update"])->name("update");
+
+        Route::delete("{magazine}/destroy", [MagazineController::class, "destroy"])->name("destroy");
     });
 });
