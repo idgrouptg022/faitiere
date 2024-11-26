@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Prefecture extends Model
 {
@@ -18,7 +19,7 @@ class Prefecture extends Model
     return $this->belongsTo(Region::class);
 }
 
-public function communes()
+public function communes(): HasMany
 {
     return $this->hasMany(Commune::class);
 }

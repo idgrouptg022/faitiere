@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\ProjectController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Auth\QuotationController;
 
 Route::prefix("/")->as("guests:")->group(function () {
@@ -230,5 +231,13 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::get("", [QuotationController::class, 'index'])->name("index");
 
         Route::post("store", [QuotationController::class, 'store'])->name("store");
+    });
+
+    Route::prefix("localisation/")->as("maploc:")->group(function () {
+        Route::get("", [MapLocationController::class, "index"])->name("index");
+
+        Route::post("store", [MapLocationController::class, "store"])->name("store");
+
+        Route::delete("destroy", [MapLocationController::class, "destroy"])->name("destroy");
     });
 });
