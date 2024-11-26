@@ -24,7 +24,7 @@ class EventRequest extends FormRequest
         return [
             "title" => "required|string",
             "event_date" => "required|date",
-            "image" => "nullable|mimes:jpg,jpeg,png,gif,svg|image|file|max:5000|size:5000",
+            "image" => "nullable|mimes:jpg,jpeg,png,gif,svg|image|file",
             "event_area" => "nullable|in:national,international",
             "domaine" => "nullable|string",
             "description" => "nullable|string",

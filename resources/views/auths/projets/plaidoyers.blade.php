@@ -6,7 +6,7 @@
 
 @section('content')
     <h1 class="page-title">Plaidoyers</h1>
-
+    
     <div class="container">
         <div class="pager-subheader">
             <a href="#!" class="page-subheader-btn" onclick="modalOpener(this)" data-target="#addPlaidoyer"><i class="fas fa-plus-circle"></i> Ajouter un plaidoyer</a>

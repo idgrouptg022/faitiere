@@ -9,5 +9,18 @@ class Prefecture extends Model
 {
     use HasFactory;
 
-    protected $guarded = ["id"];
+
+    protected $guarded=["id"];
+
+
+    public function region()
+{
+    return $this->belongsTo(Region::class);
+}
+
+public function communes()
+{
+    return $this->hasMany(Commune::class);
+}
+
 }

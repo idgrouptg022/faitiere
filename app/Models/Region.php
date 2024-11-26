@@ -9,10 +9,16 @@ class Region extends Model
 {
     use HasFactory;
 
-    protected $guarded = ["id"];
+
+    protected $guarded=["id"];
 
     public function getRouteKeyName()
     {
         return "slug";
     }
+
+    public function prefectures()
+{
+    return $this->hasMany(Prefecture::class);
+}
 }
