@@ -7,16 +7,12 @@ use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
 
-use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\CommuneController;
 use App\Http\Controllers\Auth\ContentController;
-use App\Http\Controllers\Auth\DashboardController;
 
 use App\Http\Controllers\Auth\MagazineController;
-use App\Http\Controllers\Auth\RapportController;
 use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\RapportController;
-use App\Http\Controllers\Auth\ContentController;
 use App\Http\Controllers\Auth\ProjectController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\ActuVideoController;
@@ -155,7 +151,7 @@ Route::prefix("auth/")->as("auth:")->group(function () {
 
         Route::delete("{rapport}/destroy", [ActiviteAnnuelleController::class, "destroy"])->name("destroy");
     });
-  
+
     Route::prefix("magazines/")->as("magazines:")->group(function () {
         Route::get("", [MagazineController::class, "index"])->name("index");
 

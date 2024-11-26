@@ -26,7 +26,7 @@
                         </div>
                         <div class="from__group">
                         <label for="region" class="form__label">Région de la préfecture</label>
-                            <select name="region_id" id="region" class="select__form">
+                            <select name="region_id" id="region" class="input__form">
                                 <option value="">Sélectionner une région</option>
                                 @forelse ($regions as $region)
                                     <option value="{{ $region->id }}">{{ $region->name }}</option>
@@ -102,7 +102,7 @@
                                             </div>
                                             <div class="from__group">
                                             <label for="region" class="form__label">Région de la préfecture</label>
-                                                <select name="region_id" id="region" class="select__form">
+                                                <select name="region_id" id="region" class="input__form">
 
                                                     @forelse ($regions as $region)
                                                         <option value="{{ $region->id }}"

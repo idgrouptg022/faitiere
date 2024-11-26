@@ -6,7 +6,6 @@ use App\Enums\RapportTypes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RapportRequest;
 use App\Models\Rapport;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,6 +18,7 @@ class RapportController extends Controller
     public function index()
     {
         $rapports = Rapport::where("type", RapportTypes::AssembleeGenerale)->latest()->get();
+
         return view("auths.rapports.assemblee", [
             'rapports' => $rapports
         ]);
@@ -27,8 +27,11 @@ class RapportController extends Controller
     public function store(RapportRequest $request): RedirectResponse
     {
         $fields = $request->validated();
+
         $fields["type"] = RapportTypes::AssembleeGenerale;
+
         $filePath = null;
+
         if (!$request->hasFile("filepath")) {
             return back()->withErrors(['filepath' => 'Veuillez ajouter un fichier pour le rapport.']);
         } else {
@@ -37,29 +40,35 @@ class RapportController extends Controller
 
             $fields["filepath"] = $filePath;
         }
+
         Rapport::create($fields);
-        return back()->with('success', 'Le rapport à été enrégistré avec succès.');
+
+        return back()->with('success', 'Le rapport a été enrégistré avec succès.');
     }
-  
+
     public function update(RapportRequest $request, Rapport $rapport)
     {
         $fields = $request->validated();
+
         $fields["type"] = RapportTypes::AssembleeGenerale;
+
         $oldRapport = $rapport->filepath;
+
         $filePath = $oldRapport;
-        if ($request->has("filepath"))  {  
+
+        if ($request->has("filepath"))  {
 
             $filePath = $request->filepath->store("rapports", "public");
 
             $fields["filepath"] = $filePath;
-            if (Storage::disk("public")->exists($oldRapport)) 
+            if (Storage::disk("public")->exists($oldRapport))
                 Storage::disk("public")->delete($oldRapport);
         }
-            
+
 
             $rapport->update($fields);
-            return back()->with('success', 'Le rapport à été modifié avec succès.');
-        
+            return back()->with('success', 'Le rapport a été modifié avec succès.');
+
     }
 
 
@@ -67,11 +76,7 @@ class RapportController extends Controller
 
     public function ressourcesView(): View
     {
-
-
-        $ressources = Rapport::where("type", RapportTypes::Ressources)->get();
-
-
+        $ressources = Rapport::where("type", RapportTypes::Ressources)->latest()->get();
 
         return view("auths.rapports.ressources", compact('ressources'));
     }
@@ -80,18 +85,17 @@ class RapportController extends Controller
 
     public function activitesAnnuellesView(): View
     {
+        $activites = Rapport::where("type", RapportTypes::ActivitesAnnuelles)->latest()->get();
 
-        $activites = Rapport::where("type", RapportTypes::ActivitesAnnuelles)->get();
         return view("auths.rapports.activites_annuelles", compact('activites'));
     }
-
-
 
     // Store
 
     public function ressourcesStore(RapportRequest $request): RedirectResponse
     {
         $fields = $request->validated();
+
         $fields["type"] = RapportTypes::Ressources;
 
         $filePath = null;
@@ -115,6 +119,7 @@ class RapportController extends Controller
     {
 
         $fields = $request->validated();
+
         $fields["type"] = RapportTypes::ActivitesAnnuelles;
 
         $filePath = null;
@@ -133,8 +138,6 @@ class RapportController extends Controller
         return redirect()->route("auth:activites_annuelles:view")->with("success", "L'événement a été crée avec succès");
 
     }
-
-
 
     // Update
 
@@ -199,10 +202,9 @@ class RapportController extends Controller
 
         $action = Rapport::destroy($id);
 
-     if(!$action){
-        return redirect()->back()->with('error', 'Opération échouée');
-     }
+        if(!$action){
+            return redirect()->back()->with('error', 'Opération échouée');
+        }
         return redirect()->back()->with('success', 'La ressource a bien été retirée');
     }
-
 }
