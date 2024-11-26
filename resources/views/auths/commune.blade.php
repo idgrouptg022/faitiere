@@ -34,7 +34,7 @@
                         </div>
                         <div class="from__group">
                         <label for="prefecture" class="form__label">Préfecture de cette commune</label>
-                            <select name="prefecture_id" id="prefecture" class="select__form">
+                            <select name="prefecture_id" id="prefecture" class="input__form">
                                 <option value="">Sélectionner une préfecture</option>
                                 @forelse ($prefectures as $prefecture)
                                     <option value="{{ $prefecture->id }}">{{ $prefecture->name }}</option>
@@ -122,7 +122,7 @@
                                             </div>
                                             <div class="from__group">
                                             <label for="prefecture" class="form__label">Préfecture de la commune</label>
-                                                <select name="prefecture_id" id="prefecture" class="select__form">
+                                                <select name="prefecture_id" id="prefecture" class="input__form">
 
                                                     @forelse ($prefectures as $prefecture)
                                                         <option value="{{ $prefecture->id }}"

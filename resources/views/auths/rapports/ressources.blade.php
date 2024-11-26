@@ -8,7 +8,7 @@
     <h1 class="page-title">Centre National de Ressources</h1>
 
     <div class="container">
-         @include('includes.auths.flash')
+        @include('includes.auths.flash')
         <div class="pager-subheader">
             <a href="#!" class="page-subheader-btn" onclick="modalOpener(this)" data-target="#addBanner"><i class="fas fa-plus-circle"></i> Ajouter une ressource</a>
         </div>
@@ -42,12 +42,7 @@
             </div>
         </div>
 
-
-
-
-
-
-        <div class="page-conten">
+        <div class="page-content">
 
 
             <div class="table-container">
@@ -141,7 +136,28 @@
             modal.style.display = "flex";
         };
 
+        const uploadFile = (element) => {
+            const fileInput = element;
 
+            const fileContainer = fileInput.parentNode;
+            const fileSpan = fileContainer.querySelector('.file__name');
+
+
+            if (fileInput.files.length >= 1) {
+                const fileName = fileInput.files[0].name;
+                let fileSize = fileInput.files[0].size;
+                fileSize = (fileSize / 1024).toFixed(2) + " ko";
+
+                fileContainer.style.borderColor = "#006ccb";
+                fileContainer.style.backgroundColor = "#dfeeff";
+                fileSpan.textContent = `${fileName}, ${fileSize}` ;
+            } else {
+                fileContainer.style.borderColor = "#000";
+                fileContainer.style.backgroundColor = "#fff";
+                fileSpan.textContent = "Choisir une image" ;
+            }
+
+        }
     </script>
 @endpush
 

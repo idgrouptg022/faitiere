@@ -48,7 +48,7 @@
                 @endphp
                 @empty
                 <tr style="text-align: center;">
-                    <td colspan="6">Aucun enregistrement</td>
+                    <td colspan="4">Aucun enregistrement</td>
                 </tr>
                 @endforelse
             </tbody>
