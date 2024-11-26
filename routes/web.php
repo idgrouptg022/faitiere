@@ -5,8 +5,10 @@ use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
 use App\Http\Controllers\Auth\ActuVideoController;
+use App\Http\Controllers\Auth\CommuneController;
 use App\Http\Controllers\Auth\ContentController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\RapportController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\WordController;
@@ -154,6 +156,28 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::patch("{ressource}/update", [RapportController::class, "ressourcesUpdate"])->name("update");
 
         Route::delete("{id}/destroy", [RapportController::class, "rapportDestroy"])->name("destroy");
+    });
+
+    Route::prefix("prefectures/")->as("prefectures:")->group(function() {
+
+        Route::get("", [PrefectureController::class, "index"])->name("index");
+
+        Route::post("store", [PrefectureController::class, "Store"])->name("store");
+
+        Route::patch("{prefecture}/update", [PrefectureController::class, "Update"])->name("update");
+
+        Route::delete("{prefecture}/destroy", [PrefectureController::class, "Destroy"])->name("destroy");
+    });
+
+    Route::prefix("communes/")->as("communes:")->group(function() {
+
+        Route::get("", [CommuneController::class, "index"])->name("index");
+
+        Route::post("store", [CommuneController::class, "Store"])->name("store");
+
+        Route::patch("{commune}/update", [CommuneController::class, "Update"])->name("update");
+
+        Route::delete("{commune}/destroy", [CommuneController::class, "Destroy"])->name("destroy");
     });
 
 
