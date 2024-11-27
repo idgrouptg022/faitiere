@@ -22,7 +22,7 @@ use App\Http\Controllers\Auth\QuotationController;
 use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
-
+use App\Http\Controllers\Auth\PubliciteController;
 
 Route::prefix("/")->as("guests:")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
@@ -277,5 +277,16 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::get('', [MessagesController::class, "index"])->name('index');
 
         Route::get('{contact}/show', [MessagesController::class, "show"])->name('show');
+    });
+
+    Route::prefix("publicites/")->as("publicites:")->group(function () {
+
+        Route::get("", [PubliciteController::class, "index"])->name("index");
+
+        Route::post("store", [PubliciteController::class, "store"])->name("store");
+
+        Route::patch("{publicite}/update", [PubliciteController::class, "update"])->name("update");
+
+        Route::delete("{publicite}/destroy", [PubliciteController::class, "destroy"])->name("destroy");
     });
 });
