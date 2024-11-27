@@ -1,0 +1,95 @@
+.input__file {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.file__name {
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-align: center;
+    display: inline-flex;
+}
+
+textarea {
+    font-size: 1rem;
+    max-width: 100%;
+    resize: none;
+}
+
+.partners {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.partner-item {
+    flex-basis: calc(22% - 1rem);
+    width: 100%;
+    position: relative;
+}
+
+
+.partner-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 50%, transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.partner-item img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.partner-item figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1rem .5rem;
+}
+
+.partner-title {
+    color: var(--white);
+    font-size: .8rem;
+    font-family: montserrat-medium;
+}
+
+.partner-actions a{
+    text-decoration: none;
+    color: var(--white);
+    font-size: .8rem;
+    padding: .3rem .7rem;
+    border-radius: .5rem;
+}
+
+.partner-actions a:first-of-type {
+    background-color: var(--tertiary-600);
+    color: var(--black);
+}
+
+.partner-actions a:last-of-type {
+    background-color: var(--secondary-700);
+    margin-left: .5rem;
+}
+
