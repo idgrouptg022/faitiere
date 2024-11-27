@@ -1,25 +1,27 @@
 <?php
 
-use App\Http\Controllers\Auth\ActiviteAnnuelleController;
-use App\Http\Controllers\Auth\ActualiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\WordController;
 use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
-
 use App\Http\Controllers\Auth\CommuneController;
 use App\Http\Controllers\Auth\ContentController;
 
-use App\Http\Controllers\Auth\MagazineController;
-use App\Http\Controllers\Auth\PrefectureController;
-use App\Http\Controllers\Auth\RapportController;
+use App\Http\Controllers\Auth\PartnerController;
 use App\Http\Controllers\Auth\ProjectController;
+
+use App\Http\Controllers\Auth\RapportController;
 use App\Http\Controllers\PresentationController;
+use App\Http\Controllers\Auth\MagazineController;
+use App\Http\Controllers\Auth\MessagesController;
+use App\Http\Controllers\Auth\ActualiteController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
-use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Auth\QuotationController;
+use App\Http\Controllers\Auth\PrefectureController;
+use App\Http\Controllers\Auth\MapLocationController;
+use App\Http\Controllers\Auth\ActiviteAnnuelleController;
 
 
 Route::prefix("/")->as("guests:")->group(function () {
@@ -237,14 +239,14 @@ Route::prefix("auth/")->as("auth:")->group(function () {
 
 
     Route::prefix("localisation/")->as("maploc:")->group(function () {
-      
+
         Route::get("", [MapLocationController::class, "index"])->name("index");
 
         Route::post("store", [MapLocationController::class, "store"])->name("store");
 
         Route::delete("destroy", [MapLocationController::class, "destroy"])->name("destroy");
     });
-  
+
     Route::prefix("actualites/")->as("actualites:")->group(function () {
 
         Route::get("", [ActualiteController::class, "index"])->name("index");
@@ -258,5 +260,22 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::patch("{actualite}/update", [ActualiteController::class, "update"])->name("update");
 
         Route::delete("{actualite}/destroy", [ActualiteController::class, "destroy"])->name("destroy");
+    });
+
+    Route::prefix("partenaires/")->as("partner:")->group(function () {
+
+        Route::get("", [PartnerController::class, "index"])->name("index");
+
+        Route::post("store", [PartnerController::class, "store"])->name("store");
+
+        Route::patch("{partner}/update", [PartnerController::class, "update"])->name("update");
+
+        Route::delete("{partner}/destroy", [PartnerController::class, "destroy"])->name("destroy");
+    });
+
+    Route::prefix("messages")->as("messages:")->group(function () {
+        Route::get('', [MessagesController::class, "index"])->name('index');
+
+        Route::get('{contact}/show', [MessagesController::class, "show"])->name('show');
     });
 });

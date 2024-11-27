@@ -3,7 +3,7 @@ aside {
     top: 0;
     left: 0;
     height: 100dvh;
-    background-color: var(--blue);
+    background-color: var(--primary);
     width: 18rem;
     padding: 0.25rem 0.75rem;
     display: flex;
@@ -135,7 +135,7 @@ body.collapsed .expand-btn svg {
 .sidebar-links .active {
     width: 100%;
     text-decoration: none;
-    background-color: var(--blue-600);
+    background-color: var(--primary-500);
     border-radius: 0.675rem;
     outline: none;
     color: var(--white);

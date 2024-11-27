@@ -1,0 +1,119 @@
+.tabs-container {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--white);
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 1.2rem;
+    height: 80dvh;
+}
+
+.tabs {
+    flex: 1 1 30%;
+    list-style-type: none;
+    padding-inline-start: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    background-color: #465243;
+}
+
+.tab-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    padding-block: .85rem;
+    border-bottom: 1.5px solid #ccc;
+    padding-inline: .8rem;
+}
+
+.tab-link:hover, .tab-link.active {
+    background-color: #343c31;
+}
+
+.tab-link div:first-of-type {
+    display: flex;
+}
+
+.tab-link div:last-of-type {
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-link svg {
+    width: 2.2rem;
+    height: 2.2rem;
+    fill: #fff;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: .7rem;
+}
+
+.fullname {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.email {
+    font-size: .8rem;
+    color: #dadada;
+    opacity: .9;
+}
+
+.posted-date {
+    font-size: .7rem;
+    color: #dadada;
+    align-self: flex-start;
+}
+
+.state {
+    font-size: .7rem;
+    color: white;
+    margin-top: .2rem;
+    padding: .15rem .4rem;
+    border-radius: 1rem;
+}
+
+.state.not_viewed {
+    font-size: .7rem;
+    background-color: var(--primary-700);
+    color: white;
+    margin-top: .2rem;
+    padding: .15rem .4rem;
+    border-radius: 1rem;
+}
+
+.messages-wrapper {
+    flex: 1 1 70%;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
+
+.message-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-logo img {
+    width: 50%;
+}
+
+figcaption {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #665;
+    font-family: montserrat-black;
+}
