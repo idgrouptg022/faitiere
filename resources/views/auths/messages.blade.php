@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-    <h1 class="page-title">Partenaires</h1>
+    <h1 class="page-title">Messages</h1>
 
     <div class="container">
        @include('includes.auths.flash')
