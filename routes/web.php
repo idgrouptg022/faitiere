@@ -31,11 +31,8 @@ use App\Http\Controllers\Guest\EventController as GuestEventController;
 use App\Http\Controllers\Guest\ActualiteController as GuestActualiteController;
 use App\Http\Controllers\Guest\DecentralisationController;
 use App\Http\Controllers\Guest\MagazineController as GuestMagazineController;
-use App\Http\Controllers\Auth\PubliciteController;
 use App\Http\Controllers\Guest\MediathequeController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
-use App\Http\Controllers\Guest\AboutController;
-use App\Http\Controllers\Guest\HomeController;
 
 Route::prefix("/")->as("guests:")->group(function () {
 
