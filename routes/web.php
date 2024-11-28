@@ -23,12 +23,8 @@ use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
 use App\Http\Controllers\Auth\PubliciteController;
-<<<<<<< HEAD
-=======
-use App\Http\Controllers\Guest\AboutController;
-use App\Http\Controllers\Guest\HomeController;
+
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
->>>>>>> edca84f (liaison des elements du menu projet avec la base de donnée)
 
 Route::prefix("/")->as("guests:")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
