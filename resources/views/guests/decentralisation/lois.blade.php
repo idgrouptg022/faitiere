@@ -19,13 +19,13 @@
     <section class="section-container lois-section">
         <h1>Lois de la FCT</h1>
         <div class="lois-container">
-            <div class="lois-text-container">
-                <p>
-                    La politique de décentralisation au Togo a enregistrè de grands progrès entre 2016 et 2020, notamment au plan législatif
-                    et réglementaire qui on conduit à la tenue d'élections coomunales le 30 Juin et le 15 août 2019.
-                </p>
-            </div>
-            <canvas id="the-canvas" style="width: 100%; height: 100%;" class="lois-pdf-container"></canvas>
+            {!! $quotation->body ?? "" !!}
+
+            @if ($quotationFile)
+                <div class="plaidoyer-download">
+                    <a href="{{ route('guests:downloadFile', $quotation) }}" class="plaidoyer-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
+                </div>
+            @endif
         </div>
     </section>
 @endsection

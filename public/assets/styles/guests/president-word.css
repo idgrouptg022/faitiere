@@ -1,0 +1,47 @@
+.presidentWordContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+}
+
+.president-image {
+    width: 100%;
+    aspect-ratio: 1.5;
+}
+
+.president-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 2%;
+}
+
+.president-text {
+    font-size: 1rem;
+    line-height: 2;
+}
+
+@media only screen and (min-width: 992px) {
+
+    .presidentWordContainer {
+        display: flex;
+        flex-direction: row;
+        row-gap: 0;
+        column-gap: 1.5rem;
+    }
+
+    .president-image {
+        width: 100%;
+        aspect-ratio: 1;
+        flex: 1 1 calc(30% - 1rem);
+    }
+
+    .president-image img {
+        width: 100%;
+    }
+
+    .president-text {
+        width: 100%;
+        flex: 1 1 calc(70% - 1rem);
+    }
+}

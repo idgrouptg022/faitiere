@@ -14,9 +14,14 @@
     </section>
 
     <section class="section-container word-text">
-        <p>
-
-        </p>
+        <div class="presidentWordContainer">
+            <figure class="president-image">
+                <img src="{{ asset('storage/' . $content->image) }}" alt="">
+            </figure>
+            <div class="president-text">
+                {!! $content->body !!}
+            </div>
+        </div>
     </section>
 @endsection
 

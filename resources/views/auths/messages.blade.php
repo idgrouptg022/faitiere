@@ -28,8 +28,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="posted-date">{{ \App\Helpers\Contact::getDate($message->created_at) }}</span>
-                                    <span class="state {{ $message->is_viewed == 0 ? 'not_viewed' : '' }}">{{ \App\Helpers\Contact::viewedStateFormat($message->is_viewed) }}</span>
+                                    <span class="posted-date">{{ \App\Utils\Contact::getDate($message->created_at) }}</span>
+                                    <span class="state {{ $message->is_viewed == 0 ? 'not_viewed' : '' }}">{{ \App\Utils\Contact::viewedStateFormat($message->is_viewed) }}</span>
                                 </div>
                             </a>
                         </li>

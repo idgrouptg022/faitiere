@@ -24,7 +24,7 @@
                         <span>{{ $message }}</span>
                     </div>
                 @endif
-                <form action="" method="post" class="sendMessage">
+                <form action="{{ route('guests:contact:send') }}" method="post" class="sendMessage">
                     @csrf
                     <div class="contact-form-group">
                         <label for="user-name">Nom & Prénom(s)</label>

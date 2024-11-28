@@ -1,0 +1,100 @@
+.actualites-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+    row-gap: 1.5rem;
+}
+
+.actu-communes-item {
+    width: 100%;
+    flex-basis: calc(100% - .5rem);
+    margin-bottom: 1rem;
+    background-color: var(--white);
+}
+
+.actu-communes-image {
+    width: 100%;
+    aspect-ratio: 1.75;
+    margin-bottom: .5rem;
+    background-color: var(--light-gray);
+    position: relative;
+}
+
+.actu-communes-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 2%;
+}
+
+.actu-communes-image figcaption {
+    position: absolute;
+    bottom: -8%;
+    left: 50%;
+    width: fit-content;
+    background-color: var(--tertiary);
+    color: var(--black);
+    padding: 0.5rem 1rem;
+    transform: translateX(-50%);
+    font-family: montserrat-semi-bold;
+    /* display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+}
+
+.actu-communes-content {
+    padding: 1rem;
+}
+
+.actu-communes-published-at {
+    opacity: 0.5;
+    font-size: .8rem;
+    margin-bottom: .7rem;
+}
+
+.actu-communes-title {
+    font-family: montserrat-bold;
+    font-size: 1rem;
+    color: var(--black);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.actu-communes-read-more {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.actu-communes-read-more-btn {
+    text-decoration: none;
+    color: var(--primary);
+    font-family: montserrat-bold;
+}
+
+
+
+@media only screen and (min-width: 992px) {
+    .actualites-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 1.5rem;
+        row-gap: 1.5rem;
+    }
+
+    .actu-communes-item {
+        width: 100%;
+        flex-basis: calc(24% - .5rem);
+        margin-bottom: 1rem;
+        background-color: var(--white);
+    }
+}
