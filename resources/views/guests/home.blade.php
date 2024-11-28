@@ -12,66 +12,30 @@
         <div class="banniere-content">
             <div class="swiper" id="banner-swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <figure class="slide-img">
-                            <img src="{{ asset('assets/images/banner.jpg') }}" alt="Slide 1">
-                            <figcaption class="banniere-mask">
-                                <figure class="logo-page">
-                                    <img src="{{ asset('assets/images/logo2.png') }}" alt="">
-                                </figure>
-                                <h2 class="banniere-title">Bienvenue sur le site web officiel de la faitiere des communes du Togo</h2>
-                                <div class="banniere-band">
-                                    <a href="https://communestogo.test" class="banniere-btn">Consulter l'annuaire <i class="fas fa-arrow-right"></i></a>
-                                </div>
-                                <div class="banniere-band-news">
-                                    <h2 class="banniere-news-title">
-                                        Faitiere des communes / 3eme Assemblée générale 2023
-                                    </h2>
-                                    <span><a href="#">En savoir plus</a></span>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="swiper-slide">
-                        <figure class="slide-img">
-                            <img src="{{ asset('assets/images/slide3.jpeg') }}" alt="Slide 1">
-                            <figcaption class="banniere-mask">
-                                <figure class="logo-page">
-                                    <img src="{{ asset('assets/images/logo2.png') }}" alt="">
-                                </figure>
-                                <h2 class="banniere-title">Bienvenue sur le site web officiel de la faitiere des communes du Togo</h2>
-                                <div class="banniere-band">
-                                    <a href="https://communestogo.test" class="banniere-btn">Consulter l'annuaire <i class="fas fa-arrow-right"></i></a>
-                                </div>
-                                <div class="banniere-band-news">
-                                    <h2 class="banniere-news-title">
-                                        Commune Lacs 1 / Benjamin BOUKPETI Open première édition
-                                    </h2>
-                                    <span><a href="#">En savoir plus</a></span>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="swiper-slide">
-                        <figure class="slide-img">
-                            <img src="{{ asset('assets/images/slide4.jpeg') }}" alt="Slide 1">
-                            <figcaption class="banniere-mask">
-                                <figure class="logo-page">
-                                    <img src="{{ asset('assets/images/logo2.png') }}" alt="">
-                                </figure>
-                                <h2 class="banniere-title">Bienvenue sur le site web officiel de la faitiere des communes du Togo</h2>
-                                <div class="banniere-band">
-                                    <a href="https://communestogo.test" class="banniere-btn">Consulter l'annuaire <i class="fas fa-arrow-right"></i></a>
-                                </div>
-                                <div class="banniere-band-news">
-                                    <h2 class="banniere-news-title">
-                                        Faitiere des communes / Atelier de finalisation et de validation du plan stratégique 2025-2029 de Aide et Action /Action Education Togo
-                                    </h2>
-                                    <span><a href="#">En savoir plus</a></span>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div>
+                    @foreach ($banners as $banner)
+                        <div class="swiper-slide">
+                            <figure class="slide-img">
+                                <img src="{{ asset('storage/' . $banner->image) }}" alt="Slide 1">
+                                <figcaption class="banniere-mask">
+                                    <figure class="logo-page">
+                                        <img src="{{ asset('assets/images/logo2.png') }}" alt="">
+                                    </figure>
+                                    <h2 class="banniere-title">Bienvenue sur le site web officiel de la faitiere des communes du Togo</h2>
+                                    <div class="banniere-band">
+                                        <a href="https://communestogo.test" class="banniere-btn">Consulter l'annuaire <i class="fas fa-arrow-right"></i></a>
+                                    </div>
+                                    <div class="banniere-band-news">
+                                        <h2 class="banniere-news-title">
+                                            {!! $banner->title !!}
+                                        </h2>
+                                        @if ($banner->link)
+                                            <span><a href="{{ $banner->link }}">En savoir plus</a></span>
+                                        @endif
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -87,22 +51,12 @@
     <section class="flash-container">
         <div class="flash-title">Flash Info</div>
         <ul class="flash-content">
-            <li class="flash-content-item">
-                <span class="flash-content-item-title">Golfe1: </span>
-                <span class="flash-content-item-text">Reouverture de centre de lecture et d'animation culturelle. <a href="#">Lire plus</a></span>
-            </li>
-            <li class="flash-content-item">
-                <span class="flash-content-item-title">Agoè Nyivé5: </span>
-                <span class="flash-content-item-text">Le taux de change du franc CFA est monté en flêche. <a href="#">Lire plus</a></span>
-            </li>
-            <li class="flash-content-item">
-                <span class="flash-content-item-title">Golfe3: </span>
-                <span class="flash-content-item-text">Le gouvernement a décidé de créer un lieu social pour arbriter les plus démunis. <a href="#">Lire plus</a> </span>
-            </li>
-            <li class="flash-content-item">
-                <span class="flash-content-item-title">EstMono2: </span>
-                <span class="flash-content-item-text">Reouverture de centre de lecture et d'animation culturelle. <a href="#">Lire plus</a></span>
-            </li>
+            @foreach ($flashs as $flash)
+                <li class="flash-content-item">
+                    <span class="flash-content-item-title">{{ $flash != null ? $flash->commune->name . ":" : "" }} </span>
+                    <span class="flash-content-item-text">{{ \Illuminate\Support\Str::substr($flash->title, 0, 50) . "..." }} <a href="#">Lire plus</a></span>
+                </li>
+            @endforeach
         </ul>
     </section>
 
@@ -135,16 +89,7 @@
         <div class="presentation-content">
             <h2 class="presentation-title">Présentation</h2>
             <div class="presentation-description">
-                <p>
-                    La Faitière des Communes du TOGO (FCT) est créée le 14 Novembre 2020 à Kara. Elle est une association qui vise la bonne
-                    gouvernance locale inclusive, l'émancipation et la promotion du développement durable et inclusive des territoires, dans
-                    une approche solidaire et participative.
-                </p>
-                <p>
-                    Elle est un cadre d'echange, de partage d'informations, d'expérience entre les 117 communes togolaises.
-                    La faitiere des communes a comme pour valeurs la cohésion, la solidarité et la transparence et a pour mission
-                    de renforcer la décentralisation et de développer les territoires.
-                </p>
+                {!! $presentation->body !!}
             </div>
             <a href="#" class="presentation-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
         </div>
@@ -153,22 +98,13 @@
     <div class="president-word-section section-container">
         <div class="president-word-container">
             <figure class="president-image animated-bg">
-                <img src="{{ asset('assets/images/presidente.png') }}" alt="Président" loading="lazy">
+                <img src="{{ asset('storage/' . $presidentWord->image) }}" alt="Président" loading="lazy">
             </figure>
             <div class="president-info">
                 <h2 class="president-title">mot de la présidente de la fct</h2>
                 <div class="president-content">
                     <div class="president-word">
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
-                        Ici sera renseigné le mot de la présidente de la faitière des communes du Togo.
+                        {!! $presidentWord->body !!}
                     </div>
 
                     <div class="president-word-read-more">
@@ -232,115 +168,41 @@
             <div class="actu-communes">
                 <div class="swiper actu-communes-item prior" id="actu-swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <figure class="actu-communes-image animated-bg">
-                                <img src="{{ asset('assets/images/actu1.jpg') }}" alt="Image de l'actualité" loading="lazy">
-                                <figcaption>
-                                    <a href="#">
-                                        <h2>Semaine européenne de la diplomatie: Le CDP Togo-France en mode Ecojogging dans les rues de Bè Apédomé</h2>
-                                    </a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="swiper-slide">
-                            <figure class="actu-communes-image animated-bg">
-                                <img src="{{ asset('assets/images/actu2.jpg') }}" alt="Image de l'actualité" loading="lazy">
-                                <figcaption>
-                                    <a href="#">
-                                        <h2>Apothéose de la fête des ignames</h2>
-                                    </a>
-                                </figcaption>
-                            </figure>
-                        </div>
+                        @foreach ($slide_actualites as $actualite)
+                            <div class="swiper-slide">
+                                <figure class="actu-communes-image animated-bg">
+                                    <img src="{{ asset('storage/' . $actualite->image) }}" alt="Image de l'actualité" loading="lazy">
+                                    <figcaption>
+                                        <a href="#">
+                                            <h2>{{ $actualite->title }}</h2>
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
                 </div>
-                <div class="actu-communes-item">
-                    <figure class="actu-communes-image animated-bg">
-                        <img src="{{ asset('assets/images/actu1.jpg') }}" alt="Image de l'actualité" loading="lazy">
-                        <figcaption>Golfe 1</figcaption>
-                    </figure>
-                    <div class="actu-communes-content">
-                        <div class="actu-communes-published-at">
-                            <span>Publié le 12/11/2024</span>
-                        </div>
-                        <h3 class="actu-communes-title">
-                            Semaine européenne de la diplomatie: Le CDP Togo-France en mode Ecojogging dans les rues de Bè Apédomé
-                        </h3>
-                        <div class="actu-communes-read-more">
-                            <a href="#" class="actu-communes-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="actu-communes-item">
-                    <figure class="actu-communes-image animated-bg">
-                        <img src="{{ asset('assets/images/actu1.jpg') }}" alt="Image de l'actualité" loading="lazy">
-                        <figcaption>Golfe 1</figcaption>
-                    </figure>
-                    <div class="actu-communes-content">
-                        <div class="actu-communes-published-at">
-                            <span>Publié le 12/11/2024</span>
-                        </div>
-                        <h3 class="actu-communes-title">
-                            Semaine européenne de la diplomatie: Le CDP Togo-France en mode Ecojogging dans les rues de Bè Apédomé
-                        </h3>
-                        <div class="actu-communes-read-more">
-                            <a href="#" class="actu-communes-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
+                @foreach ($actualites as $actualite)
+                    <div class="actu-communes-item">
+                        <figure class="actu-communes-image animated-bg">
+                            <img src="{{ asset('storage/' . $actualite->image) }}" alt="Image de l'actualité" loading="lazy">
+                            <figcaption>{{ $actualite != null ? $actualite->commune->name : '' }}</figcaption>
+                        </figure>
+                        <div class="actu-communes-content">
+                            <div class="actu-communes-published-at">
+                                <span>Publié le {{ \Carbon\Carbon::parse($actualite->created_at)->format("d/m/Y") }}</span>
+                            </div>
+                            <h3 class="actu-communes-title">
+                                {{ $actualite->title }}
+                            </h3>
+                            <div class="actu-communes-read-more">
+                                <a href="#" class="actu-communes-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="actu-communes-item">
-                    <figure class="actu-communes-image animated-bg">
-                        <img src="{{ asset('assets/images/actu2.jpg') }}" alt="Image de l'actualité" loading="lazy">
-                        <figcaption>Est-mono 2</figcaption>
-                    </figure>
-                    <div class="actu-communes-content">
-                        <div class="actu-communes-published-at">
-                            <span>Publié le 12/11/2024</span>
-                        </div>
-                        <h3 class="actu-communes-title">
-                            Apothéose de la fête des igname
-                        </h3>
-                        <div class="actu-communes-read-more">
-                            <a href="#" class="actu-communes-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="actu-communes-item">
-                    <figure class="actu-communes-image animated-bg">
-                        <img src="{{ asset('assets/images/actu3.jpg') }}" alt="Image de l'actualité" loading="lazy">
-                        <figcaption>Kozah 3</figcaption>
-                    </figure>
-                    <div class="actu-communes-content">
-                        <div class="actu-communes-published-at">
-                            <span>Publié le 12/11/2024</span>
-                        </div>
-                        <h3 class="actu-communes-title">
-                            La Commune de Kozah 3 et la Communauté de Communes du Pays de Lure en France s'unissent officiellement
-                        </h3>
-                        <div class="actu-communes-read-more">
-                            <a href="#" class="actu-communes-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="actu-communes-item">
-                    <figure class="actu-communes-image animated-bg">
-                        <img src="{{ asset('assets/images/actu4.jpg') }}" alt="Image de l'actualité" loading="lazy">
-                        <figcaption>Keran 1</figcaption>
-                    </figure>
-                    <div class="actu-communes-content">
-                        <div class="actu-communes-published-at">
-                            <span>Publié le 12/11/2024</span>
-                        </div>
-                        <h3 class="actu-communes-title">
-                            Les travaux de la 1ère session ordinaire 2023 de la commune Kéran 1 ouverts à Kantè
-                        </h3>
-                        <div class="actu-communes-read-more">
-                            <a href="#" class="actu-communes-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="actu-communes-read-all">
@@ -354,57 +216,25 @@
             <h1 class="actu-videos-container-title">Actu - Vidéos</h1>
 
             <div class="actu-videos">
-                <div class="actu-videos-item">
-                    <div class="actu-videos-video">
-                        <iframe src="https://www.youtube.com/embed/zuAUktlxid4" title="Intervention de Madame Kouigan, présidente de la Faîtière des communes du Togo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="actu-videos-content">
-                        <h3 class="actu-videos-title">
-                            Intervention de Madame Kouigan, présidente de la Faîtière des communes du Togo
-                        </h3>
-                        <div class="actu-videos-published-at">
-                            <span>Publié le 12/11/2024</span>
+                @foreach ($actu_videos as $actu_video)
+                    <div class="actu-videos-item">
+                        <div class="actu-videos-video">
+                            <iframe src="https://www.youtube.com/embed/{{ $actu_video->link }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
+                        <div class="actu-videos-content">
+                            <h3 class="actu-videos-title">
+                                {{ $actu_video->title }}
+                            </h3>
+                            <div class="actu-videos-published-at">
+                                <span>Publié le {{ \Carbon\Carbon::parse($actu_video->created_at)->format("d/m/Y") }}</span>
+                            </div>
 
-                        <div class="actu-videos-read-more">
-                            <a href="#" class="actu-videos-read-more-btn">Lire la vidéo <i class="fas fa-arrow-right"></i></a>
+                            <div class="actu-videos-read-more">
+                                <a href="#" class="actu-videos-read-more-btn">Lire la vidéo <i class="fas fa-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="actu-videos-item">
-                    <div class="actu-videos-video">
-                        <iframe src="https://www.youtube.com/embed/HCRLxrtR1UE" title="Intervention de Madame Kouigan, présidente de la Faîtière des communes du Togo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="actu-videos-content">
-                        <h3 class="actu-videos-title">
-                            Vidéo pitch de la commune Mô 1 avec M Bayé KLOUN, Maire de la commune de Mô1
-                        </h3>
-                        <div class="actu-videos-published-at">
-                            <span>Publié le 12/11/2024</span>
-                        </div>
-
-                        <div class="actu-videos-read-more">
-                            <a href="#" class="actu-videos-read-more-btn">Lire la vidéo <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="actu-videos-item">
-                    <div class="actu-videos-video">
-                        <iframe src="https://www.youtube.com/embed/MFNJJ0kvr-8" title="Intervention de Madame Kouigan, présidente de la Faîtière des communes du Togo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="actu-videos-content">
-                        <h3 class="actu-videos-title">
-                            Vidéo pitch de la commune Wawa 2 avec Mme OBIM Kafui, Adj au maire de la commune de Wawa 2
-                        </h3>
-                        <div class="actu-videos-published-at">
-                            <span>Publié le 12/11/2024</span>
-                        </div>
-
-                        <div class="actu-videos-read-more">
-                            <a href="#" class="actu-videos-read-more-btn">Lire la vidéo <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="actu-communes-read-all">
@@ -418,62 +248,34 @@
         <div class="events-container">
             <h2 class="events-container-title">Nos événements</h2>
             <div class="events-primary-container">
-                <div class="events-primary-item">
-                    <figure class="events-primary-image animated-bg">
-                        <img src="{{ asset('assets/images/event1.jpeg') }}" alt="Image d'événement" loading="lazy">
-                    </figure>
-                    <div class="events-primary-content">
-                        <div class="events-date">
-                            <span>14 nov 2024</span>
+                @foreach ($primary_events as $event)
+                    <div class="events-primary-item">
+                        <figure class="events-primary-image animated-bg">
+                            <img src="{{ asset('storage/' . $event->image) }}" alt="Image d'événement" loading="lazy">
+                        </figure>
+                        <div class="events-primary-content">
+                            <div class="events-date">
+                                <span>{{ \Carbon\Carbon::parse($event->event_date)->locale("fr")->isoFormat("ll") }}</span>
+                            </div>
+                            <div class="events-category">{{ $event->domaine }}</div>
+                            <h3 class="events-title">{{ $event->title }}</h3>
                         </div>
-                        <div class="events-category">Culture</div>
-                        <h3 class="events-title">Assemblée Générale Ordinaire de la Faitiere des Communes du TOGO</h3>
                     </div>
-                </div>
-                <div class="events-primary-item">
-                    <figure class="events-primary-image animated-bg">
-                        <img src="{{ asset('assets/images/event2.jpeg') }}" alt="Image d'événement" loading="lazy">
-                    </figure>
-                    <div class="events-primary-content">
-                        <div class="events-date">
-                            <span>24 Oct 2024</span>
-                        </div>
-                        <div class="events-category">Culture</div>
-                        <h3 class="events-title">Partage d'experience sur la Gestion des marchés dans les Communes du TOGO</h3>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="events-secondary-container">
-                <div class="events-secondary-item">
-                    <div class="events-date">
-                        <span>24 Juil 2024</span>
+                @foreach ($events as $event)
+                    <div class="events-secondary-item">
+                        <div class="events-date">
+                            <span>{{ \Carbon\Carbon::parse($event->event_date)->locale("fr")->isoFormat("ll") }}</span>
+                        </div>
+                        <div class="events-secondary-content">
+                            <div class="events-category">{{ $event->domaine }}</div>
+                            <h3 class="events-title">{{ $event->title }}</h3>
+                        </div>
+                        <div class="events-secondary-bolb"></div>
                     </div>
-                    <div class="events-secondary-content">
-                        <div class="events-category">Culture</div>
-                        <h3 class="events-title">Accessibilité des actes d'etat civil, rôle et responsabilité des acteurs</h3>
-                    </div>
-                    <div class="events-secondary-bolb"></div>
-                </div>
-                <div class="events-secondary-item">
-                    <div class="events-date">
-                        <span>24 Juil 2024</span>
-                    </div>
-                    <div class="events-secondary-content">
-                        <div class="events-category">Culture</div>
-                        <h3 class="events-title">Accessibilité des actes d'etat civil, rôle et responsabilité des acteurs</h3>
-                    </div>
-                    <div class="events-secondary-bolb"></div>
-                </div>
-                <div class="events-secondary-item">
-                    <div class="events-date">
-                        <span>24 Juil 2024</span>
-                    </div>
-                    <div class="events-secondary-content">
-                        <div class="events-category">Culture</div>
-                        <h3 class="events-title">Accessibilité des actes d'etat civil, rôle et responsabilité des acteurs</h3>
-                    </div>
-                    <div class="events-secondary-bolb"></div>
-                </div>
+                @endforeach
             </div>
 
             <div class="events-read-all">
@@ -569,7 +371,7 @@
                     <p>32 Communes</p>
                     <p>2 599 555 habitants</p>
                     <div class="region-button">
-                        <a href="{{ route('guests:carte:maritime') }}" class="button-link">Localisation</a>
+                        <a href="{{ route('guests:carte:index', $maritime) }}" class="button-link">Localisation</a>
                     </div>
                 </div>
                 <div class="region-desc" id="plateau-desc">
@@ -577,7 +379,7 @@
                     <p>32 Communes</p>
                     <p>1 000 551 habitants</p>
                     <div class="region-button">
-                        <a href="{{ route('guests:carte:plateaux') }}" class="button-link">Localisation</a>
+                        <a href="{{ route('guests:carte:index', $plateaux) }}" class="button-link">Localisation</a>
                     </div>
                 </div>
                 <div class="region-desc" id="centrale-desc">
@@ -585,7 +387,7 @@
                     <p>21 Communes</p>
                     <p>769 940 habitants</p>
                     <div class="region-button">
-                        <a href="{{ route('guests:carte:centrale') }}" class="button-link">Localisation</a>
+                        <a href="{{ route('guests:carte:index', $centrale) }}" class="button-link">Localisation</a>
                     </div>
                 </div>
                 <div class="region-desc" id="kara-desc">
@@ -593,7 +395,7 @@
                     <p>15 Communes</p>
                     <p>617 871 habitants</p>
                     <div class="region-button">
-                        <a href="{{ route('guests:carte:kara') }}" class="button-link">Localisation</a>
+                        <a href="{{ route('guests:carte:index', $kara) }}" class="button-link">Localisation</a>
                     </div>
                 </div>
                 <div class="region-desc" id="savanes-desc">
@@ -601,7 +403,7 @@
                     <p>16 Communes</p>
                     <p>828 224 habitants</p>
                     <div class="region-button">
-                        <a href="{{ route('guests:carte:savanes') }}" class="button-link">Localisation</a>
+                        <a href="{{ route('guests:carte:index', $savanes) }}" class="button-link">Localisation</a>
                     </div>
                 </div>
             </div>
@@ -611,7 +413,7 @@
                 </div>
                 <div class="pub-content">
                     <figure class="pub-image">
-                        <img src="{{ asset('assets/images/ads.jpg') }}" alt="Image de publicité" loading="lazy">
+                        <img src="{{ asset('storage/' . $publicite->image) }}" alt="Image de publicité" loading="lazy">
                     </figure>
                 </div>
             </div>
@@ -628,60 +430,11 @@
                 </figure>
                 <div class="partners-logo">
                     <div class="partners-logo-wrapper">
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/14.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/13.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/12.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/11.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/10.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/9.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/8.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/7.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/6.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/5.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/4.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/3.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/2.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/1.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/14.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/13.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/12.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
-                        <figure class="partner-slide animated-bg">
-                            <img src="{{ asset('assets/images/partner/11.png') }}" alt="Logo du partenaire" loading="lazy">
-                        </figure>
+                        @foreach ($partners as $partner)
+                            <figure class="partner-slide animated-bg">
+                                <img src="{{ asset('storage/' . $partner->image) }}" alt="Logo du partenaire" loading="lazy">
+                            </figure>
+                        @endforeach
                     </div>
                 </div>
             </div>

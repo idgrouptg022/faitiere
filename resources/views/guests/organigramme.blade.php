@@ -14,9 +14,13 @@
     </section>
 
     <section class="section-container role-text">
-        <p>
+        {!! $quotation->body ?? "" !!}
 
-        </p>
+        @if ($quotationFile)
+            <div class="plaidoyer-download">
+                <a href="{{ route('guests:downloadFile', $quotation) }}" class="plaidoyer-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
+            </div>
+        @endif
     </section>
 @endsection
 

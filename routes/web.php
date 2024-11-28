@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Guest\MapLocalisationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\WordController;
 use App\Http\Controllers\Auth\EventController;
@@ -25,23 +26,28 @@ use App\Http\Controllers\Auth\ActiviteAnnuelleController;
 use App\Http\Controllers\Auth\PubliciteController;
 use App\Http\Controllers\Guest\MediathequeController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
+use App\Http\Controllers\Guest\AboutController;
+use App\Http\Controllers\Guest\HomeController;
 
 Route::prefix("/")->as("guests:")->group(function () {
-    Route::get("", [MainController::class, "home"])->name("home");
 
-    Route::get("historique", [MainController::class, "historique"])->name("historique");
+    Route::get("", [HomeController::class, "home"])->name("home");
 
-    Route::get("role-mission", [MainController::class, "role"])->name("role");
+    Route::get("historique", [AboutController::class, "historique"])->name("historique");
 
-    Route::get("statuts-reglements", [MainController::class, "statut"])->name("statut");
+    Route::get("role-mission", [AboutController::class, "role_mission"])->name("role");
 
-    Route::get("organigramme", [MainController::class, "organigramme"])->name("organigramme");
+    Route::get("statuts-reglements", [AboutController::class, "statut"])->name("statut");
+
+    Route::get("organigramme", [AboutController::class, "organigramme"])->name("organigramme");
 
     Route::get("mot-presidente", [MainController::class, "presidentWord"])->name("presidentWord");
 
     Route::get("partenaires", [MainController::class, "partenaires"])->name("partenaires");
 
     Route::get("contacts", [MainController::class, "contact"])->name("contact");
+
+    Route::get("download-file/{quotation}", [AboutController::class, "downloadFile"])->name("downloadFile");
 
 
 
@@ -76,12 +82,8 @@ Route::prefix("/")->as("guests:")->group(function () {
         Route::get("download-file/{rapport}", [MediathequeController::class, "downloadFile"])->name("downloadFile");
     });
 
-    Route::prefix("regions/")->as("carte:")->group(function () {
-        Route::get('savanes', [MainController::class,'savanes'])->name('savanes');
-        Route::get('kara', [MainController::class,'kara'])->name('kara');
-        Route::get('centrale', [MainController::class,'centrale'])->name('centrale');
-        Route::get('plateaux', [MainController::class,'plateaux'])->name('plateaux');
-        Route::get('maritime', [MainController::class,'maritime'])->name('maritime');
+    Route::prefix("localisation/{region}")->as("carte:")->group(function () {
+        Route::get('', [MapLocalisationController::class,'index'])->name('index');
     });
 
 });

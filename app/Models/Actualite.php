@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Actualite extends Model
 {
     use HasFactory;
+
     protected $guarded = ["id"];
 
     protected static function boot()
@@ -41,13 +43,13 @@ class Actualite extends Model
         return $slug;
     }
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return "slug";
     }
 
 
-    public function commune()
+    public function commune(): BelongsTo
     {
         return $this->belongsTo(Commune::class);
     }

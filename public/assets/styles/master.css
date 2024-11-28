@@ -165,6 +165,21 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.564);
 }
 
+.plaidoyer-download {
+    margin-top: 2rem;
+}
+
+.plaidoyer-download-btn {
+    background-color: var(--blue);
+    color: white;
+    padding: .5rem 1.5rem;
+    border-radius: .3rem;
+    font-family: montserrat-semi-bold;
+    cursor: pointer;
+    font-size: .8rem;
+    text-decoration: none;
+}
+
 @media only screen and (min-width: 992px) {
     .lg-hide {
         display: none;

@@ -2,3 +2,18 @@
     line-height: 2rem;
     text-align: justify;
 }
+
+.plaidoyer-download {
+    margin-top: 2rem;
+}
+
+.plaidoyer-download-btn {
+    background-color: var(--blue);
+    color: white;
+    padding: .5rem 1.5rem;
+    border-radius: .3rem;
+    font-family: montserrat-semi-bold;
+    cursor: pointer;
+    font-size: .8rem;
+    text-decoration: none;
+}

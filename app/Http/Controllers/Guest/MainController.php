@@ -8,11 +8,6 @@ use App\Http\Controllers\Controller;
 
 class MainController extends Controller
 {
-    public function home(): View
-    {
-        return view("guests.home");
-    }
-
     public function historique(): View
     {
         return view("guests.historique");
@@ -126,7 +121,7 @@ class MainController extends Controller
                 "Cinkassé 1",
                 "Cinkassé 2",
             ],
-    
+
         ];
         return view("guests.carte.savanes", compact("communes"));
     }
@@ -270,7 +265,7 @@ class MainController extends Controller
 
         return view("guests.carte.plateau", compact("communes"));
     }
-    
+
     public function maritime(): View
     {
         $communes = [

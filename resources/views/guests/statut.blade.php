@@ -17,12 +17,15 @@
         <h1>Statuts de la FCT</h1>
         <div class="statut-container">
             <div class="statut-text-container">
-                <p>
-                    La politique de décentralisation au Togo a enregistrè de grands progrès entre 2016 et 2020, notamment au plan législatif
-                    et réglementaire qui on conduit à la tenue d'élections coomunales le 30 Juin et le 15 août 2019.
-                </p>
+                {!! $statut->body ?? "" !!}
+
+                @if ($statutFile)
+                    <div class="plaidoyer-download">
+                        <a href="{{ route('guests:downloadFile', $statut) }}" class="plaidoyer-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
+                    </div>
+                @endif
             </div>
-            <div class="pdf-container">
+            {{-- <div class="pdf-container">
                 <div class="top-bar">
                     <button class="btn" id="prev_page">
                         <i class="fas fa-arrow-left"></i> Prev Page
@@ -36,7 +39,7 @@
                     </span>
                 </div>
                 <canvas id="pdf-renderer"></canvas>
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -44,12 +47,14 @@
         <h1>Réglements de la FCT</h1>
         <div class="reglement-container">
             <div class="reglement-text-container">
-                <p>
-                    La politique de décentralisation au Togo a enregistrè de grands progrès entre 2016 et 2020, notamment au plan législatif
-                    et réglementaire qui on conduit à la tenue d'élections coomunales le 30 Juin et le 15 août 2019.
-                </p>
+                {!! $reglement->body ?? "" !!}
+
+                @if ($reglementFile)
+                    <div class="plaidoyer-download">
+                        <a href="{{ route('guests:downloadFile', $reglement) }}" class="plaidoyer-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
+                    </div>
+                @endif
             </div>
-            <canvas id="the-canvas" style="width: 100%; height: 100%;" class="reglement-pdf-container"></canvas>
         </div>
     </section>
 @endsection
