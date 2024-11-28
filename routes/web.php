@@ -1,31 +1,36 @@
 <?php
 
-use App\Http\Controllers\Guest\MapLocalisationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\WordController;
 use App\Http\Controllers\Auth\EventController;
+use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
+use App\Http\Controllers\Guest\AboutController;
 use App\Http\Controllers\Auth\CommuneController;
+
 use App\Http\Controllers\Auth\ContentController;
-
 use App\Http\Controllers\Auth\PartnerController;
-use App\Http\Controllers\Auth\ProjectController;
 
+use App\Http\Controllers\Auth\ProjectController;
 use App\Http\Controllers\Auth\RapportController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\Auth\MagazineController;
 use App\Http\Controllers\Auth\MessagesController;
+use App\Http\Controllers\Guest\ContactController;
 use App\Http\Controllers\Auth\ActualiteController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\PubliciteController;
 use App\Http\Controllers\Auth\QuotationController;
 use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
-use App\Http\Controllers\Auth\PubliciteController;
-use App\Http\Controllers\Guest\AboutController;
-use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\MapLocalisationController;
+use App\Http\Controllers\Guest\EventController as GuestEventController;
+use App\Http\Controllers\Guest\ActualiteController as GuestActualiteController;
+use App\Http\Controllers\Guest\DecentralisationController;
+use App\Http\Controllers\Guest\MagazineController as GuestMagazineController;
 
 Route::prefix("/")->as("guests:")->group(function () {
 
@@ -39,11 +44,17 @@ Route::prefix("/")->as("guests:")->group(function () {
 
     Route::get("organigramme", [AboutController::class, "organigramme"])->name("organigramme");
 
-    Route::get("mot-presidente", [MainController::class, "presidentWord"])->name("presidentWord");
+    Route::get("mot-presidente", [AboutController::class, "presidentWord"])->name("presidentWord");
 
-    Route::get("partenaires", [MainController::class, "partenaires"])->name("partenaires");
+    Route::get("partenaires", [AboutController::class, "partner"])->name("partenaires");
+
+    Route::get("fct-mag", [GuestMagazineController::class, "index"])->name("magazine");
+
+    Route::get("fct-mag/download/{magazine}", [GuestMagazineController::class, "downloadMag"])->name("magazine-download");
 
     Route::get("contacts", [MainController::class, "contact"])->name("contact");
+
+    Route::post('contact', [ContactController::class, "send"])->name('contact:send');
 
     Route::get("download-file/{quotation}", [AboutController::class, "downloadFile"])->name("downloadFile");
 
@@ -51,9 +62,9 @@ Route::prefix("/")->as("guests:")->group(function () {
 
     Route::prefix("decentralisation/")->as("decentralisation:")->group(function () {
 
-        Route::get("lois", [MainController::class, "lois"])->name("lois");
+        Route::get("lois", [DecentralisationController::class, "lois"])->name("lois");
 
-        Route::get("informations", [MainController::class, "informations"])->name("informations");
+        Route::get("informations", [DecentralisationController::class, "informations"])->name("informations");
     });
 
     Route::prefix("projets/")->as("projets:")->group(function () {
@@ -76,6 +87,19 @@ Route::prefix("/")->as("guests:")->group(function () {
 
     Route::prefix("localisation/{region}")->as("carte:")->group(function () {
         Route::get('', [MapLocalisationController::class,'index'])->name('index');
+    });
+
+    Route::prefix("evenement/{eventType}")->as("events:")->group(function () {
+        Route::get("", [GuestEventController::class, "index"])->name("index");
+
+        Route::get("{event}", [GuestEventController::class, "show"])->name("show");
+    });
+
+    Route::prefix("actualites/")->as("actualites:")->group(function (){
+
+        Route::get("", [GuestActualiteController::class, "index"])->name("index");
+
+        Route::get("{actualite}", [GuestActualiteController::class, "show"])->name("show");
     });
 
 });

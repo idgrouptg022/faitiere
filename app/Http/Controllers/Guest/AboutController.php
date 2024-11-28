@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Guest;
 
 use Exception;
+use App\Models\Content;
+use App\Models\Partner;
+use App\Enums\WordTypes;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
 use App\Enums\QuotationTypes;
@@ -49,6 +52,19 @@ class AboutController extends Controller
         $quotationFile = $quotation != null && $quotation->files != null ? $quotation->files()->first() : null;
 
         return view("guests.organigramme", compact("quotation", "quotationFile"));
+    }
+
+    public function partner(): View
+    {
+        $partners = Partner::all();
+        return view("guests.partenaires", compact("partners"));
+    }
+
+    public function presidentWord(): View
+    {
+        $content = Content::where("type", WordTypes::PresidentWord)->first();
+
+        return view("guests.president-word", compact("content"));
     }
 
     public function downloadFile(Quotation $quotation)

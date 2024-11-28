@@ -206,7 +206,7 @@
             </div>
 
             <div class="actu-communes-read-all">
-                <a href="#" class="actu-communes-read-all-btn">Voir toutes les actualités <i class="fas fa-arrow-right"></i></a>
+                <a href="{{ route('guests:actualites:index') }}" class="actu-communes-read-all-btn">Voir toutes les actualités <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

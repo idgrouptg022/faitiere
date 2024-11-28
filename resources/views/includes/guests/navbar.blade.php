@@ -56,13 +56,13 @@
             <a>Evénements</a>
             <div class="dropdown">
                 <ul class="nav-submenu">
-                    <li class="nav-submenu-item"><a href="#">Evénements nationaux</a></li>
-                    <li class="nav-submenu-item"><a href="#">Evénements internationaux</a></li>
+                    <li class="nav-submenu-item"><a href="{{ route('guests:events:index', 'national') }}">Evénements nationaux</a></li>
+                    <li class="nav-submenu-item"><a href="{{ route('guests:events:index', 'international') }}">Evénements internationaux</a></li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a href="https://communestogo.test">FCT Mag</a>
+            <a href="{{ route('guests:magazine') }}">FCT Mag</a>
         </li>
         {{-- <li class="nav-item">
             <a>Outils de la FCT</a>

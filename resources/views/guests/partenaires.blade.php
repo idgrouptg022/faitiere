@@ -18,27 +18,11 @@
             <figure class="partner-item">
                 <img src="{{ asset('assets/images/partners/2.png') }}" alt="Logo du partenaire" loading="lazy">
             </figure>
-            <figure class="partner-item">
-                <img src="{{ asset('assets/images/partners/1.png') }}" alt="Logo du partenaire" loading="lazy">
-            </figure>
-            <figure class="partner-item">
-                <img src="{{ asset('assets/images/partners/13.png') }}" alt="Logo du partenaire" loading="lazy">
-            </figure>
-            <figure class="partner-item">
-                <img src="{{ asset('assets/images/partners/3.png') }}" alt="Logo du partenaire" loading="lazy">
-            </figure>
-            <figure class="partner-item">
-                <img src="{{ asset('assets/images/partners/4.webp') }}" alt="Logo du partenaire" loading="lazy">
-            </figure>
-            <figure class="partner-item">
-                <img src="{{ asset('assets/images/partners/5.jpg') }}" alt="Logo du partenaire" loading="lazy">
-            </figure>
-            <figure class="partner-item">
-                <img src="{{ asset('assets/images/partners/6.png') }}" alt="Logo du partenaire" loading="lazy">
-            </figure>
-            <figure class="partner-item">
-                <img src="{{ asset('assets/images/partners/7.jpg') }}" alt="Logo du partenaire" loading="lazy">
-            </figure>
+            @foreach ($partners as $partner)
+                <figure class="partner-item">
+                    <img src="{{ asset('storage/' . $partner->image) }}" alt="Logo du partenaire" loading="lazy">
+                </figure>
+            @endforeach
         </div>
     </section>
 @endsection
