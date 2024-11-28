@@ -23,6 +23,12 @@ use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
 use App\Http\Controllers\Auth\PubliciteController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\Guest\AboutController;
+use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
+>>>>>>> edca84f (liaison des elements du menu projet avec la base de donnée)
 
 Route::prefix("/")->as("guests:")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
@@ -52,11 +58,15 @@ Route::prefix("/")->as("guests:")->group(function () {
 
     Route::prefix("projets/")->as("projets:")->group(function () {
 
-        Route::get("plaidoyers", [MainController::class, "plaidoyers"])->name("plaidoyers");
+        Route::get("plaidoyers", [GuestProjectController::class, "plaidoyers"])->name("plaidoyers");
 
-        Route::get("en-cours", [MainController::class, "projetsEnCours"])->name("projetsEnCours");
+        Route::get("en-cours", [GuestProjectController::class, "projetsEnCours"])->name("projetsEnCours");
 
-        Route::get("realises", [MainController::class, "projetsRealises"])->name("projetsRealises");
+        Route::get("realises", [GuestProjectController::class, "projetsRealises"])->name("projetsRealises");
+
+        Route::get("download-file/{project}", [GuestProjectController::class, "downloadFile"])->name("downloadFile");
+
+
     });
 
     Route::prefix("mediatheque/")->as("mediatheque:")->group(function () {
