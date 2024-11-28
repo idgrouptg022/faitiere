@@ -14,20 +14,13 @@
     </section>
 
     <section class="section-container historic-text">
-        <p>
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-            Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique. Ici sera renseigné le texte de l'historique.
-        </p>
+        {!! $quotation->body ?? "" !!}
+
+        @if ($quotationFile)
+            <div class="plaidoyer-download">
+                <a href="{{ route('guests:downloadFile', $quotation) }}" class="plaidoyer-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
+            </div>
+        @endif
     </section>
 @endsection
 
