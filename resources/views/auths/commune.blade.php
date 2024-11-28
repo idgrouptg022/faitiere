@@ -125,9 +125,7 @@
                                                 <select name="prefecture_id" id="prefecture" class="input__form">
 
                                                     @forelse ($prefectures as $prefecture)
-                                                        <option value="{{ $prefecture->id }}"
-                                                        @if(old('prefecture', $prefecture->id ) == $prefecture->id ) selected @endif
-                                                            >{{ $prefecture->name }}</option>
+                                                        <option value="{{ $prefecture->id }}" {{ $commune->prefecture_id == $prefecture->id ? "selected" : ""}}>{{ $prefecture->name }}</option>
                                                     @empty
                                                         <option value="">Pas de prefecture !</option>
                                                     @endforelse

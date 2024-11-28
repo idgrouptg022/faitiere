@@ -14,20 +14,13 @@
     </section>
 
     <section class="section-container role-text">
-        <p>
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-            Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission. Ici sera renseigné le texte du rôle et de la mission.
-        </p>
+        {!! $quotation->body ?? "" !!}
+
+        @if ($quotationFile)
+            <div class="plaidoyer-download">
+                <a href="{{ route('guests:downloadFile', $quotation) }}" class="plaidoyer-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
+            </div>
+        @endif
     </section>
 @endsection
 

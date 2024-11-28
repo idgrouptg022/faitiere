@@ -325,7 +325,7 @@
     margin-bottom: 1rem;
 }
 
-.presentation-description p {
+.presentation-description p, .presentation-description div {
     font-size: 1rem;
     line-height: 1.5;
     text-align: justify;
