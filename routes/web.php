@@ -23,7 +23,7 @@ use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
 use App\Http\Controllers\Auth\PubliciteController;
-
+use App\Http\Controllers\Guest\MediathequeController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 
 Route::prefix("/")->as("guests:")->group(function () {
@@ -67,11 +67,13 @@ Route::prefix("/")->as("guests:")->group(function () {
 
     Route::prefix("mediatheque/")->as("mediatheque:")->group(function () {
 
-        Route::get("centre-national-ressources", [MainController::class, "ressources"])->name("ressources");
+        Route::get("centre-national-ressources", [MediathequeController::class, "ressources"])->name("ressources");
 
-        Route::get("rapports-ag", [MainController::class, "rapportsAG"])->name("rapportsAG");
+        Route::get("rapports-ag", [MediathequeController::class, "rapportsAG"])->name("rapportsAG");
 
-        Route::get("rapports-annuels", [MainController::class, "rapportsAnnuels"])->name("rapportsAnnuels");
+        Route::get("rapports-annuels", [MediathequeController::class, "rapportsAnnuels"])->name("rapportsAnnuels");
+
+        Route::get("download-file/{rapport}", [MediathequeController::class, "downloadFile"])->name("downloadFile");
     });
 
     Route::prefix("regions/")->as("carte:")->group(function () {
