@@ -19,14 +19,18 @@
     <section class="section-container plaidoyers-section">
         <h1>Projets réalisés de la FCT</h1>
         <div class="plaidoyers-container">
-            @for ($i = 0; $i < 7; $i++)
-                <div class="plaidoyers-item">
-                    <h2 class="plaidoyers-title">Titre du projet</h2>
-                    <div class="plaidoyer-download">
-                        <a href="#" class="plaidoyer-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
-                    </div>
+            @forelse ($projects as $project)
+            <div class="plaidoyers-item">
+                <h2 class="plaidoyers-title">{!! $project->title !!}</h2>
+                <div class="plaidoyer-download">
+                    <a href="{{ route('guests:projets:downloadFile', $project) }}" class="plaidoyer-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
                 </div>
-            @endfor
+            </div>
+
+        @empty
+            <div>Aucun projet !!!</div>
+
+        @endforelse
         </div>
     </section>
 @endsection

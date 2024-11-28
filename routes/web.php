@@ -31,6 +31,11 @@ use App\Http\Controllers\Guest\EventController as GuestEventController;
 use App\Http\Controllers\Guest\ActualiteController as GuestActualiteController;
 use App\Http\Controllers\Guest\DecentralisationController;
 use App\Http\Controllers\Guest\MagazineController as GuestMagazineController;
+use App\Http\Controllers\Auth\PubliciteController;
+use App\Http\Controllers\Guest\MediathequeController;
+use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
+use App\Http\Controllers\Guest\AboutController;
+use App\Http\Controllers\Guest\HomeController;
 
 Route::prefix("/")->as("guests:")->group(function () {
 
@@ -69,20 +74,26 @@ Route::prefix("/")->as("guests:")->group(function () {
 
     Route::prefix("projets/")->as("projets:")->group(function () {
 
-        Route::get("plaidoyers", [MainController::class, "plaidoyers"])->name("plaidoyers");
+        Route::get("plaidoyers", [GuestProjectController::class, "plaidoyers"])->name("plaidoyers");
 
-        Route::get("en-cours", [MainController::class, "projetsEnCours"])->name("projetsEnCours");
+        Route::get("en-cours", [GuestProjectController::class, "projetsEnCours"])->name("projetsEnCours");
 
-        Route::get("realises", [MainController::class, "projetsRealises"])->name("projetsRealises");
+        Route::get("realises", [GuestProjectController::class, "projetsRealises"])->name("projetsRealises");
+
+        Route::get("download-file/{project}", [GuestProjectController::class, "downloadFile"])->name("downloadFile");
+
+
     });
 
     Route::prefix("mediatheque/")->as("mediatheque:")->group(function () {
 
-        Route::get("centre-national-ressources", [MainController::class, "ressources"])->name("ressources");
+        Route::get("centre-national-ressources", [MediathequeController::class, "ressources"])->name("ressources");
 
-        Route::get("rapports-ag", [MainController::class, "rapportsAG"])->name("rapportsAG");
+        Route::get("rapports-ag", [MediathequeController::class, "rapportsAG"])->name("rapportsAG");
 
-        Route::get("rapports-annuels", [MainController::class, "rapportsAnnuels"])->name("rapportsAnnuels");
+        Route::get("rapports-annuels", [MediathequeController::class, "rapportsAnnuels"])->name("rapportsAnnuels");
+
+        Route::get("download-file/{rapport}", [MediathequeController::class, "downloadFile"])->name("downloadFile");
     });
 
     Route::prefix("localisation/{region}")->as("carte:")->group(function () {

@@ -7,3 +7,5 @@ enum WordTypes: string
     case PresidentWord = 'president-word';
 
 }
+
+

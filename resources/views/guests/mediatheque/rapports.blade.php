@@ -19,14 +19,19 @@
     <section class="section-container ressources-section">
         <h1>Rapports AG de la FCT</h1>
         <div class="ressources-container">
-            @for ($i = 0; $i < 7; $i++)
-                <div class="ressources-item">
-                    <h2 class="ressources-title">Titre du rapport</h2>
-                    <div class="ressources-download">
-                        <a href="#" class="ressources-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
-                    </div>
+            @forelse ($rapports as $rapport)
+            <div class="ressources-item">
+                <h2 class="ressources-title">{!! $rapport->title !!}</h2>
+                <div class="ressources-download">
+                    <a href="{{ route('guests:projets:downloadFile', $rapport) }}" class="ressources-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
                 </div>
-            @endfor
+            </div>
+
+
+        @empty
+        <div>Aucun rapport !!!</div>
+
+        @endforelse
         </div>
     </section>
 @endsection
