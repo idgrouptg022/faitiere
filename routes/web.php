@@ -1,17 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\WordController;
 use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
 use App\Http\Controllers\Guest\AboutController;
+
 use App\Http\Controllers\Auth\CommuneController;
-
 use App\Http\Controllers\Auth\ContentController;
-use App\Http\Controllers\Auth\PartnerController;
 
+use App\Http\Controllers\Auth\PartnerController;
 use App\Http\Controllers\Auth\ProjectController;
 use App\Http\Controllers\Auth\RapportController;
 use App\Http\Controllers\PresentationController;
@@ -25,14 +26,14 @@ use App\Http\Controllers\Auth\PubliciteController;
 use App\Http\Controllers\Auth\QuotationController;
 use App\Http\Controllers\Auth\PrefectureController;
 use App\Http\Controllers\Auth\MapLocationController;
+use App\Http\Controllers\Guest\MediathequeController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
 use App\Http\Controllers\Guest\MapLocalisationController;
-use App\Http\Controllers\Guest\EventController as GuestEventController;
-use App\Http\Controllers\Guest\ActualiteController as GuestActualiteController;
 use App\Http\Controllers\Guest\DecentralisationController;
-use App\Http\Controllers\Guest\MagazineController as GuestMagazineController;
-use App\Http\Controllers\Guest\MediathequeController;
+use App\Http\Controllers\Guest\EventController as GuestEventController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
+use App\Http\Controllers\Guest\MagazineController as GuestMagazineController;
+use App\Http\Controllers\Guest\ActualiteController as GuestActualiteController;
 
 Route::prefix("/")->as("guests:")->group(function () {
 
@@ -113,7 +114,7 @@ Route::prefix("/")->as("guests:")->group(function () {
 });
 
 // Auth's routes
-Route::prefix("auth/")->as("auth:")->group(function () {
+Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(function () {
 
     Route::get("tableau-de-bord", [DashboardController::class, "dashboard"])->name("dashboard");
 
@@ -322,5 +323,19 @@ Route::prefix("auth/")->as("auth:")->group(function () {
         Route::patch("{publicite}/update", [PubliciteController::class, "update"])->name("update");
 
         Route::delete("{publicite}/destroy", [PubliciteController::class, "destroy"])->name("destroy");
+    });
+
+    Route::prefix('administrateurs/')->as('users:')->group(function () {
+        Route::get('', [UserController::class, "index"])->name('index');
+
+        Route::post('register', [UserController::class, "register"])->name('register');
+
+        Route::post('logout', [UserController::class, "logout"])->name('logout');
+    });
+
+    Route::withoutMiddleware("check.auth.user")->group(function () {
+        Route::get('login', [UserController::class, "loginView"])->name("login:view");
+
+        Route::post('login', [UserController::class, "login"])->name("login");
     });
 });
