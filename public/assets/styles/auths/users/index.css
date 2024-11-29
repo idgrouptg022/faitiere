@@ -1,0 +1,116 @@
+.input__file {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.file__name {
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-align: center;
+    display: inline-flex;
+}
+
+.table-default th:first-of-type {
+    width: 10%;
+}
+
+.table-default th:nth-of-type(2) {
+    width: 35%;
+}
+
+.table-default th:nth-of-type(3) {
+    width: 35%;
+}
+
+.table-default th:last-of-type {
+    width: 20%;
+}
+
+.register-user-button {
+    margin-block: 1.5rem;
+}
+
+/* .register-user-button a {
+    text-decoration: none;
+    color: white;
+    background-color: var(--blue);
+    padding: 0.8rem 1rem;
+    border-radius: .3rem;
+} */
+
+
+.table-container {
+    width: 100%;
+}
+
+.table-default {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    font-size: .9rem;
+}
+
+.table-default thead {
+    background-color: #526062;
+    color: #fff;
+    border-radius: .8rem .8rem 0 0;
+}
+
+.table-default th:first-of-type {
+    border-radius: .5rem 0 0 0;
+}
+
+.table-default th:last-of-type {
+    border-radius: 0 .5rem 0 0;
+}
+
+.table-default th, .table-default td {
+    padding: 1rem;
+    text-align: center;
+}
+
+.table-default tbody tr:last-of-type {
+    border-radius: 0 0 0.8rem 0.8rem;
+}
+
+.table-default tbody tr:last-child td:first-of-type {
+    border-radius: 0 0 0 .5rem;
+}
+
+.table-default tbody tr:last-child td:last-of-type {
+    border-radius: 0 0 .5rem 0;
+}
+
+.table-default tr:not(:last-of-type) {
+    border-bottom: 2px solid #ddd;
+}
+
+.table-default .user-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.invalid-feedback {
+    color: var(--danger-600);
+    font-size: .8rem;
+    margin-top: .5rem;
+    font-family: montserratBold;
+}
+
+.trash-button {
+    padding: .5rem .7rem;
+    text-decoration: none;
+    color: white;
+    background-color: var(--danger-600);
+    margin-left: .5rem;
+    border-radius: .3rem;
+}
