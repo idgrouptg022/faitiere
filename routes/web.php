@@ -1,17 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\WordController;
 use App\Http\Controllers\Auth\EventController;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\MainController;
 use App\Http\Controllers\Auth\BannerController;
+
 use App\Http\Controllers\Guest\AboutController;
+use App\Http\Controllers\Auth\AnnonceController;
 
 use App\Http\Controllers\Auth\CommuneController;
 use App\Http\Controllers\Auth\ContentController;
-
 use App\Http\Controllers\Auth\PartnerController;
 use App\Http\Controllers\Auth\ProjectController;
 use App\Http\Controllers\Auth\RapportController;
@@ -25,6 +27,7 @@ use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\PubliciteController;
 use App\Http\Controllers\Auth\QuotationController;
 use App\Http\Controllers\Auth\PrefectureController;
+use App\Http\Controllers\Auth\CommuneLinkController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Guest\MediathequeController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
@@ -325,6 +328,26 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::delete("{publicite}/destroy", [PubliciteController::class, "destroy"])->name("destroy");
     });
 
+    Route::prefix("annuaires/")->as("annuaires:")->group(function (){
+
+        Route::get("communes", [CommuneLinkController::class, "index"])->name("communes");
+
+        Route::get("{commune}/details", [CommuneLinkController::class, "show"])->name("show");
+
+        Route::patch("{commune}/update-processing", [CommuneLinkController::class, "update"])->name("update");
+
+        Route::prefix("annonces/")->as("annonces:")->group(function () {
+
+            Route::get("", [AnnonceController::class, "index"])->name("index");
+
+            Route::post("store", [AnnonceController::class, "store"])->name("store");
+
+            Route::patch("{annonce}/update", [AnnonceController::class, "update"])->name("update");
+
+            Route::delete("{annonce}/destroy", [AnnonceController::class, "destroy"])->name("destroy");
+        });
+    });
+
     Route::prefix('administrateurs/')->as('users:')->group(function () {
         Route::get('', [UserController::class, "index"])->name('index');
 
@@ -337,5 +360,24 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::get('login', [UserController::class, "loginView"])->name("login:view");
 
         Route::post('login', [UserController::class, "login"])->name("login");
+
+
+        Route::get('/cmpdf/{commue}', function ($commune) {
+            $filename = \App\Models\CommuneLink::where("commune_id", $commune)->value("presentation");
+
+            $path = storage_path('app/public/' . $filename);
+
+            if (!file_exists($path)) {
+                abort(404);
+            }
+
+            return Response::file($path, [
+                'Access-Control-Allow-Origin' => 'https://communestogo.test',
+                'Access-Control-Allow-Methods' => 'GET',
+            ]);
+        });
     });
+
+
+
 });

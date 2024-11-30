@@ -25,9 +25,14 @@ class Commune extends Model
         return $this->hasOne(MapLocation::class);
     }
 
-    public function actualite()
+    public function actualites()
     {
         return $this->hasMany(Actualite::class);
+    }
+
+    public function communeLink(): HasOne
+    {
+        return $this->hasOne(CommuneLink::class);
     }
 
 }

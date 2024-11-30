@@ -16,7 +16,7 @@
     </div>
 
     <div class="container">
-        <div class="page-conten">
+        <div class="page-content">
             @include('includes.auths.flash')
         </div>
         <div class="event-container">
