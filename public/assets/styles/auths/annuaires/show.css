@@ -1,0 +1,48 @@
+.form__row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form__col {
+    margin-bottom: 1rem;
+    font-size: .8rem;
+}
+
+.pres {
+    font-family: montserrat-medium;
+    font-size: 1rem;
+    color: var(--blue);
+}
+
+.form__button {
+    justify-content: center;
+}
+
+.form-container {
+    display: flex;
+    column-gap: 2rem;
+    margin-top: 2.5rem;
+    /* position: ; */
+}
+
+.form-container form {
+    flex-basis: calc(70% - 2rem);
+}
+
+.presentation-file-container {
+    flex-basis: calc(30% - 2rem);
+}
+
+.form__label {
+    font-family: montserrat-medium;
+}
+
+#pdf-renderer {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.top-bar {
+    margin-bottom: 1rem;
+}
