@@ -35,4 +35,9 @@ class Commune extends Model
         return $this->hasOne(CommuneLink::class);
     }
 
+    public function annuaire()
+    {
+        return $this->hasOne(Annuaire::class);
+    }
+
 }

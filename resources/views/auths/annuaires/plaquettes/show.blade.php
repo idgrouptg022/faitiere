@@ -10,7 +10,8 @@
     <div class="page__header__container">
         <ol class="page-header-breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('auth:annuaires:plaquettes:index') }}">Annuaires - Communes</a></li>
-            <li class="breadcrumb-item">{{ $commune->name }}</li>
+            <li class="breadcrumb-item">{{  $commune->name  }}
+            </li>
         </ol>
     </div>
 
@@ -50,66 +51,67 @@
             </div>
             <div class="tab-content-wrapper">
                 <div id="tab1-content" class="tab-content">
-                    <form action="" method="post">
+                    <form action="{{ route('auth:annuaires:store', $commune ) }}" method="post" enctype="multipart/form-data">
                         @csrf
+
                         <div class="form__row">
                             <div class="form__col">
                                 <label class="form__label" for="domaine_prior1">Domaine prioritaire 1</label>
-                                <input type="text" id="domaine_prior1" name="domaine_prior1" required class="input__form" placeholder="infrastructures">
+                                <input type="text" id="domaine_prior1" name="domaine_prior1" required class="input__form" placeholder="infrastructures" value="{!! $annuaire->domaine_prior1 ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label class="form__label" for="domaine_prior2">Domaine prioritaire 2</label>
-                                <input type="text" id="domaine_prior2" name="domaine_prior2" required class="input__form" placeholder="services sociaux">
+                                <input type="text" id="domaine_prior2" name="domaine_prior2" required class="input__form" placeholder="services sociaux" value="{!! $annuaire->domaine_prior2 ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label class="form__label" for="domaine_prior3">Domaine prioritaire 3</label>
-                                <input type="text" id="domaine_prior3" name="domaine_prior3" required class="input__form" placeholder="administration moderne">
+                                <input type="text" id="domaine_prior3" name="domaine_prior3" required class="input__form" placeholder="administration moderne" value="{!! $annuaire->domaine_prior3 ?? "" !!}">
                             </div>
                         </div>
                         <div class="form__group">
                             <label for="vision" class="form__label">Vision de développement</label>
-                            <textarea name="vision" id="vision" rows="7" class="input__form" placeholder="Vision de développement..."></textarea>
+                            <textarea name="vision" id="vision" rows="7" class="input__form" placeholder="Vision de développement...">{!! $annuaire->vision ?? "" !!}</textarea>
                         </div>
                         <div class="form__group">
                             <label for="presentation" class="form__label">Présentation</label>
-                            <textarea name="presentation" id="presentation" rows="10" class="input__form"></textarea>
+                            <textarea name="presentation" id="presentation" rows="10" class="input__form">{!! $annuaire->presentation ?? "" !!}</textarea>
                         </div>
                         <div class="form__row numbers">
                             <div class="form__col">
                                 <label for="superficie" class="form__label">Superficie</label>
-                                <input type="number" min="0" name="superficie" id="superficie" class="input__form" placeholder="superficie...">
+                                <input type="number" min="0" name="superficie" id="superficie" class="input__form" placeholder="superficie..." value="{!! $annuaire->superficie ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="population" class="form__label">Population</label>
-                                <input type="number" min="0" name="population" id="population" class="input__form" placeholder="population...">
+                                <input type="number" min="0" name="population" id="population" class="input__form" placeholder="population..." value="{!! $annuaire->population ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="sante" class="form__label">Santé</label>
-                                <input type="number" min="0" name="sante" id="sante" class="input__form" placeholder="sante...">
+                                <input type="number" min="0" name="sante" id="sante" class="input__form" placeholder="sante..." value="{!! $annuaire->sante ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="hotel" class="form__label">Hôtels</label>
-                                <input type="number" min="0" name="hotel" id="hotel" class="input__form" placeholder="hotel...">
+                                <input type="number" min="0" name="hotels" id="hotel" class="input__form" placeholder="hotel..." value="{!! $annuaire->hotels ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="prescolaires" class="form__label">Préscolaires</label>
-                                <input type="number" min="0" name="prescolaires" id="prescolaires" class="input__form" placeholder="prescolaires...">
+                                <input type="number" min="0" name="prescolaires" id="prescolaires" class="input__form" placeholder="prescolaires..." value="{!! $annuaire->prescolaires ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="primaires" class="form__label">Primaires</label>
-                                <input type="number" min="0" name="primaires" id="primaires" class="input__form" placeholder="primaires...">
+                                <input type="number" min="0" name="primaires" id="primaires" class="input__form" placeholder="primaires..." value="{!! $annuaire->primaires ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="secondaires" class="form__label">Secondaires</label>
-                                <input type="number" min="0" name="secondaires" id="secondaires" class="input__form" placeholder="secondaires...">
+                                <input type="number" min="0" name="secondaires" id="secondaires" class="input__form" placeholder="secondaires..." value="{!! $annuaire->secondaires ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="artisanaux" class="form__label">Artisanaux</label>
-                                <input type="number" min="0" name="artisanaux" id="artisanaux" class="input__form" placeholder="artisanaux...">
+                                <input type="number" min="0" name="artisanaux" id="artisanaux" class="input__form" placeholder="artisanaux..." value="{!! $annuaire->artisanaux ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="agences_bancaires" class="form__label">Agences bancaires</label>
-                                <input type="number" min="0" name="agences_bancaires" id="agences_bancaires" class="input__form" placeholder="agences bancaires...">
+                                <input type="number" min="0" name="agences_bancaires" id="agences_bancaires" class="input__form" placeholder="agences bancaires..." value="{!! $annuaire->agences_bancaires ?? "" !!}">
                             </div>
                         </div>
 
