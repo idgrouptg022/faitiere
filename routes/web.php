@@ -24,6 +24,7 @@ use App\Http\Controllers\Guest\ContactController;
 use App\Http\Controllers\Auth\ActualiteController;
 use App\Http\Controllers\Auth\ActuVideoController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\PlaquetteController;
 use App\Http\Controllers\Auth\PubliciteController;
 use App\Http\Controllers\Auth\QuotationController;
 use App\Http\Controllers\Auth\PrefectureController;
@@ -345,6 +346,12 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
             Route::patch("{annonce}/update", [AnnonceController::class, "update"])->name("update");
 
             Route::delete("{annonce}/destroy", [AnnonceController::class, "destroy"])->name("destroy");
+        });
+
+        Route::prefix("plaquettes")->as("plaquettes:")->group(function (){
+            Route::get('', [PlaquetteController::class, "index"])->name("index");
+
+            Route::get("{commune}/details", [PlaquetteController::class, "show"])->name("show");
         });
     });
 
