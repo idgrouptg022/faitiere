@@ -30,12 +30,19 @@ allLinks.forEach((elem) => {
 //? handle proper selection for initial load
 const currentHash = window.location.hash;
 
+console.log(currentHash);
+
+
 let activeLink = document.querySelector(`.tabs a`);
 
 if (currentHash) {
-  const visibleHash = document.getElementById(
-    `${currentHash}`
-  );
+    const getCurrentHash = currentHash.substring(1)
+    const visibleHash = document.getElementById(
+        `${getCurrentHash}`
+    );
+
+  console.log(visibleHash);
+
 
   if (visibleHash) {
     activeLink = visibleHash;

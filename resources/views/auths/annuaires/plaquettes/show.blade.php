@@ -119,7 +119,7 @@
                     </form>
                 </div>
                 <div id="tab2-content" class="tab-content">
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form__row">
                             <div class="form__col">
@@ -158,8 +158,235 @@
                     </form>
                 </div>
                 <div id="tab3-content" class="tab-content">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <fieldset class="atout">
+                            <legend>Premier atout</legend>
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="premier_atout_titre" class="form__label">Titre</label>
+                                    <input type="text" name="premier_atout_titre" id="premier_atout_titre" class="input__form" placeholder="Titre du premier atout">
+                                </div>
+                                <div class="form__col">
+                                    <label for="premier_atout_image" class="form__label">Image</label>
+                                    <input type="file" id="premier_atout_image" name="premier_atout_image" accept="image/*" class="input__form">
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label for="premier_atout_description" class="form__label">Description</label>
+                                <textarea name="premier_atout_description" id="premier_atout_description" rows="5" class="input__form" placeholder="Brève description de l'atout"></textarea>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider les informations</button>
+                            </div>
+                        </fieldset>
+                        <fieldset class="atout">
+                            <legend>Deuxième atout</legend>
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="deuxieme_atout_titre" class="form__label">Titre</label>
+                                    <input type="text" name="deuxieme_atout_titre" id="deuxieme_atout_titre" class="input__form" placeholder="Titre du deuxième atout">
+                                </div>
+                                <div class="form__col">
+                                    <label for="deuxieme_atout_image" class="form__label">Image</label>
+                                    <input type="file" id="deuxieme_atout_image" name="deuxieme_atout_image" accept="image/*" class="input__form">
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label for="deuxieme_atout_description" class="form__label">Description</label>
+                                <textarea name="deuxieme_atout_description" id="deuxieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout"></textarea>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider les informations</button>
+                            </div>
+                        </fieldset>
+                        <fieldset class="atout">
+                            <legend>Troisième atout</legend>
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="troisieme_atout_titre" class="form__label">Titre</label>
+                                    <input type="text" name="troisieme_atout_titre" id="troisieme_atout_titre" class="input__form" placeholder="Titre du troisieme atout">
+                                </div>
+                                <div class="form__col">
+                                    <label for="troisieme_atout_image" class="form__label">Image</label>
+                                    <input type="file" id="troisieme_atout_image" name="troisieme_atout_image" accept="image/*" class="input__form">
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label for="troisieme_atout_description" class="form__label">Description</label>
+                                <textarea name="troisieme_atout_description" id="troisieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout"></textarea>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider les informations</button>
+                            </div>
+                        </fieldset>
+                        <fieldset class="atout">
+                            <legend>Quatrième atout</legend>
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="quatrieme_atout_titre" class="form__label">Titre</label>
+                                    <input type="text" name="quatrieme_atout_titre" id="quatrieme_atout_titre" class="input__form" placeholder="Titre du quatrieme atout">
+                                </div>
+                                <div class="form__col">
+                                    <label for="quatrieme_atout_image" class="form__label">Image</label>
+                                    <input type="file" id="quatrieme_atout_image" name="quatrieme_atout_image" accept="image/*" class="input__form">
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label for="quatrieme_atout_description" class="form__label">Description</label>
+                                <textarea name="quatrieme_atout_description" id="quatrieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout"></textarea>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider les informations</button>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
                 <div id="tab4-content" class="tab-content">
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Logo</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__row form-logo">
+                                <figure class="logo-container form__col">
+                                    <img src="" alt="Logo">
+                                </figure>
+                                <div class="form__col">
+                                    <div>
+                                        <label for="logo" class="form__label">Image</label>
+                                        <input type="file" id="logo" name="logo" accept="image/*" class="input__form">
+                                    </div>
+                                    <div class="form__button button2">
+                                        <button type="submit" class="button__green">Valider</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Bannière</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__row form-logo">
+                                <figure class="logo-container form__col">
+                                    <img src="" alt="Banniere">
+                                </figure>
+                                <div class="form__col">
+                                    <div>
+                                        <label for="banner" class="form__label">Image</label>
+                                        <input type="file" id="banner" name="banner" accept="image/*" class="input__form">
+                                    </div>
+                                    <div class="form__button button2">
+                                        <button type="submit" class="button__green">Valider</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Domaines prioritaires</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="domaine_prior1" class="form__label">Domaine prioritaire 1</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="domaine_prior1" name="domaine_prior1" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+
+                                <div class="form__col">
+                                    <label for="domaine_prior2" class="form__label">Domaine prioritaire 2</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="domaine_prior2" name="domaine_prior2" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+
+                                <div class="form__col">
+                                    <label for="domaine_prior3" class="form__label">Domaine prioritaire 3</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="domaine_prior3" name="domaine_prior3" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider</button>
+                            </div>
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Presentation</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="presentation1" class="form__label">Image 1</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="presentation1" name="presentation1" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+
+                                <div class="form__col">
+                                    <label for="presentation2" class="form__label">Image 2</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="presentation2" name="presentation2" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+
+                                <div class="form__col">
+                                    <label for="presentation3" class="form__label">Image 3</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="presentation3" name="presentation3" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+                                <div class="form__col">
+                                    <label for="presentation4" class="form__label">Image 4</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="presentation4" name="presentation4" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider</button>
+                            </div>
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Partenaires</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__group">
+                                <label for="partner" class="form__label">Partenaires</label>
+                                <input type="file" name="partner[]" id="partner" class="input__form" multiple>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider</button>
+                            </div>
+                        </form>
+                    </fieldset>
                 </div>
             </div>
         </div>
