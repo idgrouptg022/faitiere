@@ -334,6 +334,10 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
 
     Route::prefix("annuaires/")->as("annuaires:")->group(function (){
 
+
+
+        Route::post("{commune}/store", [AnnuaireController::class, "store"])->name("store");
+
         Route::get("communes", [CommuneLinkController::class, "index"])->name("communes");
 
         Route::get("{commune}/details", [CommuneLinkController::class, "show"])->name("show");
@@ -357,6 +361,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
             Route::get('', [PlaquetteController::class, "index"])->name("index");
 
             Route::get("{commune}/details", [PlaquetteController::class, "show"])->name("show");
+
         });
     });
 

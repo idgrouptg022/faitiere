@@ -21,7 +21,6 @@ class AnnuaireResponsableController extends Controller
         $fields = $request->validated();
         $fields["annuaire_id"] = $annuaire->id;
        
-            // $request->hasFile("image_maire") ? $maireFile = $request->file->store("AnnuaireResponsables", "public") : $maireFile = null;
             if ($request->hasFile('image_maire')) {
                 $maireFile = $request->file('image_maire')->store('AnnuaireResponsables', 'public');
             } else {
@@ -37,14 +36,6 @@ class AnnuaireResponsableController extends Controller
             } else {
                 $adjoint2File = null;
             }
-            
-        
-       
-            // $request->hasFile("image_adjoint1") ? $adjoint1File = $request->file->store("AnnuaireResponsables", "public") : $adjoint1File = null;
-        
-       
-            // $request->hasFile("image_adjoint2") ? $adjoint2File = $request->file->store("AnnuaireResponsables", "public") : $adjoint2File = null;
-        
         
 
         if($fields['maire']){

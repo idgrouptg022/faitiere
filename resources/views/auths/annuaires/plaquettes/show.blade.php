@@ -10,7 +10,8 @@
     <div class="page__header__container">
         <ol class="page-header-breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('auth:annuaires:plaquettes:index') }}">Annuaires - Communes</a></li>
-            <li class="breadcrumb-item">{{ $commune->name }}</li>
+            <li class="breadcrumb-item">{{  $commune->name  }}
+            </li>
         </ol>
     </div>
 
@@ -50,66 +51,67 @@
             </div>
             <div class="tab-content-wrapper">
                 <div id="tab1-content" class="tab-content">
-                    <form action="" method="post">
+                    <form action="{{ route('auth:annuaires:store', $commune ) }}" method="post" enctype="multipart/form-data">
                         @csrf
+
                         <div class="form__row">
                             <div class="form__col">
                                 <label class="form__label" for="domaine_prior1">Domaine prioritaire 1</label>
-                                <input type="text" id="domaine_prior1" name="domaine_prior1" required class="input__form" placeholder="infrastructures">
+                                <input type="text" id="domaine_prior1" name="domaine_prior1" required class="input__form" placeholder="infrastructures" value="{!! $annuaire->domaine_prior1 ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label class="form__label" for="domaine_prior2">Domaine prioritaire 2</label>
-                                <input type="text" id="domaine_prior2" name="domaine_prior2" required class="input__form" placeholder="services sociaux">
+                                <input type="text" id="domaine_prior2" name="domaine_prior2" required class="input__form" placeholder="services sociaux" value="{!! $annuaire->domaine_prior2 ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label class="form__label" for="domaine_prior3">Domaine prioritaire 3</label>
-                                <input type="text" id="domaine_prior3" name="domaine_prior3" required class="input__form" placeholder="administration moderne">
+                                <input type="text" id="domaine_prior3" name="domaine_prior3" required class="input__form" placeholder="administration moderne" value="{!! $annuaire->domaine_prior3 ?? "" !!}">
                             </div>
                         </div>
                         <div class="form__group">
                             <label for="vision" class="form__label">Vision de développement</label>
-                            <textarea name="vision" id="vision" rows="7" class="input__form" placeholder="Vision de développement..."></textarea>
+                            <textarea name="vision" id="vision" rows="7" class="input__form" placeholder="Vision de développement...">{!! $annuaire->vision ?? "" !!}</textarea>
                         </div>
                         <div class="form__group">
                             <label for="presentation" class="form__label">Présentation</label>
-                            <textarea name="presentation" id="presentation" rows="10" class="input__form"></textarea>
+                            <textarea name="presentation" id="presentation" rows="10" class="input__form">{!! $annuaire->presentation ?? "" !!}</textarea>
                         </div>
                         <div class="form__row numbers">
                             <div class="form__col">
                                 <label for="superficie" class="form__label">Superficie</label>
-                                <input type="number" min="0" name="superficie" id="superficie" class="input__form" placeholder="superficie...">
+                                <input type="number" min="0" name="superficie" id="superficie" class="input__form" placeholder="superficie..." value="{!! $annuaire->superficie ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="population" class="form__label">Population</label>
-                                <input type="number" min="0" name="population" id="population" class="input__form" placeholder="population...">
+                                <input type="number" min="0" name="population" id="population" class="input__form" placeholder="population..." value="{!! $annuaire->population ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="sante" class="form__label">Santé</label>
-                                <input type="number" min="0" name="sante" id="sante" class="input__form" placeholder="sante...">
+                                <input type="number" min="0" name="sante" id="sante" class="input__form" placeholder="sante..." value="{!! $annuaire->sante ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="hotel" class="form__label">Hôtels</label>
-                                <input type="number" min="0" name="hotel" id="hotel" class="input__form" placeholder="hotel...">
+                                <input type="number" min="0" name="hotels" id="hotel" class="input__form" placeholder="hotel..." value="{!! $annuaire->hotels ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="prescolaires" class="form__label">Préscolaires</label>
-                                <input type="number" min="0" name="prescolaires" id="prescolaires" class="input__form" placeholder="prescolaires...">
+                                <input type="number" min="0" name="prescolaires" id="prescolaires" class="input__form" placeholder="prescolaires..." value="{!! $annuaire->prescolaires ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="primaires" class="form__label">Primaires</label>
-                                <input type="number" min="0" name="primaires" id="primaires" class="input__form" placeholder="primaires...">
+                                <input type="number" min="0" name="primaires" id="primaires" class="input__form" placeholder="primaires..." value="{!! $annuaire->primaires ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="secondaires" class="form__label">Secondaires</label>
-                                <input type="number" min="0" name="secondaires" id="secondaires" class="input__form" placeholder="secondaires...">
+                                <input type="number" min="0" name="secondaires" id="secondaires" class="input__form" placeholder="secondaires..." value="{!! $annuaire->secondaires ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="artisanaux" class="form__label">Artisanaux</label>
-                                <input type="number" min="0" name="artisanaux" id="artisanaux" class="input__form" placeholder="artisanaux...">
+                                <input type="number" min="0" name="artisanaux" id="artisanaux" class="input__form" placeholder="artisanaux..." value="{!! $annuaire->artisanaux ?? "" !!}">
                             </div>
                             <div class="form__col">
                                 <label for="agences_bancaires" class="form__label">Agences bancaires</label>
-                                <input type="number" min="0" name="agences_bancaires" id="agences_bancaires" class="input__form" placeholder="agences bancaires...">
+                                <input type="number" min="0" name="agences_bancaires" id="agences_bancaires" class="input__form" placeholder="agences bancaires..." value="{!! $annuaire->agences_bancaires ?? "" !!}">
                             </div>
                         </div>
 
@@ -158,8 +160,235 @@
                     </form>
                 </div>
                 <div id="tab3-content" class="tab-content">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <fieldset class="atout">
+                            <legend>Premier atout</legend>
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="premier_atout_titre" class="form__label">Titre</label>
+                                    <input type="text" name="premier_atout_titre" id="premier_atout_titre" class="input__form" placeholder="Titre du premier atout">
+                                </div>
+                                <div class="form__col">
+                                    <label for="premier_atout_image" class="form__label">Image</label>
+                                    <input type="file" id="premier_atout_image" name="premier_atout_image" accept="image/*" class="input__form">
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label for="premier_atout_description" class="form__label">Description</label>
+                                <textarea name="premier_atout_description" id="premier_atout_description" rows="5" class="input__form" placeholder="Brève description de l'atout"></textarea>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider les informations</button>
+                            </div>
+                        </fieldset>
+                        <fieldset class="atout">
+                            <legend>Deuxième atout</legend>
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="deuxieme_atout_titre" class="form__label">Titre</label>
+                                    <input type="text" name="deuxieme_atout_titre" id="deuxieme_atout_titre" class="input__form" placeholder="Titre du deuxième atout">
+                                </div>
+                                <div class="form__col">
+                                    <label for="deuxieme_atout_image" class="form__label">Image</label>
+                                    <input type="file" id="deuxieme_atout_image" name="deuxieme_atout_image" accept="image/*" class="input__form">
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label for="deuxieme_atout_description" class="form__label">Description</label>
+                                <textarea name="deuxieme_atout_description" id="deuxieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout"></textarea>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider les informations</button>
+                            </div>
+                        </fieldset>
+                        <fieldset class="atout">
+                            <legend>Troisième atout</legend>
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="troisieme_atout_titre" class="form__label">Titre</label>
+                                    <input type="text" name="troisieme_atout_titre" id="troisieme_atout_titre" class="input__form" placeholder="Titre du troisieme atout">
+                                </div>
+                                <div class="form__col">
+                                    <label for="troisieme_atout_image" class="form__label">Image</label>
+                                    <input type="file" id="troisieme_atout_image" name="troisieme_atout_image" accept="image/*" class="input__form">
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label for="troisieme_atout_description" class="form__label">Description</label>
+                                <textarea name="troisieme_atout_description" id="troisieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout"></textarea>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider les informations</button>
+                            </div>
+                        </fieldset>
+                        <fieldset class="atout">
+                            <legend>Quatrième atout</legend>
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="quatrieme_atout_titre" class="form__label">Titre</label>
+                                    <input type="text" name="quatrieme_atout_titre" id="quatrieme_atout_titre" class="input__form" placeholder="Titre du quatrieme atout">
+                                </div>
+                                <div class="form__col">
+                                    <label for="quatrieme_atout_image" class="form__label">Image</label>
+                                    <input type="file" id="quatrieme_atout_image" name="quatrieme_atout_image" accept="image/*" class="input__form">
+                                </div>
+                            </div>
+                            <div class="form__group">
+                                <label for="quatrieme_atout_description" class="form__label">Description</label>
+                                <textarea name="quatrieme_atout_description" id="quatrieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout"></textarea>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider les informations</button>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
                 <div id="tab4-content" class="tab-content">
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Logo</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__row form-logo">
+                                <figure class="logo-container form__col">
+                                    <img src="" alt="Logo">
+                                </figure>
+                                <div class="form__col">
+                                    <div>
+                                        <label for="logo" class="form__label">Image</label>
+                                        <input type="file" id="logo" name="logo" accept="image/*" class="input__form">
+                                    </div>
+                                    <div class="form__button button2">
+                                        <button type="submit" class="button__green">Valider</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Bannière</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__row form-logo">
+                                <figure class="logo-container form__col">
+                                    <img src="" alt="Banniere">
+                                </figure>
+                                <div class="form__col">
+                                    <div>
+                                        <label for="banner" class="form__label">Image</label>
+                                        <input type="file" id="banner" name="banner" accept="image/*" class="input__form">
+                                    </div>
+                                    <div class="form__button button2">
+                                        <button type="submit" class="button__green">Valider</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Domaines prioritaires</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="domaine_prior1" class="form__label">Domaine prioritaire 1</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="domaine_prior1" name="domaine_prior1" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+
+                                <div class="form__col">
+                                    <label for="domaine_prior2" class="form__label">Domaine prioritaire 2</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="domaine_prior2" name="domaine_prior2" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+
+                                <div class="form__col">
+                                    <label for="domaine_prior3" class="form__label">Domaine prioritaire 3</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="domaine_prior3" name="domaine_prior3" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider</button>
+                            </div>
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Presentation</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__row">
+                                <div class="form__col">
+                                    <label for="presentation1" class="form__label">Image 1</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="presentation1" name="presentation1" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+
+                                <div class="form__col">
+                                    <label for="presentation2" class="form__label">Image 2</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="presentation2" name="presentation2" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+
+                                <div class="form__col">
+                                    <label for="presentation3" class="form__label">Image 3</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="presentation3" name="presentation3" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+                                <div class="form__col">
+                                    <label for="presentation4" class="form__label">Image 4</label>
+                                    <figure class="logo-container">
+                                        <img src="" alt="Domaines">
+                                    </figure>
+                                    <div>
+                                        <input type="file" id="presentation4" name="presentation4" accept="image/*" class="input__form">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider</button>
+                            </div>
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout logo-fieldset">
+                        <legend>Partenaires</legend>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form__group">
+                                <label for="partner" class="form__label">Partenaires</label>
+                                <input type="file" name="partner[]" id="partner" class="input__form" multiple>
+                            </div>
+                            <div class="form__button button2">
+                                <button type="submit" class="button__green">Valider</button>
+                            </div>
+                        </form>
+                    </fieldset>
                 </div>
             </div>
         </div>
