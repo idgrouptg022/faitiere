@@ -2,61 +2,84 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\AnnuaireResponsableTypes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AnnuaireResponsableRequest;
+use App\Models\Annuaire;
 use App\Models\AnnuaireResponsable;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class AnnuaireResponsableController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-
-        $annuaire_responsables = AnnuaireResponsable::all();
-
-        return view("auths.annuaire-responsable", compact( "annuaire_responsables"));
+        return view("");
     }
-
-    public function store(AnnuaireResponsableRequest $request)
-    {
-
-
-        $fields = $request->validated();
-
-
-        $annuaire_responsable = AnnuaireResponsable::create($fields);
-
-        if($annuaire_responsable){
-            return redirect()->back()->with("success", "Annuaire ajoutée avec succès");
-        }else {
-            return redirect()->back()->withErrors("Erreur", "Erreur d'ajout de l'annuaire");
-        }
-
-
-    }
-
-    public function update(AnnuaireResponsableRequest $request, AnnuaireResponsable $annuaire_responsable): RedirectResponse
+    public function createResponsables(AnnuaireResponsableRequest $request, Annuaire $annuaire): RedirectResponse
     {
         $fields = $request->validated();
+        $fields["annuaire_id"] = $annuaire->id;
+       
+            if ($request->hasFile('image_maire')) {
+                $maireFile = $request->file('image_maire')->store('AnnuaireResponsables', 'public');
+            } else {
+                $maireFile = null;
+            }
+            if ($request->hasFile('image_adjoint1')) {
+                $adjoint1File = $request->file('image_maire')->store('AnnuaireResponsables', 'public');
+            } else {
+                $adjoint1File = null;
+            }
+            if ($request->hasFile('image_adjoint2')) {
+                $adjoint2File = $request->file('image_maire')->store('AnnuaireResponsables', 'public');
+            } else {
+                $adjoint2File = null;
+            }
+        
 
-        if($annuaire_responsable->update($fields))
-        {
-             return redirect()->back()->with("success", "L'annuaire a été modifiée avec succès");
-        }else {
-            return redirect()->back()->withErrors("Erreur", "Erreur de modification de l'annuaire");
-        }
-
-
+        if($fields['maire']){
+            AnnuaireResponsable::updateOrCreate(
+                [
+                'annuaire_id' => $annuaire->id,
+                'type' => AnnuaireResponsableTypes::Maire,
+            ],
+            [
+                'annuaire_id' => $annuaire->id,
+                'name' => $fields['maire'],
+                'type' => AnnuaireResponsableTypes::Maire,
+                'file' => $maireFile
+            ]
+        );
     }
+    if($fields['adjoint1']){
+        AnnuaireResponsable::updateOrCreate([
+            'annuaire_id' => $annuaire->id,
+            'type' => AnnuaireResponsableTypes::Adjoint1,
+            ],
+            [
+                'annuaire_id' => $annuaire->id,
+                'name' => $fields['adjoint1'],
+                'type' => AnnuaireResponsableTypes::Adjoint1,
+                'file' => $adjoint1File
+            ]
+        );
+    }
+    if($fields['adjoint2']){
+            AnnuaireResponsable::updateOrCreate([
+                'annuaire_id' => $annuaire->id,
+                'type' => AnnuaireResponsableTypes::Adjoint2,
+            ],
+            [
+                'annuaire_id' => $annuaire->id,
+                'name' => $fields['adjoint2'],
+                'type' => AnnuaireResponsableTypes::Adjoint2,
+                'file' => $adjoint2File
+            ]
+        );
+    }
+    return back()->with('success','Les informations ont été enrégistrés avec succès.');
 
-    public function destroy(AnnuaireResponsable $annuaire_responsable): RedirectResponse
-    {
-
-
-        $annuaire_responsable->delete();
-
-        return redirect()->back()->with('success', "L'annuaire a bien été retirée");
+        
     }
 }
