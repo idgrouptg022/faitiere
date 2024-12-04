@@ -24,9 +24,9 @@ class AnnuaireController extends Controller
     {
 
 
-           $fields = $request->validated();
+        $fields = $request->validated();
 
-             $fields["commune_id"] = $commune->id;
+        $fields["commune_id"] = $commune->id;
 
 
 

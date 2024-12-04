@@ -21,6 +21,8 @@ class PlaquetteController extends Controller
 
     public function show(Commune $commune)//: View
     {
+      
+        if ($commune == null || !$commune instanceof Commune) abort(404);
 
 
         $annuaireLogoFile =  null ;
@@ -59,12 +61,6 @@ class PlaquetteController extends Controller
         // $annuaireLogoFile = AnnuaireFile::where('annuaire_id', $annuaire->id)
         //                 ->where('type', AnnuaireFileType::Logo->value)
         //                 ->first();
-
-
-
-
-
-        if ($commune == null || !$commune instanceof Commune) abort(404);
 
         return view("auths.annuaires.plaquettes.show", compact( 'annuaire', 'commune', 'annuaireLogoFile', 'annuaireBannerFile', 'annuaireDomaine1File', 'annuaireDomaine2File', 'annuaireDomaine3File', 'annuairePresentationFile', 'annuairePartnerFile'));
     }

@@ -24,20 +24,20 @@ class AnnuaireAtoutRequest extends FormRequest
         return [
             "title" => "required|string",
             "description" => "required|string",
-            "image" => "required|string",
-            "annuaire_id" => "required"
+            "image" => "nullable|file|image|mimes:png,jpg,jpeg,webp",
         ];
     }
 
     public function messages(): array
     {
         return [
-
             "title.required" => "Le titre est requis",
             "title.string" => "Titre saisie invalide",
             "description.required" => "La description est requis",
             "description.string" => "Description saisie invalide",
-
+            "image.file" => "Le fichier doit être un fichier valide",
+            "image.image" => "Le fichier doit être une image",
+            "image.mimes" => "Le format de l'image doit être PNG, JPG, JPEG ou WEBP",
         ];
     }
 }

@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{{ asset('assets/styles/auths/annuaires/plaquettes/show.css') }}">
 @endpush
 
+@php
+    $annuaireAtout = \App\Utils\AnnuaireAtout::class;
+@endphp
+
 @section('content')
     <h1 class="page-title">Annuaires - Communes</h1>
 
@@ -160,89 +164,98 @@
                     </form>
                 </div>
                 <div id="tab3-content" class="tab-content">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <fieldset class="atout">
-                            <legend>Premier atout</legend>
+                    <fieldset class="atout">
+                        <legend>Premier atout</legend>
+                        <form action="{{ route('auth:annuaires:plaquettes:atout:store', [$commune, 1]) }}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="form__row">
                                 <div class="form__col">
                                     <label for="premier_atout_titre" class="form__label">Titre</label>
-                                    <input type="text" name="premier_atout_titre" id="premier_atout_titre" class="input__form" placeholder="Titre du premier atout">
+                                    <input type="text" name="title" id="premier_atout_titre" class="input__form" placeholder="Titre du premier atout" value="{{ $annuaireAtout::get($annuaire, 1)->title ?? '' }}">
                                 </div>
                                 <div class="form__col">
                                     <label for="premier_atout_image" class="form__label">Image</label>
-                                    <input type="file" id="premier_atout_image" name="premier_atout_image" accept="image/*" class="input__form">
+                                    <input type="file" id="premier_atout_image" name="image" accept="image/*" class="input__form">
                                 </div>
                             </div>
                             <div class="form__group">
                                 <label for="premier_atout_description" class="form__label">Description</label>
-                                <textarea name="premier_atout_description" id="premier_atout_description" rows="5" class="input__form" placeholder="Brève description de l'atout"></textarea>
+                                <textarea name="description" id="premier_atout_description" rows="5" class="input__form" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 1)->description ?? '' !!}</textarea>
                             </div>
                             <div class="form__button button2">
                                 <button type="submit" class="button__green">Valider les informations</button>
                             </div>
-                        </fieldset>
-                        <fieldset class="atout">
-                            <legend>Deuxième atout</legend>
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout">
+                        <legend>Deuxième atout</legend>
+                        <form action="{{ route('auth:annuaires:plaquettes:atout:store', [$commune, 2]) }}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="form__row">
                                 <div class="form__col">
                                     <label for="deuxieme_atout_titre" class="form__label">Titre</label>
-                                    <input type="text" name="deuxieme_atout_titre" id="deuxieme_atout_titre" class="input__form" placeholder="Titre du deuxième atout">
+                                    <input type="text" name="title" id="deuxieme_atout_titre" class="input__form" placeholder="Titre du deuxième atout"  value="{{ $annuaireAtout::get($annuaire, 2)->title ?? '' }}">
                                 </div>
                                 <div class="form__col">
                                     <label for="deuxieme_atout_image" class="form__label">Image</label>
-                                    <input type="file" id="deuxieme_atout_image" name="deuxieme_atout_image" accept="image/*" class="input__form">
+                                    <input type="file" id="deuxieme_atout_image" name="image" accept="image/*" class="input__form">
                                 </div>
                             </div>
                             <div class="form__group">
                                 <label for="deuxieme_atout_description" class="form__label">Description</label>
-                                <textarea name="deuxieme_atout_description" id="deuxieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout"></textarea>
+                                <textarea name="description" id="deuxieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 2)->description ?? '' !!}</textarea>
                             </div>
                             <div class="form__button button2">
                                 <button type="submit" class="button__green">Valider les informations</button>
                             </div>
-                        </fieldset>
-                        <fieldset class="atout">
-                            <legend>Troisième atout</legend>
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout">
+                        <legend>Troisième atout</legend>
+                        <form action="{{ route('auth:annuaires:plaquettes:atout:store', [$commune, 3]) }}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="form__row">
                                 <div class="form__col">
                                     <label for="troisieme_atout_titre" class="form__label">Titre</label>
-                                    <input type="text" name="troisieme_atout_titre" id="troisieme_atout_titre" class="input__form" placeholder="Titre du troisieme atout">
+                                    <input type="text" name="title" id="troisieme_atout_titre" class="input__form" placeholder="Titre du troisieme atout" value="{{ $annuaireAtout::get($annuaire, 3)->title ?? '' }}">
                                 </div>
                                 <div class="form__col">
                                     <label for="troisieme_atout_image" class="form__label">Image</label>
-                                    <input type="file" id="troisieme_atout_image" name="troisieme_atout_image" accept="image/*" class="input__form">
+                                    <input type="file" id="troisieme_atout_image" name="image" accept="image/*" class="input__form">
                                 </div>
                             </div>
                             <div class="form__group">
                                 <label for="troisieme_atout_description" class="form__label">Description</label>
-                                <textarea name="troisieme_atout_description" id="troisieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout"></textarea>
+                                <textarea name="description" id="troisieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 3)->description ?? '' !!}</textarea>
                             </div>
                             <div class="form__button button2">
                                 <button type="submit" class="button__green">Valider les informations</button>
                             </div>
-                        </fieldset>
-                        <fieldset class="atout">
-                            <legend>Quatrième atout</legend>
+                        </form>
+                    </fieldset>
+                    <fieldset class="atout">
+                        <legend>Quatrième atout</legend>
+                        <form action="{{ route('auth:annuaires:plaquettes:atout:store', [$commune, 4]) }}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="form__row">
                                 <div class="form__col">
                                     <label for="quatrieme_atout_titre" class="form__label">Titre</label>
-                                    <input type="text" name="quatrieme_atout_titre" id="quatrieme_atout_titre" class="input__form" placeholder="Titre du quatrieme atout">
+                                    <input type="text" name="title" id="quatrieme_atout_titre" class="input__form" placeholder="Titre du quatrieme atout" value="{{ $annuaireAtout::get($annuaire, 4)->title ?? '' }}">
                                 </div>
                                 <div class="form__col">
                                     <label for="quatrieme_atout_image" class="form__label">Image</label>
-                                    <input type="file" id="quatrieme_atout_image" name="quatrieme_atout_image" accept="image/*" class="input__form">
+                                    <input type="file" id="quatrieme_atout_image" name="image" accept="image/*" class="input__form">
                                 </div>
                             </div>
                             <div class="form__group">
                                 <label for="quatrieme_atout_description" class="form__label">Description</label>
-                                <textarea name="quatrieme_atout_description" id="quatrieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout"></textarea>
+                                <textarea name="description" id="quatrieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 4)->description ?? '' !!}</textarea>
                             </div>
                             <div class="form__button button2">
                                 <button type="submit" class="button__green">Valider les informations</button>
                             </div>
-                        </fieldset>
-                    </form>
+                        </form>
+                    </fieldset>
                 </div>
                 <div id="tab4-content" class="tab-content">
                     <fieldset class="atout logo-fieldset">

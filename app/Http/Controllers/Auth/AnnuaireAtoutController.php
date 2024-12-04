@@ -2,61 +2,80 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\AnnuaireAtoutRequest;
+use App\Models\Commune;
+use App\Models\Annuaire;
+use Illuminate\Http\Request;
 use App\Models\AnnuaireAtout;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\AnnuaireAtoutRequest;
+use Exception;
 
 class AnnuaireAtoutController extends Controller
 {
-    public function index(): View
+
+
+    public function store(AnnuaireAtoutRequest $request, Commune $commune, $atoutNum)
     {
 
-        $annuaire_atouts = AnnuaireAtout::all();
+        if ($commune == null || !$commune instanceof Commune) abort(404);
 
-        return view("auths.annuaire-atout", compact( "annuaire_atouts"));
-    }
+        $annuaire = Annuaire::where("commune_id", $commune->id)->first();
 
-    public function store(AnnuaireAtoutRequest $request)
-    {
+        if($annuaire == null) {
+            return redirect()->back()->withErrors([
+                "title" => "Erreur: Veuillez d'abord renseigner les informations primaires de la commune"
+            ]);
+        }
 
+        if (!is_int($atoutNum) && !in_array($atoutNum, [1, 2, 3, 4])) {
+            return redirect()->back()->withErrors([
+                "title" => "Erreur: Atout invalide"
+            ]);
+        }
+
+        $checkExistAnnuaireAtout = AnnuaireAtout::where([
+            ["annuaire_id", "=", $annuaire->id],
+            ["id", "=", $annuaire->id]
+        ])->first();
+
+        if ($request->hasFile("image")) {
+
+            if ($checkExistAnnuaireAtout != null && $checkExistAnnuaireAtout->image != null) {
+                $oldImage = $checkExistAnnuaireAtout->image;
+            }
+
+            $filePath = $request->file('image')->store('annuaires/atouts', 'public');
+            $fields['image'] = $filePath;
+
+            if (isset($oldImage) && Storage::disk('public')->exists($oldImage)) {
+                Storage::disk('public')->delete($oldImage);
+            }
+
+        } else {
+            if ($checkExistAnnuaireAtout != null && $checkExistAnnuaireAtout->image == null) {
+                return redirect()->back()->withErrors(["image", "Veuillez fournir une image pour l'annuaire"]);
+            }
+        }
 
         $fields = $request->validated();
 
+        $fields["annuaire_id"] = $annuaire->id;
 
-        $annuaire_atout = AnnuaireAtout::create($fields);
 
-        if($annuaire_atout){
-            return redirect()->back()->with("success", "Annuaire ajoutée avec succès");
-        }else {
-            return redirect()->back()->withErrors("Erreur", "Erreur d'ajout de l'annuaire");
+        try {
+            AnnuaireAtout::updateOrCreate(
+                ["annuaire_id" => $annuaire->id, "id" => $atoutNum],
+                $fields
+            );
+
+            return redirect()->back()->with("success", "L'atout de l'atout a été sauvegardée avec succès");
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(["title" => "Erreur lors de l'enregistrement de l'atout de l'annuaire"]);
         }
 
-
     }
 
-    public function update(AnnuaireAtoutRequest $request, AnnuaireAtout $annuaire_atout): RedirectResponse
-    {
-        $fields = $request->validated();
-
-        if($annuaire_atout->update($fields))
-        {
-             return redirect()->back()->with("success", "L'annuaire a été modifiée avec succès");
-        }else {
-            return redirect()->back()->withErrors("Erreur", "Erreur de modification de l'annuaire");
-        }
-
-
-    }
-
-    public function destroy(AnnuaireAtout $annuaire_atout): RedirectResponse
-    {
-
-
-        $annuaire_atout->delete();
-
-        return redirect()->back()->with('success', "L'annuaire a bien été retirée");
-    }
 }
