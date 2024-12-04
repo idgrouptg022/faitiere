@@ -32,11 +32,9 @@ use App\Http\Controllers\Auth\CommuneLinkController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Guest\MediathequeController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
-<<<<<<< HEAD
-=======
+
 use App\Http\Controllers\Auth\AnnuaireController;
 use App\Http\Controllers\Auth\AnnuaireResponsableController;
->>>>>>> 0d07766 (annuaire des responsables)
 use App\Http\Controllers\Guest\MapLocalisationController;
 use App\Http\Controllers\Guest\DecentralisationController;
 use App\Http\Controllers\Guest\EventController as GuestEventController;
