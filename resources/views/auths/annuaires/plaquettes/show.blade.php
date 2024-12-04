@@ -119,7 +119,7 @@
                     </form>
                 </div>
                 <div id="tab2-content" class="tab-content">
-                    <form action="" method="post">
+                    <form action="{{ route('auth:annuaires:store-responsable', $annuaire->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form__row">
                             <div class="form__col">
