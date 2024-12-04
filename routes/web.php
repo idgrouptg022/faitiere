@@ -32,6 +32,7 @@ use App\Http\Controllers\Auth\CommuneLinkController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Guest\MediathequeController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
+use App\Http\Controllers\Auth\AnnuaireAtoutController;
 use App\Http\Controllers\Auth\AnnuaireController;
 use App\Http\Controllers\Guest\MapLocalisationController;
 use App\Http\Controllers\Guest\DecentralisationController;
@@ -332,8 +333,6 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
 
     Route::prefix("annuaires/")->as("annuaires:")->group(function (){
 
-
-
         Route::post("{commune}/store", [AnnuaireController::class, "store"])->name("store");
 
         Route::get("communes", [CommuneLinkController::class, "index"])->name("communes");
@@ -357,6 +356,8 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
             Route::get('', [PlaquetteController::class, "index"])->name("index");
 
             Route::get("{commune}/details", [PlaquetteController::class, "show"])->name("show");
+
+            Route::post("{commune}/{atoutNum}/atout-proccessing-data", [AnnuaireAtoutController::class, "store"])->name("atout:store");
 
         });
     });

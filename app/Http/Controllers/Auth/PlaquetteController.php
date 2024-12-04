@@ -19,10 +19,9 @@ class PlaquetteController extends Controller
 
     public function show(Commune $commune): View
     {
-        $annuaire = Annuaire::where("commune_id", $commune->id)->first();
-
-
         if ($commune == null || !$commune instanceof Commune) abort(404);
+
+        $annuaire = Annuaire::where("commune_id", $commune->id)->first();
 
         return view("auths.annuaires.plaquettes.show", compact( 'annuaire', 'commune'));
     }
