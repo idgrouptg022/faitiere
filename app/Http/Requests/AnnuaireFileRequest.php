@@ -22,19 +22,13 @@ class AnnuaireFileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string",
-            "type" => "required|string",
-            "file" => "required|string",
-            "annuaire_id" => "required"
+
         ];
     }
 
     public function messages(): array
     {
         return [
-
-            "name.required" => "Le nom est requis",
-            "name.string" => "Nom saisie invalide",
 
         ];
     }

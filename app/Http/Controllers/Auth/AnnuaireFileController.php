@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AnnuaireFileRequest;
+use App\Enums\AnnuaireFileType;
+use App\Models\Annuaire;
 use App\Models\AnnuaireFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -11,52 +13,107 @@ use Illuminate\Http\Request;
 
 class AnnuaireFileController extends Controller
 {
-    public function index(): View
-    {
 
-        $annuaire_files = AnnuaireFile::all();
 
-        return view("auths.annuaire-file", compact( "annuaire_files"));
-    }
-
-    public function store(AnnuaireFileRequest $request)
+    public function store(AnnuaireFileRequest $request, Annuaire $annuaire )
     {
 
 
-        $fields = $request->validated();
+        $type = '';
+        foreach (AnnuaireFileType::cases() as $fileType) {
+            if ($request->hasFile($fileType->value)) {
+                $type = $fileType;
+                break;
+            }
+        }
+
+        if (!$type) {
+            return back()->withErrors(['image' => 'Aucun type valide trouvé.']);
+        }
+
+          $request->validated([
+            $type->value => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
 
-        $annuaire_file = AnnuaireFile::create($fields);
 
-        if($annuaire_file){
-            return redirect()->back()->with("success", "Fichier ajoutée avec succès");
+        $filePath = $request->file($type->value)->store($type->value, 'public');
+
+        $annuaireFile = AnnuaireFile::updateOrCreate(
+            [
+                "annuaire_id" => $annuaire->id,
+                "type" => $type->value
+
+        ],
+            [
+                'annuaire_id' => $annuaire->id,
+                'file' => $filePath,
+                'type' => $type->value,
+            ]
+        );
+
+        if($annuaireFile){
+            return redirect()->back()->with("success", "Fichier d'annuaire ajoutée avec succès");
         }else {
-            return redirect()->back()->withErrors("Erreur", "Erreur d'ajout du fichier de l'annuaire");
+            return redirect()->back()->withErrors("Erreur", "Erreur d'ajout de fichier de l'annuaire");
         }
 
 
     }
 
-    public function update(AnnuaireFileRequest $request, AnnuaireFile $annuaire_file): RedirectResponse
-    {
-        $fields = $request->validated();
 
-        if($annuaire_file->update($fields))
-        {
-             return redirect()->back()->with("success", "Le fichier a été modifiée avec succès");
-        }else {
-            return redirect()->back()->withErrors("Erreur", "Erreur de modification du fichier de l'annuaire");
+    public function domaineStore(AnnuaireFileRequest $request, Annuaire $annuaire )
+    {
+
+
+
+        $validated = $request->validate([
+            'annuaires' => 'required|array',
+            'annuaires.domaine_prior1' => 'nullable',
+            'annuaires.domaine_prior2' => 'nullable',
+            'annuaires.domaine_prior3' => 'nullable',
+        ]);
+
+
+        $annuaires = $validated['annuaires'];
+
+
+
+        foreach ($annuaires as $key => $domaine) {
+            if (!empty($domaine)) {
+
+                if ($domaine instanceof \Illuminate\Http\UploadedFile) {
+
+                    $filePath = $domaine->store($key, 'public');
+                }
+
+                $annuaireFile = AnnuaireFile::updateOrCreate(
+                    [
+
+                        "annuaire_id" => $annuaire->id,
+                        "type" => $key
+                    ],
+                    [
+                        'file' => $filePath,
+                        "type" => $key,
+
+                    ]
+                );
+            }
         }
 
 
-    }
 
-    public function destroy(AnnuaireFile $annuaire_file): RedirectResponse
-    {
+        if($annuaireFile){
+            return redirect()->back()->with("success", "Fichier de domaine ajoutée avec succès");
+        }else {
+            return redirect()->back()->withErrors("Erreur", "Erreur d'ajout de fichier de domaine");
+        }
 
 
-        $annuaire_file->delete();
+     }
 
-        return redirect()->back()->with('success', "Le fichier de l'annuaire a bien été retirée");
-    }
+
 }
+
+

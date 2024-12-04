@@ -125,7 +125,7 @@
                     </form>
                 </div>
                 <div id="tab2-content" class="tab-content">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('auth:annuaires:store-responsable', $annuaire->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form__row">
                             <div class="form__col">
@@ -260,12 +260,15 @@
                 <div id="tab4-content" class="tab-content">
                     <fieldset class="atout logo-fieldset">
                         <legend>Logo</legend>
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('auth:annuaires:file-store', $annuaire ?? "" ) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form__row form-logo">
+
                                 <figure class="logo-container form__col">
-                                    <img src="" alt="Logo">
+
+                                    <img src="{{ $annuaireLogoFile ? asset('storage/' . $annuaireLogoFile->file) : asset('images/default-logo.png') }}" alt="Logo">
                                 </figure>
+
                                 <div class="form__col">
                                     <div>
                                         <label for="logo" class="form__label">Image</label>
@@ -281,12 +284,14 @@
                     </fieldset>
                     <fieldset class="atout logo-fieldset">
                         <legend>Bannière</legend>
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('auth:annuaires:file-store', $annuaire ?? "" ) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form__row form-logo">
+
                                 <figure class="logo-container form__col">
-                                    <img src="" alt="Banniere">
+                                    <img src="{{ $annuaireBannerFile ? asset('storage/' . $annuaireBannerFile->file) : asset('images/default-banner.png') }}" alt="Banniere">
                                 </figure>
+
                                 <div class="form__col">
                                     <div>
                                         <label for="banner" class="form__label">Image</label>
@@ -302,36 +307,36 @@
                     </fieldset>
                     <fieldset class="atout logo-fieldset">
                         <legend>Domaines prioritaires</legend>
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('auth:annuaires:file-domaine-store', $annuaire ?? "" ) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form__row">
                                 <div class="form__col">
-                                    <label for="domaine_prior1" class="form__label">Domaine prioritaire 1</label>
+                                    <label for="annuaires[domaine_prior1]" class="form__label">Domaine prioritaire 1</label>
                                     <figure class="logo-container">
-                                        <img src="" alt="Domaines">
+                                        <img src="{{ $annuaireDomaine1File ? asset('storage/' . $annuaireDomaine1File->file) : asset('images/default-annuaireDomaine1File.png') }}" alt="Domaines">
                                     </figure>
                                     <div>
-                                        <input type="file" id="domaine_prior1" name="domaine_prior1" accept="image/*" class="input__form">
+                                        <input type="file" id="domaine_prior1" name="annuaires[domaine_prior1]" accept="image/*" class="input__form">
                                     </div>
                                 </div>
 
                                 <div class="form__col">
-                                    <label for="domaine_prior2" class="form__label">Domaine prioritaire 2</label>
+                                    <label for="annuaires[domaine_prior2]" class="form__label">Domaine prioritaire 2</label>
                                     <figure class="logo-container">
-                                        <img src="" alt="Domaines">
+                                        <img  src="{{ $annuaireDomaine2File ? asset('storage/' . $annuaireDomaine2File->file) : asset('images/default-annuaireDomaine2File.png') }}" alt="Domaines">
                                     </figure>
                                     <div>
-                                        <input type="file" id="domaine_prior2" name="domaine_prior2" accept="image/*" class="input__form">
+                                        <input type="file" id="domaine_prior2" name="annuaires[domaine_prior2]" accept="image/*" class="input__form">
                                     </div>
                                 </div>
 
                                 <div class="form__col">
-                                    <label for="domaine_prior3" class="form__label">Domaine prioritaire 3</label>
+                                    <label for="annuaires[domaine_prior3]" class="form__label">Domaine prioritaire 3</label>
                                     <figure class="logo-container">
-                                        <img src="" alt="Domaines">
+                                        <img  src="{{ $annuaireDomaine3File ? asset('storage/' . $annuaireDomaine3File->file) : asset('images/default-annuaireDomaine3File.png') }}" alt="Domaines">
                                     </figure>
                                     <div>
-                                        <input type="file" id="domaine_prior3" name="domaine_prior3" accept="image/*" class="input__form">
+                                        <input type="file" id="domaine_prior3" name="annuaires[domaine_prior3]" accept="image/*" class="input__form">
                                     </div>
                                 </div>
                             </div>
@@ -342,7 +347,7 @@
                     </fieldset>
                     <fieldset class="atout logo-fieldset">
                         <legend>Presentation</legend>
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('auth:annuaires:file-domaine-store', $annuaire ?? "" ) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form__row">
                                 <div class="form__col">

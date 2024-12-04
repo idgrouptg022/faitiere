@@ -32,8 +32,12 @@ use App\Http\Controllers\Auth\CommuneLinkController;
 use App\Http\Controllers\Auth\MapLocationController;
 use App\Http\Controllers\Guest\MediathequeController;
 use App\Http\Controllers\Auth\ActiviteAnnuelleController;
+
 use App\Http\Controllers\Auth\AnnuaireAtoutController;
+
 use App\Http\Controllers\Auth\AnnuaireController;
+use App\Http\Controllers\Auth\AnnuaireFileController;
+use App\Http\Controllers\Auth\AnnuaireResponsableController;
 use App\Http\Controllers\Guest\MapLocalisationController;
 use App\Http\Controllers\Guest\DecentralisationController;
 use App\Http\Controllers\Guest\EventController as GuestEventController;
@@ -333,6 +337,10 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
 
     Route::prefix("annuaires/")->as("annuaires:")->group(function (){
 
+
+        Route::post("{annuaire?}/file-domaine-store", [AnnuaireFileController::class, "domaineStore"])->name("file-domaine-store");
+        Route::post("{annuaire?}/file-store", [AnnuaireFileController::class, "store"])->name("file-store");
+
         Route::post("{commune}/store", [AnnuaireController::class, "store"])->name("store");
 
         Route::get("communes", [CommuneLinkController::class, "index"])->name("communes");
@@ -340,6 +348,8 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::get("{commune}/details", [CommuneLinkController::class, "show"])->name("show");
 
         Route::patch("{commune}/update-processing", [CommuneLinkController::class, "update"])->name("update");
+
+        Route::post("{annuaire}/store-responsable", [AnnuaireResponsableController::class, "createResponsables"])->name("store-responsable");
 
         Route::prefix("annonces/")->as("annonces:")->group(function () {
 
