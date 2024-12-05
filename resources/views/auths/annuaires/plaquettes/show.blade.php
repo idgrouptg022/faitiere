@@ -125,36 +125,57 @@
                     </form>
                 </div>
                 <div id="tab2-content" class="tab-content">
-                    <form action="{{ route('auth:annuaires:store-responsable', $annuaire->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('auth:annuaires:store-responsable', $commune) }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="form__row">
-                            <div class="form__col">
-                                <label for="maire" class="form__label">Maire de la commune</label>
-                                <input type="text" name="maire" id="maire" class="input__form" placeholder="Nom complet">
-                            </div>
-                            <div class="form__col">
-                                <label for="image_maire" class="form__label">Image du maire</label>
-                                <input type="file" id="image_maire" name="image_maire" accept=".jpg,.png" class="input__form">
-                            </div>
-                        </div>
-                        <div class="form__row">
-                            <div class="form__col">
-                                <label for="adjoint1" class="form__label">1er adjoint au maire</label>
-                                <input type="text" name="adjoint1" id="adjoint1" class="input__form" placeholder="Nom complet">
-                            </div>
-                            <div class="form__col">
-                                <label for="image_adjoint1" class="form__label">Image du 1er adjoint</label>
-                                <input type="file" id="image_adjoint1" name="image_adjoint1" accept=".jpg,.png" class="input__form">
+                        <div class="responsable-container">
+                            <figure class="responsable-image">
+                                <img src="{{ $annuaireResponsableMaire ? asset('storage/' . $annuaireResponsableMaire->file) : '' }}" alt="">
+                            </figure>
+                            <div class="">
+                                <div class="form__row">
+                                    <div class="form__col">
+                                        <label for="maire" class="form__label">Maire de la commune</label>
+                                        <input type="text" name="maire" id="maire" class="input__form" placeholder="Nom complet" value="{{ $annuaireResponsableMaire->name ?? '' }}">
+                                    </div>
+                                    <div class="form__col">
+                                        <label for="image_maire" class="form__label">Image du maire</label>
+                                        <input type="file" id="image_maire" name="image_maire" accept=".jpg,.png" class="input__form">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form__row">
-                            <div class="form__col">
-                                <label for="adjoint2" class="form__label">2eme adjoint au maire</label>
-                                <input type="text" name="adjoint2" id="adjoint2" class="input__form" placeholder="Nom complet">
+                        <div class="responsable-container">
+                            <figure class="responsable-image">
+                                <img src="{{ $annuaireResponsableAdjoint1 ? asset('storage/' . $annuaireResponsableAdjoint1->file) : '' }}" alt="">
+                            </figure>
+                            <div class="">
+                                <div class="form__row">
+                                    <div class="form__col">
+                                        <label for="adjoint1" class="form__label">1er adjoint au maire</label>
+                                        <input type="text" name="adjoint1" id="adjoint1" class="input__form" placeholder="Nom complet" value="{{ $annuaireResponsableAdjoint1->name ?? '' }}">
+                                    </div>
+                                    <div class="form__col">
+                                        <label for="image_adjoint1" class="form__label">Image du 1er adjoint</label>
+                                        <input type="file" id="image_adjoint1" name="image_adjoint1" accept=".jpg,.png" class="input__form">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form__col">
-                                <label for="image_adjoint2" class="form__label">Image du 2eme adjoint</label>
-                                <input type="file" id="image_adjoint2" name="image_adjoint2" accept=".jpg,.png" class="input__form">
+                        </div>
+                        <div class="responsable-container">
+                            <figure class="responsable-image">
+                                <img src="{{ $annuaireResponsableAdjoint2 ? asset('storage/' . $annuaireResponsableAdjoint2->file) : '' }}" alt="">
+                            </figure>
+                            <div class="">
+                                <div class="form__row">
+                                    <div class="form__col">
+                                        <label for="adjoint2" class="form__label">2eme adjoint au maire</label>
+                                        <input type="text" name="adjoint2" id="adjoint2" class="input__form" placeholder="Nom complet" value="{{ $annuaireResponsableAdjoint2->name ?? '' }}">
+                                    </div>
+                                    <div class="form__col">
+                                        <label for="image_adjoint2" class="form__label">Image du 2eme adjoint</label>
+                                        <input type="file" id="image_adjoint2" name="image_adjoint2" accept=".jpg,.png" class="input__form">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -168,19 +189,26 @@
                         <legend>Premier atout</legend>
                         <form action="{{ route('auth:annuaires:plaquettes:atout:store', [$commune, 1]) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form__row">
-                                <div class="form__col">
-                                    <label for="premier_atout_titre" class="form__label">Titre</label>
-                                    <input type="text" name="title" id="premier_atout_titre" class="input__form" placeholder="Titre du premier atout" value="{{ $annuaireAtout::get($annuaire, 1)->title ?? '' }}">
+                            <div class="atout-container">
+                                <figure class="atout-image">
+                                    <img src="{{ $annuaireAtout::get($annuaire, 1) != null ? asset('storage/' . $annuaireAtout::get($annuaire, 1)->image) : '' }}" alt="Fichier atout">
+                                </figure>
+                                <div class="">
+                                    <div class="form__row">
+                                        <div class="form__col">
+                                            <label for="premier_atout_titre" class="form__label">Titre</label>
+                                            <input type="text" name="title" id="premier_atout_titre" class="input__form" placeholder="Titre du premier atout" value="{{ $annuaireAtout::get($annuaire, 1)->title ?? '' }}">
+                                        </div>
+                                        <div class="form__col">
+                                            <label for="premier_atout_image" class="form__label">Image</label>
+                                            <input type="file" id="premier_atout_image" name="image" accept="image/*" class="input__form">
+                                        </div>
+                                    </div>
+                                    <div class="form__group">
+                                        <label for="premier_atout_description" class="form__label">Description</label>
+                                        <textarea name="description" id="premier_atout_description" rows="5" class="input__form" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 1)->description ?? '' !!}</textarea>
+                                    </div>
                                 </div>
-                                <div class="form__col">
-                                    <label for="premier_atout_image" class="form__label">Image</label>
-                                    <input type="file" id="premier_atout_image" name="image" accept="image/*" class="input__form">
-                                </div>
-                            </div>
-                            <div class="form__group">
-                                <label for="premier_atout_description" class="form__label">Description</label>
-                                <textarea name="description" id="premier_atout_description" rows="5" class="input__form" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 1)->description ?? '' !!}</textarea>
                             </div>
                             <div class="form__button button2">
                                 <button type="submit" class="button__green">Valider les informations</button>
@@ -191,19 +219,26 @@
                         <legend>Deuxième atout</legend>
                         <form action="{{ route('auth:annuaires:plaquettes:atout:store', [$commune, 2]) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form__row">
-                                <div class="form__col">
-                                    <label for="deuxieme_atout_titre" class="form__label">Titre</label>
-                                    <input type="text" name="title" id="deuxieme_atout_titre" class="input__form" placeholder="Titre du deuxième atout"  value="{{ $annuaireAtout::get($annuaire, 2)->title ?? '' }}">
+                            <div class="atout-container">
+                                <figure class="atout-image">
+                                    <img src="{{ $annuaireAtout::get($annuaire, 2) != null ? asset('storage/' . $annuaireAtout::get($annuaire, 2)->image) : '' }}" alt="Fichier atout">
+                                </figure>
+                                <div class="">
+                                    <div class="form__row">
+                                        <div class="form__col">
+                                            <label for="deuxieme_atout_titre" class="form__label">Titre</label>
+                                            <input type="text" name="title" id="deuxieme_atout_titre" class="input__form" placeholder="Titre du deuxième atout"  value="{{ $annuaireAtout::get($annuaire, 2)->title ?? '' }}">
+                                        </div>
+                                        <div class="form__col">
+                                            <label for="deuxieme_atout_image" class="form__label">Image</label>
+                                            <input type="file" id="deuxieme_atout_image" name="image" accept="image/*" class="input__form">
+                                        </div>
+                                    </div>
+                                    <div class="form__group">
+                                        <label for="deuxieme_atout_description" class="form__label">Description</label>
+                                        <textarea name="description" id="deuxieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 2)->description ?? '' !!}</textarea>
+                                    </div>
                                 </div>
-                                <div class="form__col">
-                                    <label for="deuxieme_atout_image" class="form__label">Image</label>
-                                    <input type="file" id="deuxieme_atout_image" name="image" accept="image/*" class="input__form">
-                                </div>
-                            </div>
-                            <div class="form__group">
-                                <label for="deuxieme_atout_description" class="form__label">Description</label>
-                                <textarea name="description" id="deuxieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 2)->description ?? '' !!}</textarea>
                             </div>
                             <div class="form__button button2">
                                 <button type="submit" class="button__green">Valider les informations</button>
@@ -214,19 +249,26 @@
                         <legend>Troisième atout</legend>
                         <form action="{{ route('auth:annuaires:plaquettes:atout:store', [$commune, 3]) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form__row">
-                                <div class="form__col">
-                                    <label for="troisieme_atout_titre" class="form__label">Titre</label>
-                                    <input type="text" name="title" id="troisieme_atout_titre" class="input__form" placeholder="Titre du troisieme atout" value="{{ $annuaireAtout::get($annuaire, 3)->title ?? '' }}">
+                            <div class="atout-container">
+                                <figure class="atout-image">
+                                    <img src="{{ $annuaireAtout::get($annuaire, 3) != null ? asset('storage/' . $annuaireAtout::get($annuaire, 3)->image) : '' }}" alt="Fichier atout">
+                                </figure>
+                                <div class="">
+                                    <div class="form__row">
+                                        <div class="form__col">
+                                            <label for="troisieme_atout_titre" class="form__label">Titre</label>
+                                            <input type="text" name="title" id="troisieme_atout_titre" class="input__form" placeholder="Titre du troisieme atout" value="{{ $annuaireAtout::get($annuaire, 3)->title ?? '' }}">
+                                        </div>
+                                        <div class="form__col">
+                                            <label for="troisieme_atout_image" class="form__label">Image</label>
+                                            <input type="file" id="troisieme_atout_image" name="image" accept="image/*" class="input__form">
+                                        </div>
+                                    </div>
+                                    <div class="form__group">
+                                        <label for="troisieme_atout_description" class="form__label">Description</label>
+                                        <textarea name="description" id="troisieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 3)->description ?? '' !!}</textarea>
+                                    </div>
                                 </div>
-                                <div class="form__col">
-                                    <label for="troisieme_atout_image" class="form__label">Image</label>
-                                    <input type="file" id="troisieme_atout_image" name="image" accept="image/*" class="input__form">
-                                </div>
-                            </div>
-                            <div class="form__group">
-                                <label for="troisieme_atout_description" class="form__label">Description</label>
-                                <textarea name="description" id="troisieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 3)->description ?? '' !!}</textarea>
                             </div>
                             <div class="form__button button2">
                                 <button type="submit" class="button__green">Valider les informations</button>
@@ -237,20 +279,28 @@
                         <legend>Quatrième atout</legend>
                         <form action="{{ route('auth:annuaires:plaquettes:atout:store', [$commune, 4]) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form__row">
-                                <div class="form__col">
-                                    <label for="quatrieme_atout_titre" class="form__label">Titre</label>
-                                    <input type="text" name="title" id="quatrieme_atout_titre" class="input__form" placeholder="Titre du quatrieme atout" value="{{ $annuaireAtout::get($annuaire, 4)->title ?? '' }}">
-                                </div>
-                                <div class="form__col">
-                                    <label for="quatrieme_atout_image" class="form__label">Image</label>
-                                    <input type="file" id="quatrieme_atout_image" name="image" accept="image/*" class="input__form">
+                            <div class="atout-container">
+                                <figure class="atout-image">
+                                    <img src="{{ $annuaireAtout::get($annuaire, 4) != null ? asset('storage/' . $annuaireAtout::get($annuaire, 4)->image) : '' }}" alt="Fichier atout">
+                                </figure>
+                                <div class="">
+                                    <div class="form__row">
+                                        <div class="form__col">
+                                            <label for="quatrieme_atout_titre" class="form__label">Titre</label>
+                                            <input type="text" name="title" id="quatrieme_atout_titre" class="input__form" placeholder="Titre du quatrieme atout" value="{{ $annuaireAtout::get($annuaire, 4)->title ?? '' }}">
+                                        </div>
+                                        <div class="form__col">
+                                            <label for="quatrieme_atout_image" class="form__label">Image</label>
+                                            <input type="file" id="quatrieme_atout_image" name="image" accept="image/*" class="input__form">
+                                        </div>
+                                    </div>
+                                    <div class="form__group">
+                                        <label for="quatrieme_atout_description" class="form__label">Description</label>
+                                        <textarea name="description" id="quatrieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 4)->description ?? '' !!}</textarea>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form__group">
-                                <label for="quatrieme_atout_description" class="form__label">Description</label>
-                                <textarea name="description" id="quatrieme_atout_description" class="input__form" rows="5" placeholder="Brève description de l'atout">{!! $annuaireAtout::get($annuaire, 4)->description ?? '' !!}</textarea>
-                            </div>
+
                             <div class="form__button button2">
                                 <button type="submit" class="button__green">Valider les informations</button>
                             </div>
@@ -284,11 +334,11 @@
                     </fieldset>
                     <fieldset class="atout logo-fieldset">
                         <legend>Bannière</legend>
-                        <form action="{{ route('auth:annuaires:file-store', $annuaire ?? "" ) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('auth:annuaires:file-store', $commune ) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form__row form-logo">
 
-                                <figure class="logo-container form__col">
+                                <figure class="banner-container form__col">
                                     <img src="{{ $annuaireBannerFile ? asset('storage/' . $annuaireBannerFile->file) : asset('images/default-banner.png') }}" alt="Banniere">
                                 </figure>
 
@@ -312,7 +362,7 @@
                             <div class="form__row">
                                 <div class="form__col">
                                     <label for="annuaires[domaine_prior1]" class="form__label">Domaine prioritaire 1</label>
-                                    <figure class="logo-container">
+                                    <figure class="domaine-container">
                                         <img src="{{ $annuaireDomaine1File ? asset('storage/' . $annuaireDomaine1File->file) : asset('images/default-annuaireDomaine1File.png') }}" alt="Domaines">
                                     </figure>
                                     <div>
@@ -322,7 +372,7 @@
 
                                 <div class="form__col">
                                     <label for="annuaires[domaine_prior2]" class="form__label">Domaine prioritaire 2</label>
-                                    <figure class="logo-container">
+                                    <figure class="domaine-container">
                                         <img  src="{{ $annuaireDomaine2File ? asset('storage/' . $annuaireDomaine2File->file) : asset('images/default-annuaireDomaine2File.png') }}" alt="Domaines">
                                     </figure>
                                     <div>
@@ -332,7 +382,7 @@
 
                                 <div class="form__col">
                                     <label for="annuaires[domaine_prior3]" class="form__label">Domaine prioritaire 3</label>
-                                    <figure class="logo-container">
+                                    <figure class="domaine-container">
                                         <img  src="{{ $annuaireDomaine3File ? asset('storage/' . $annuaireDomaine3File->file) : asset('images/default-annuaireDomaine3File.png') }}" alt="Domaines">
                                     </figure>
                                     <div>
@@ -347,13 +397,13 @@
                     </fieldset>
                     <fieldset class="atout logo-fieldset">
                         <legend>Presentation</legend>
-                        <form action="{{ route('auth:annuaires:file-domaine-store', $annuaire ?? "" ) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('auth:annuaires:file:presentation', $commune) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form__row">
+                            <div class="form__row row__pres">
                                 <div class="form__col">
                                     <label for="presentation1" class="form__label">Image 1</label>
-                                    <figure class="logo-container">
-                                        <img src="" alt="Domaines">
+                                    <figure class="pres-container">
+                                        <img src="{{ $annuairePresentation1File ? asset('storage/' . $annuairePresentation1File->file) : ''}}" alt="Presentation">
                                     </figure>
                                     <div>
                                         <input type="file" id="presentation1" name="presentation1" accept="image/*" class="input__form">
@@ -362,8 +412,8 @@
 
                                 <div class="form__col">
                                     <label for="presentation2" class="form__label">Image 2</label>
-                                    <figure class="logo-container">
-                                        <img src="" alt="Domaines">
+                                    <figure class="pres-container">
+                                        <img src="{{ $annuairePresentation2File ? asset('storage/' . $annuairePresentation2File->file) : '' }}" alt="Presentation">
                                     </figure>
                                     <div>
                                         <input type="file" id="presentation2" name="presentation2" accept="image/*" class="input__form">
@@ -372,8 +422,8 @@
 
                                 <div class="form__col">
                                     <label for="presentation3" class="form__label">Image 3</label>
-                                    <figure class="logo-container">
-                                        <img src="" alt="Domaines">
+                                    <figure class="pres-container">
+                                        <img src="{{ $annuairePresentation3File ? asset('storage/' . $annuairePresentation3File->file) : ''}}" alt="Presentation">
                                     </figure>
                                     <div>
                                         <input type="file" id="presentation3" name="presentation3" accept="image/*" class="input__form">
@@ -381,8 +431,8 @@
                                 </div>
                                 <div class="form__col">
                                     <label for="presentation4" class="form__label">Image 4</label>
-                                    <figure class="logo-container">
-                                        <img src="" alt="Domaines">
+                                    <figure class="pres-container">
+                                        <img src="{{ $annuairePresentation4File ? asset('storage/' . $annuairePresentation4File->file) : ''}}" alt="Presentation">
                                     </figure>
                                     <div>
                                         <input type="file" id="presentation4" name="presentation4" accept="image/*" class="input__form">
@@ -396,11 +446,53 @@
                     </fieldset>
                     <fieldset class="atout logo-fieldset">
                         <legend>Partenaires</legend>
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <div class="partners">
+                            @foreach ($partners as $partner)
+                                <figure class="partner-item">
+                                    <img src="{{ asset('storage/' . $partner->file) }}" alt="">
+                                    <figcaption>
+                                        <div class="partner-actions">
+                                            <a href="#" onclick="modalOpener(this)" data-target="#editPartner{{ $partner->id }}">Editer</a>
+                                            <a href="#!" onclick="event.preventDefault(); confirm('Etes-vous sûr de vouloir supprimer ce partenaire ?') ? document.getElementById('deletePartner{{ $partner->id }}').submit() : ''">Supprimer</a>
+                                            <form action="{{ route('auth:annuaires:file:partner:delete', $partner) }}" method="POST" id="deletePartner{{ $partner->id }}">
+                                                @csrf
+                                                @method("DELETE")
+                                            </form>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+
+                                <div class="modal__container" id="editPartner{{ $partner->id }}">
+                                    <div class="modal">
+                                        <div class="modal__body">
+                                            <form action="{{ route('auth:annuaires:file:partner:update', [$annuaire, $partner]) }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method("PATCH")
+                                                <div class="form__group">
+                                                    <label for="" class="form__label">Image de l'annonce</label>
+                                                    <label for="" class="input__file__container">
+                                                        <i class="fa fa-image"></i>
+                                                        <input type="file" name="file" id="" class="input__file" onchange="uploadFile(this)" accept="image/*">
+                                                        <span class="file__name">Choisir une image</span>
+                                                    </label>
+                                                </div>
+
+                                                <div class="form__button">
+                                                    <button type="submit" class="button__green">valider la modiication</button>
+                                                    <button type="button" class="close__button closeModal" onclick="closeModal(this)">Annuler</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <form action="{{ route('auth:annuaires:file:partner', $commune) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form__group">
                                 <label for="partner" class="form__label">Partenaires</label>
-                                <input type="file" name="partner[]" id="partner" class="input__form" multiple>
+                                <input type="file" name="images[]" id="partner" class="input__form" multiple accept=".jpg,.png,.svg">
                             </div>
                             <div class="form__button button2">
                                 <button type="submit" class="button__green">Valider</button>
@@ -428,6 +520,36 @@
                 ]
             });
         });
+
+        const modalOpener = (element) => {
+            const targetSelector = element.dataset.target;
+            const modal = document.querySelector(targetSelector);
+            modal.style.display = "flex";
+        };
+
+        const uploadFile = (element) => {
+            const fileInput = element;
+
+            const fileContainer = fileInput.parentNode;
+            const fileSpan = fileContainer.querySelector('.file__name');
+
+
+            if (fileInput.files.length >= 1) {
+                const fileName = fileInput.files[0].name;
+                let fileSize = fileInput.files[0].size;
+                fileSize = (fileSize / 1024).toFixed(2) + " ko";
+
+                fileContainer.style.borderColor = "#006ccb";
+                fileContainer.style.backgroundColor = "#dfeeff";
+                fileSpan.textContent = `${fileName}, ${fileSize}` ;
+            } else {
+                fileContainer.style.borderColor = "#000";
+                fileContainer.style.backgroundColor = "#fff";
+                fileSpan.textContent = "Choisir une image" ;
+            }
+
+        }
+
     </script>
     <script src="{{ asset('assets/scripts/auths/annuaires/plaquettes/purify.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/auths/annuaires/plaquettes/show.js') }}"></script>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("annuaire_id")->constrained()->cascadeOnDelete();
             $table->string("file");
-            $table->enum("type", ["logo", "banner", "domaine_prior1", "domaine_prior2", "domaine_prior3", "presentation", "partner"]);
+            $table->enum("type", ["logo", "banner", "domaine_prior1", "domaine_prior2", "domaine_prior3", "presentation1", "presentation2", "presentation3", "presentation4", "partner"]);
             $table->timestamps();
         });
     }
