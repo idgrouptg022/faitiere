@@ -76,8 +76,18 @@ class AnnuaireFileController extends Controller
     }
 
 
-    public function domaineStore(AnnuaireFileRequest $request, Annuaire $annuaire )
+    public function domaineStore(AnnuaireFileRequest $request, Commune $commune)
     {
+        if ($commune == null || !$commune instanceof Commune) abort(404);
+
+        $annuaire = Annuaire::where("commune_id", $commune->id)->first();
+
+        if($annuaire == null) {
+            return redirect()->back()->withErrors([
+                "title" => "Erreur: Veuillez d'abord renseigner les informations primaires de la commune"
+            ]);
+        }
+
         $validated = $request->validate([
             'annuaires' => 'required|array',
             'annuaires.domaine_prior1' => 'nullable',
@@ -85,10 +95,7 @@ class AnnuaireFileController extends Controller
             'annuaires.domaine_prior3' => 'nullable',
         ]);
 
-
         $annuaires = $validated['annuaires'];
-
-
 
         foreach ($annuaires as $key => $domaine) {
             if (!empty($domaine)) {

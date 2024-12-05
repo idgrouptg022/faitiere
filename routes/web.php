@@ -340,7 +340,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
 
         Route::prefix("files")->group(function () {
 
-            Route::post("{annuaire?}/file-domaine-store", [AnnuaireFileController::class, "domaineStore"])->name("file-domaine-store");
+            Route::post("{commune}/file-domaine-store", [AnnuaireFileController::class, "domaineStore"])->name("file-domaine-store");
 
             Route::post("{commune}/file-store", [AnnuaireFileController::class, "store"])->name("file-store");
 

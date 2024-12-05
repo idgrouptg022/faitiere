@@ -357,7 +357,7 @@
                     </fieldset>
                     <fieldset class="atout logo-fieldset">
                         <legend>Domaines prioritaires</legend>
-                        <form action="{{ route('auth:annuaires:file-domaine-store', $annuaire ?? "" ) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('auth:annuaires:file-domaine-store', $commune ) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form__row">
                                 <div class="form__col">
