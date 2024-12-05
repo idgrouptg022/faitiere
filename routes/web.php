@@ -338,8 +338,20 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
     Route::prefix("annuaires/")->as("annuaires:")->group(function (){
 
 
-        Route::post("{annuaire?}/file-domaine-store", [AnnuaireFileController::class, "domaineStore"])->name("file-domaine-store");
-        Route::post("{annuaire?}/file-store", [AnnuaireFileController::class, "store"])->name("file-store");
+        Route::prefix("files")->group(function () {
+
+            Route::post("{commune}/file-domaine-store", [AnnuaireFileController::class, "domaineStore"])->name("file-domaine-store");
+
+            Route::post("{commune}/file-store", [AnnuaireFileController::class, "store"])->name("file-store");
+
+            Route::post("{commune}/presentation", [AnnuaireFileController::class, "presentation"])->name("file:presentation");
+
+            Route::post("{commune}/partenaires", [AnnuaireFileController::class, "partner"])->name("file:partner");
+
+            Route::patch("{annuaire}/{annuaireFile}/partenaires-update", [AnnuaireFileController::class, "updatePartner"])->name("file:partner:update");
+
+            Route::delete("{annuaireFile}/partenaires-delete", [AnnuaireFileController::class, "deletePartner"])->name("file:partner:delete");
+        });
 
         Route::post("{commune}/store", [AnnuaireController::class, "store"])->name("store");
 
@@ -349,7 +361,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
 
         Route::patch("{commune}/update-processing", [CommuneLinkController::class, "update"])->name("update");
 
-        Route::post("{annuaire}/store-responsable", [AnnuaireResponsableController::class, "createResponsables"])->name("store-responsable");
+        Route::post("{commune}/store-responsable", [AnnuaireResponsableController::class, "createResponsables"])->name("store-responsable");
 
         Route::prefix("annonces/")->as("annonces:")->group(function () {
 

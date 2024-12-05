@@ -38,8 +38,10 @@ class AnnuaireAtoutController extends Controller
 
         $checkExistAnnuaireAtout = AnnuaireAtout::where([
             ["annuaire_id", "=", $annuaire->id],
-            ["id", "=", $annuaire->id]
+            ["id", "=", $atoutNum]
         ])->first();
+
+        $fields = $request->validated();
 
         if ($request->hasFile("image")) {
 
@@ -48,6 +50,7 @@ class AnnuaireAtoutController extends Controller
             }
 
             $filePath = $request->file('image')->store('annuaires/atouts', 'public');
+
             $fields['image'] = $filePath;
 
             if (isset($oldImage) && Storage::disk('public')->exists($oldImage)) {
@@ -59,8 +62,6 @@ class AnnuaireAtoutController extends Controller
                 return redirect()->back()->withErrors(["image", "Veuillez fournir une image pour l'annuaire"]);
             }
         }
-
-        $fields = $request->validated();
 
         $fields["annuaire_id"] = $annuaire->id;
 

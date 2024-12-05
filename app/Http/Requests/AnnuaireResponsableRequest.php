@@ -25,7 +25,7 @@ class AnnuaireResponsableRequest extends FormRequest
             "maire" => "required|string",
             "adjoint1" => "nullable|string",
             "adjoint2" => "nullable|string",
-            "image_maire" => "required|mimes:jpg,jpeg,png,svg,webp,avif|max:10240",
+            "image_maire" => "nullable|mimes:jpg,jpeg,png,svg,webp,avif|max:10240",
             "image_adjoint1" => "nullable|mimes:jpg,jpeg,png,svg,webp,avif|max:10240",
             "image_adjoint2" => "nullable|mimes:jpg,jpeg,png,svg,webp,avif|max:10240",
         ];
