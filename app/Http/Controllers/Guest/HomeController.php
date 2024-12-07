@@ -14,6 +14,7 @@ use App\Models\Publicite;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use App\Models\TwitterPost;
 
 class HomeController extends Controller
 {
@@ -59,10 +60,12 @@ class HomeController extends Controller
 
         $savanes = Region::where("slug", "region-savanes")->first();
 
+        $twitter_post = TwitterPost::latest()->first();
+
         return view("guests.home", compact("page",
         "page_item", "banners", "flashs", "presentation",
         "presidentWord", "slide_actualites", "actualites", "actu_videos",
         "primary_events", "events", "publicite", "partners",
-        "maritime", "plateaux", "centrale", "kara", "savanes"));
+        "maritime", "plateaux", "centrale", "kara", "savanes", "twitter_post"));
     }
 }

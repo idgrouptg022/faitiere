@@ -409,7 +409,12 @@
             </div>
             <div class="ads-container">
                 <div class="twitter-widget-container">
-                    <blockquote class="twitter-tweet"><p lang="fr" dir="ltr">Le Ministre de l&#39;administration territoriale, Colonel AWATE Hodabalo a donné le ton pour la Journée africaine de la décentralisation et du développement local (JADDL) ce 06 août à Lomé en présence de Madame Yawa KOUIGAN, Présidente de la FCT et Ministre de la communication. <a href="https://t.co/EXs3Ytlr4J">pic.twitter.com/EXs3Ytlr4J</a></p>&mdash; Faîtière des Communes du Togo (@fct228) <a href="https://twitter.com/fct228/status/1820842352442794216?ref_src=twsrc%5Etfw">August 6, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <blockquote class="twitter-tweet">
+                        <p lang="fr" dir="ltr">
+                            <a href="https://t.co/EXs3Ytlr4J">pic.twitter.com/EXs3Ytlr4J</a></p>
+                            <a href="{{ $twitter_post->url ?? 'https://twitter.com/fct228/status/1820842352442794216' }}"></a>
+                    </blockquote>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
                 <div class="pub-content">
                     <figure class="pub-image">

@@ -38,6 +38,7 @@ use App\Http\Controllers\Auth\AnnuaireAtoutController;
 use App\Http\Controllers\Auth\AnnuaireController;
 use App\Http\Controllers\Auth\AnnuaireFileController;
 use App\Http\Controllers\Auth\AnnuaireResponsableController;
+use App\Http\Controllers\Auth\TwitterPostController;
 use App\Http\Controllers\Guest\MapLocalisationController;
 use App\Http\Controllers\Guest\DecentralisationController;
 use App\Http\Controllers\Guest\EventController as GuestEventController;
@@ -163,6 +164,16 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::patch("{actuVideo}/update", [ActuVideoController::class, "update"])->name("update");
 
         Route::delete("{actuVideo}/destroy", [ActuVideoController::class, "destroy"])->name("destroy");
+    });
+
+    Route::prefix("twitter-posts/")->as("twitter:")->group(function () {
+        Route::get("", [TwitterPostController::class, "index"])->name("index");
+
+        Route::post("store-processing", [TwitterPostController::class, "store"])->name("store");
+
+        Route::patch("{twitterPost}/update-processing", [TwitterPostController::class, "update"])->name("update");
+
+        Route::delete("{twitterPost}/destroy", [TwitterPostController::class, "destroy"])->name("destroy");
     });
 
     Route::prefix("evenements/")->as("evenements:")->group(function () {
