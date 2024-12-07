@@ -1,0 +1,26 @@
+.editBtn {
+    all: unset;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: var(--tertiary-600);
+    color: var(--black);
+    font-size: .8rem;
+    padding: .3rem .7rem;
+    border-radius: .5rem;
+}
+
+.deleteBtn {
+    all: unset;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: var(--secondary-700);
+    color: var(--white);
+    margin-left: .5rem;
+    font-size: .8rem;
+    padding: .3rem .7rem;
+    border-radius: .5rem;
+}
+
+textarea {
+    resize: none;
+}
