@@ -22,6 +22,7 @@
             <li><strong>Adresse e-mail:</strong> {{ $data["email"] }}</li>
             <li><strong>Mot de passe:</strong> {{ $data["password"] }}</li>
         </ul>
+        <p>Lien de connexion: {{ route('auth:login:view') }}</p>
         <p>Nous vous recommandons vivement de modifier votre mot de passe dès votre première connexion pour des raisons de sécurité.</p>
 
         <p>Responsable FCT</p>
