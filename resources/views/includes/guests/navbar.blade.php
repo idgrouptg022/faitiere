@@ -11,6 +11,7 @@
             <div class="dropdown">
                 <ul class="nav-submenu">
                     <li class="nav-submenu-item"><a href="{{ route('guests:historique') }}">Historique</a></li>
+                    <li class="nav-submenu-item"><a href="{{ route('guests:presentation') }}">Presentation</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:role') }}">Rôle et Mission</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:statut') }}">Status et Réglements</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:organigramme') }}">Organigramme</a></li>

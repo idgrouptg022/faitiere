@@ -45,12 +45,16 @@ use App\Http\Controllers\Guest\EventController as GuestEventController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use App\Http\Controllers\Guest\MagazineController as GuestMagazineController;
 use App\Http\Controllers\Guest\ActualiteController as GuestActualiteController;
+use App\Http\Controllers\Guest\ActuVideoController as GuestActuVideoController;
+use App\Http\Controllers\Guest\NewsletterContactController;
 
 Route::prefix("/")->as("guests:")->group(function () {
 
     Route::get("", [HomeController::class, "home"])->name("home");
 
     Route::get("historique", [AboutController::class, "historique"])->name("historique");
+
+    Route::get("presentation", [AboutController::class, "presentation"])->name("presentation");
 
     Route::get("role-mission", [AboutController::class, "role_mission"])->name("role");
 
@@ -121,6 +125,10 @@ Route::prefix("/")->as("guests:")->group(function () {
 
         Route::get("{actualite}", [GuestActualiteController::class, "show"])->name("show");
     });
+
+    Route::get("actu-videos", [GuestActuVideoController::class, "index"])->name("actuvideos:index");
+
+    Route::post("store-newsletter-contact", [NewsletterContactController::class, "storeContactMail"])->name("newsletter:storeContactMail");
 
 });
 

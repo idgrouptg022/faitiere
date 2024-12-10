@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset('assets/styles/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/styles/guests/home.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/styles/guests/carte.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/styles/aos.min.css') }}">
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 @endpush
 
@@ -27,7 +28,7 @@
                                     <div class="banniere-band-news">
                                         <h2 class="banniere-news-title">
                                             {!! $banner->title !!}
-                                        </h2>
+                                        </h2><br>
                                         @if ($banner->link)
                                             <span><a href="{{ $banner->link }}">En savoir plus</a></span>
                                         @endif
@@ -37,7 +38,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="swiper-pagination"></div>
+                {{-- <div class="swiper-pagination"></div> --}}
             </div>
         </div>
     </section>
@@ -54,7 +55,7 @@
             @foreach ($flashs as $flash)
                 <li class="flash-content-item">
                     <span class="flash-content-item-title">{{ $flash != null ? $flash->commune->name . ":" : "" }} </span>
-                    <span class="flash-content-item-text">{{ \Illuminate\Support\Str::substr($flash->title, 0, 50) . "..." }} <a href="#">Lire plus</a></span>
+                    <span class="flash-content-item-text">{{ \Illuminate\Support\Str::substr($flash->title, 0, 50) . "..." }} <a href="{{ route('guests:actualites:show', $flash) }}">Lire plus</a></span>
                 </li>
             @endforeach
         </ul>
@@ -88,15 +89,15 @@
         </div>
         <div class="presentation-content">
             <h2 class="presentation-title">Présentation</h2>
-            <div class="presentation-description">
+            <div class="presentation-description" data-aos="fade-left" data-aos-duration="5000">
                 {!! $presentation->body !!}
             </div>
-            <a href="#" class="presentation-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
+            <a href="{{ route('guests:presentation') }}" class="presentation-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
     <div class="president-word-section section-container">
-        <div class="president-word-container">
+        <div class="president-word-container" data-aos="fade-up" data-aos-duration="5000">
             <figure class="president-image animated-bg">
                 <img src="{{ asset('storage/' . $presidentWord->image) }}" alt="Président" loading="lazy">
             </figure>
@@ -108,7 +109,7 @@
                     </div>
 
                     <div class="president-word-read-more">
-                        <a href="#" class="president-word-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ route('guests:presidentWord') }}" class="president-word-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -173,7 +174,7 @@
                                 <figure class="actu-communes-image animated-bg">
                                     <img src="{{ asset('storage/' . $actualite->image) }}" alt="Image de l'actualité" loading="lazy">
                                     <figcaption>
-                                        <a href="#">
+                                        <a href="{{ route('guests:actualites:show', $actualite) }}">
                                             <h2>{{ $actualite->title }}</h2>
                                         </a>
                                     </figcaption>
@@ -185,7 +186,7 @@
                     <div class="swiper-button-next"></div>
                 </div>
                 @foreach ($actualites as $actualite)
-                    <div class="actu-communes-item">
+                    <div class="actu-communes-item" data-aos="zoom-in" data-aos-duration="5000">
                         <figure class="actu-communes-image animated-bg">
                             <img src="{{ asset('storage/' . $actualite->image) }}" alt="Image de l'actualité" loading="lazy">
                             <figcaption>{{ $actualite != null ? $actualite->commune->name : '' }}</figcaption>
@@ -198,7 +199,7 @@
                                 {{ $actualite->title }}
                             </h3>
                             <div class="actu-communes-read-more">
-                                <a href="#" class="actu-communes-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('guests:actualites:show', $actualite) }}" class="actu-communes-read-more-btn">Lire plus <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -217,7 +218,7 @@
 
             <div class="actu-videos">
                 @foreach ($actu_videos as $actu_video)
-                    <div class="actu-videos-item">
+                    <div class="actu-videos-item" data-aos="zoom-in" data-aos-duration="5000">
                         <div class="actu-videos-video">
                             <iframe src="https://www.youtube.com/embed/{{ $actu_video->link }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
@@ -229,16 +230,16 @@
                                 <span>Publié le {{ \Carbon\Carbon::parse($actu_video->created_at)->format("d/m/Y") }}</span>
                             </div>
 
-                            <div class="actu-videos-read-more">
+                            {{-- <div class="actu-videos-read-more">
                                 <a href="#" class="actu-videos-read-more-btn">Lire la vidéo <i class="fas fa-arrow-right"></i></a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 @endforeach
             </div>
 
             <div class="actu-communes-read-all">
-                <a href="#" class="actu-communes-read-all-btn">Voir toutes les vidéos <i class="fas fa-arrow-right"></i></a>
+                <a href="{{ route('guests:actuvideos:index') }}" class="actu-communes-read-all-btn">Voir toutes les vidéos <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
@@ -249,7 +250,7 @@
             <h2 class="events-container-title">Nos événements</h2>
             <div class="events-primary-container">
                 @foreach ($primary_events as $event)
-                    <div class="events-primary-item">
+                    <div class="events-primary-item" data-aos="fade-up" data-aos-duration="5000">
                         <figure class="events-primary-image animated-bg">
                             <img src="{{ asset('storage/' . $event->image) }}" alt="Image d'événement" loading="lazy">
                         </figure>
@@ -265,7 +266,7 @@
             </div>
             <div class="events-secondary-container">
                 @foreach ($events as $event)
-                    <div class="events-secondary-item">
+                    <div class="events-secondary-item" data-aos="flip-down" data-aos-duration="5000">
                         <div class="events-date">
                             <span>{{ \Carbon\Carbon::parse($event->event_date)->locale("fr")->isoFormat("ll") }}</span>
                         </div>
@@ -279,7 +280,7 @@
             </div>
 
             <div class="events-read-all">
-                <a href="#" class="events-read-all-btn">Tous nos evenements <i class="fas fa-arrow-right"></i></a>
+                <a href="{{ route('guests:events:index', 'national') }}" class="events-read-all-btn">Tous nos evenements <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
@@ -287,7 +288,7 @@
     <section class="decouverte-section section-container">
         <div class="decouverte-title">Découvrez</div>
         <div class="decouverte-content">
-            <a href="#" class="decouverte-item">
+            <a href="{{ route('guests:magazine') }}" class="decouverte-item">
                 <div class="decouverte-icon">
                     <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
                         <path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"></path>
@@ -295,7 +296,10 @@
                 </div>
                 <div class="decouverte-item-content">
                     <h3 class="decouverte-item-title">fct mag</h3>
-                    <p class="decouverte-item-description">Premier magazine d'information sur la décentralisation et le développement des territoires au Togo. <span>voir</span></p>
+                    <p class="decouverte-item-description">
+                        Premier magazine d'information sur la décentralisation et le développement des territoires au Togo.
+                        <span>voir</span>
+                    </p>
                 </div>
             </a>
             <a href="#" class="decouverte-item">
@@ -320,7 +324,7 @@
                     <p class="decouverte-item-description">Réseau des Femmes Elues Locales d'Afrique. <span>voir</span></p>
                 </div>
             </a>
-            <a href="#" class="decouverte-item">
+            <a href="{{ route('guests:contact') }}" class="decouverte-item">
                 <div class="decouverte-icon">
                     <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
                         <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM325.8 139.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-21.4 21.4-71-71 21.4-21.4c15.6-15.6 40.9-15.6 56.6 0zM119.9 289L225.1 183.8l71 71L190.9 359.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z"></path>
@@ -457,7 +461,11 @@
     <script src="{{ asset('assets/scripts/guests/home.js') }}"></script>
     <script src="{{ asset('assets/scripts/guests/carte.js') }}"></script>
     <script src="{{ asset('assets/scripts/swiper.min.js') }}"></script>
+    <script src="{{ asset('assets/scripts/aos.min.js') }}"></script>
     <script>
+        AOS.init({
+            once: true
+        });
         const swiper = new Swiper('#banner-swiper', {
             // Optional parameters
             direction: 'horizontal',
