@@ -23,6 +23,15 @@ class AboutController extends Controller
         return view("guests.historique", compact("quotation", "quotationFile"));
     }
 
+    public function presentation(): View
+    {
+        $presentation = Content::where(
+            "type", WordTypes::Presentation
+        )->first();
+
+        return view("guests.presentation", compact("presentation"));
+    }
+
     public function role_mission(): View
     {
         $quotation = Quotation::where("type", QuotationTypes::RoleMission)->first();

@@ -5,3 +5,8 @@ menuBar.addEventListener('click', () => {
 
     menuNav.classList.toggle('show');
 });
+
+const closeMailModal = (element) => {
+    const mailContainer = element.closest(".mail-container");
+    mailContainer.style.display = "none";
+}

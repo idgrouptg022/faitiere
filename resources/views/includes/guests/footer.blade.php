@@ -19,7 +19,7 @@
             <p>
                 <span class="bold">Téléphone:</span>
                 <span>(+228) 93 82 43 62</span><br>
-                <span>(+228) xx xx xx xx</span>
+                {{-- <span>(+228) xx xx xx xx</span> --}}
             </p>
         </div>
     </div>
@@ -36,9 +36,9 @@
     <div class="newsletter-container">
         <h3 class="newsletter-title">Abonnez vous à notre newsletter</h3>
         <p class="newsletter-text">Vous recevrez des notifications mails sur les actualités de la Faitière</p>
-        <form action="#" method="POST">
+        <form action="{{ route('guests:newsletter:storeContactMail') }}" method="POST">
             @csrf
-            <input type="email" name="email" placeholder="Votre adresse email" autocomplete="off">
+            <input type="email" name="newsletter-email" placeholder="Votre adresse email" autocomplete="off">
             <button type="submit">S'abonner</button>
         </form>
         <div class="social-media-icons">

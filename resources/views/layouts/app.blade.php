@@ -27,9 +27,13 @@
         <a href="https://www.youtube.com/@fcttv5006/featured" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <a class="whatsapp-container" href="#">
+    <a class="whatsapp-container" href="https://wa.me/22893824362">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    @if ($message = Session::get('newsletter-success'))
+        @include('includes.guests.mail_success')
+    @endif
 
     <script src="{{ asset('assets/scripts/guests/app.js') }}"></script>
     {{-- <script src="{{ asset('assets/scripts/guests/navbar.js') }}"></script> --}}

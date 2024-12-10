@@ -9,8 +9,8 @@
     <section class="section-container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('guests:home') }}">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('guests:actualites:index') }}">Accueil</a></li>
-            <li class="breadcrumb-item active">Actualités</li>
+            <li class="breadcrumb-item"><a href="{{ route('guests:actualites:index') }}">Actualités</a></li>
+            <li class="breadcrumb-item active">Détails</li>
         </ol>
     </section>
 
