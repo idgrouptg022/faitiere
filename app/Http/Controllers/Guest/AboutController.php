@@ -56,7 +56,7 @@ class AboutController extends Controller
 
     public function organigramme(): View
     {
-        $quotation = Quotation::where("type", QuotationTypes::RoleMission)->first();
+        $quotation = Quotation::where("type", QuotationTypes::Organigramme)->first();
 
         $quotationFile = $quotation != null && $quotation->files != null ? $quotation->files()->first() : null;
 

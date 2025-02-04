@@ -23,12 +23,11 @@ class AnnuaireController extends Controller
     public function store(AnnuaireRequest $request, Commune $commune )
     {
 
-
         $fields = $request->validated();
 
         $fields["commune_id"] = $commune->id;
-
-
+        
+        // dd($fields);
 
         $annuaire = Annuaire::updateOrCreate(
             ["commune_id" => $commune->id],

@@ -38,7 +38,7 @@ class AnnuaireAtoutController extends Controller
 
         $checkExistAnnuaireAtout = AnnuaireAtout::where([
             ["annuaire_id", "=", $annuaire->id],
-            ["id", "=", $atoutNum]
+            ["order_atout", "=", $atoutNum]
         ])->first();
 
         $fields = $request->validated();
@@ -68,11 +68,11 @@ class AnnuaireAtoutController extends Controller
 
         try {
             AnnuaireAtout::updateOrCreate(
-                ["annuaire_id" => $annuaire->id, "id" => $atoutNum],
+                ["annuaire_id" => $annuaire->id, "order_atout" => $atoutNum],
                 $fields
             );
 
-            return redirect()->back()->with("success", "L'atout de l'atout a été sauvegardée avec succès");
+            return redirect()->back()->with("success", "L'atout de l'annuaire a été sauvegardée avec succès");
         } catch (Exception $e) {
             return redirect()->back()->withErrors(["title" => "Erreur lors de l'enregistrement de l'atout de l'annuaire"]);
         }

@@ -1,3 +1,10 @@
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^(?:www\.)?fct\.tg(?:.*)$ [nc]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [redirect=301,L]
+
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
@@ -20,6 +27,7 @@
     RewriteRule ^ index.php [L]
 
 
-    Header set Access-Control-Allow-Origin "https://communestogo.test"
-
+    Header set Access-Control-Allow-Origin "https://communestogo.sogevo.com"
+    Header set Access-Control-Allow-Origin "https://fct.tg"
+    
 </IfModule>

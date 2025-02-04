@@ -43,6 +43,10 @@ class QuotationController extends Controller
 
         $fields["type"] = $quotationTypeValue;
 
+        if (!in_array("show_file", $fields)) {
+            $fields["show_file"] = false;
+        }
+
         $quotation = Quotation::updateOrCreate(
             ["type" => $quotationTypeValue],
             $fields

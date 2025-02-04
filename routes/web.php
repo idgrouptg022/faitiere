@@ -38,6 +38,7 @@ use App\Http\Controllers\Auth\AnnuaireAtoutController;
 use App\Http\Controllers\Auth\AnnuaireController;
 use App\Http\Controllers\Auth\AnnuaireFileController;
 use App\Http\Controllers\Auth\AnnuaireResponsableController;
+use App\Http\Controllers\Auth\ThematiqueController;
 use App\Http\Controllers\Auth\TwitterPostController;
 use App\Http\Controllers\Guest\MapLocalisationController;
 use App\Http\Controllers\Guest\DecentralisationController;
@@ -47,6 +48,7 @@ use App\Http\Controllers\Guest\MagazineController as GuestMagazineController;
 use App\Http\Controllers\Guest\ActualiteController as GuestActualiteController;
 use App\Http\Controllers\Guest\ActuVideoController as GuestActuVideoController;
 use App\Http\Controllers\Guest\NewsletterContactController;
+use App\Http\Controllers\Guest\ThematiqueController as GuestThematiqueController;
 
 Route::prefix("/")->as("guests:")->group(function () {
 
@@ -56,7 +58,7 @@ Route::prefix("/")->as("guests:")->group(function () {
 
     Route::get("presentation", [AboutController::class, "presentation"])->name("presentation");
 
-    Route::get("role-mission", [AboutController::class, "role_mission"])->name("role");
+    Route::get("valeur-mission", [AboutController::class, "role_mission"])->name("role");
 
     Route::get("statuts-reglements", [AboutController::class, "statut"])->name("statut");
 
@@ -78,7 +80,7 @@ Route::prefix("/")->as("guests:")->group(function () {
 
 
 
-    Route::prefix("decentralisation/")->as("decentralisation:")->group(function () {
+    Route::prefix("mediatheque/")->as("decentralisation:")->group(function () {
 
         Route::get("lois", [DecentralisationController::class, "lois"])->name("lois");
 
@@ -107,6 +109,8 @@ Route::prefix("/")->as("guests:")->group(function () {
         Route::get("rapports-annuels", [MediathequeController::class, "rapportsAnnuels"])->name("rapportsAnnuels");
 
         Route::get("download-file/{rapport}", [MediathequeController::class, "downloadFile"])->name("downloadFile");
+
+
     });
 
     Route::prefix("localisation/{region}")->as("carte:")->group(function () {
@@ -124,6 +128,13 @@ Route::prefix("/")->as("guests:")->group(function () {
         Route::get("", [GuestActualiteController::class, "index"])->name("index");
 
         Route::get("{actualite}", [GuestActualiteController::class, "show"])->name("show");
+    });
+
+    Route::prefix("thematiques/")->as("thematiques:")->group(function (){
+
+        Route::get("", [GuestThematiqueController::class, "index"])->name("index");
+
+        Route::get("{thematique}", [GuestThematiqueController::class, "show"])->name("show");
     });
 
     Route::get("actu-videos", [GuestActuVideoController::class, "index"])->name("actuvideos:index");
@@ -326,6 +337,21 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::delete("{actualite}/destroy", [ActualiteController::class, "destroy"])->name("destroy");
     });
 
+    Route::prefix("thematiques/")->as("thematiques:")->group(function () {
+
+        Route::get("", [ThematiqueController::class, "index"])->name("index");
+
+        Route::get("ajout-nouveau", [ThematiqueController::class, "create"])->name("create");
+
+        Route::post("store", [ThematiqueController::class, "store"])->name("store");
+
+        Route::get("{thematique}/details", [ThematiqueController::class, "show"])->name("show");
+
+        Route::patch("{thematique}/update", [ThematiqueController::class, "update"])->name("update");
+
+        Route::delete("{thematique}/destroy", [ThematiqueController::class, "destroy"])->name("destroy");
+    });
+
     Route::prefix("partenaires/")->as("partner:")->group(function () {
 
         Route::get("", [PartnerController::class, "index"])->name("index");
@@ -427,7 +453,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
             }
 
             return Response::file($path, [
-                'Access-Control-Allow-Origin' => 'https://communestogo.test',
+                'Access-Control-Allow-Origin' => 'https://communestogo.sogevo.com',
                 'Access-Control-Allow-Methods' => 'GET',
             ]);
         });

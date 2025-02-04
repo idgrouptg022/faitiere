@@ -16,7 +16,7 @@
     <section class="section-container historic-text">
         {!! $quotation->body ?? "" !!}
 
-        @if ($quotationFile)
+        @if ($quotationFile && $quotation->show_file)
             <div class="plaidoyer-download">
                 <a href="{{ route('guests:downloadFile', $quotation) }}" class="plaidoyer-download-btn"><i class="fas fa-download"></i> Télécharger le PDF</a>
             </div>

@@ -55,7 +55,7 @@
             </div>
             <div class="tab-content-wrapper">
                 <div id="tab1-content" class="tab-content">
-                    <form action="{{ route('auth:annuaires:store', $commune ) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('auth:annuaires:store', $commune ) }}" method="post" id="annuaireForm" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form__row">
@@ -78,7 +78,7 @@
                         </div>
                         <div class="form__group">
                             <label for="presentation" class="form__label">Présentation</label>
-                            <textarea name="presentation" id="presentation" rows="10" class="input__form">{!! $annuaire->presentation ?? "" !!}</textarea>
+                            <textarea name="presentation" id="presentation" class="input__form">{!! $annuaire->presentation ?? "" !!}</textarea>
                         </div>
                         <div class="form__row numbers">
                             <div class="form__col">
@@ -114,8 +114,16 @@
                                 <input type="number" min="0" name="artisanaux" id="artisanaux" class="input__form" placeholder="artisanaux..." value="{!! $annuaire->artisanaux ?? "" !!}">
                             </div>
                             <div class="form__col">
+                                <label for="barrages_hydrauliques" class="form__label">Barrages hydrauliques</label>
+                                <input type="number" min="0" name="barrages_hydrauliques" id="barrages_hydrauliques" class="input__form" placeholder="barrages hydrauliques..." value="{!! $annuaire->barrages_hydrauliques ?? "" !!}">
+                            </div>
+                            <div class="form__col">
                                 <label for="agences_bancaires" class="form__label">Agences bancaires</label>
                                 <input type="number" min="0" name="agences_bancaires" id="agences_bancaires" class="input__form" placeholder="agences bancaires..." value="{!! $annuaire->agences_bancaires ?? "" !!}">
+                            </div>
+                            <div class="form__col">
+                                <label for="etablissements_scolaires" class="form__label">Etablissements scolaires</label>
+                                <input type="number" min="0" name="etablissements_scolaires" id="etablissements_scolaires" class="input__form" placeholder="Ets scolaires..." value="{!! $annuaire->etablissements_scolaires ?? "" !!}">
                             </div>
                         </div>
 
@@ -310,7 +318,7 @@
                 <div id="tab4-content" class="tab-content">
                     <fieldset class="atout logo-fieldset">
                         <legend>Logo</legend>
-                        <form action="{{ route('auth:annuaires:file-store', $annuaire ?? "" ) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('auth:annuaires:file-store', $commune ) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form__row form-logo">
 
@@ -516,9 +524,14 @@
                     ['style', ['style']],
                     ['font', ['bold', 'italic', 'underline', 'clear']],
                     ['para', ['ul', 'ol', 'paragraph']],
-                    // ['insert', ['link', 'picture']],
                 ]
             });
+            
+            $('#annuaireForm').on("submit", function(e) {
+                // e.preventDefault();
+                $('#presentation').val($('#presentation').summernote('code'))
+                console.log($('#presentation').val());
+            })
         });
 
         const modalOpener = (element) => {
@@ -551,6 +564,6 @@
         }
 
     </script>
-    <script src="{{ asset('assets/scripts/auths/annuaires/plaquettes/purify.min.js') }}"></script>
+    <!--<script src="{{ asset('assets/scripts/auths/annuaires/plaquettes/purify.min.js') }}"></script>-->
     <script src="{{ asset('assets/scripts/auths/annuaires/plaquettes/show.js') }}"></script>
 @endpush

@@ -1,7 +1,7 @@
 const flashContent = document.querySelector('.flash-content');
 const listItems = flashContent.querySelectorAll('.flash-content-item');
 
-// Calculer la largeur totale
+// // Calculer la largeur totale
 let totalWidth = 0;
 listItems.forEach(item => {
     totalWidth += item.offsetWidth + 20; //20px de marge pour chaque item
@@ -18,7 +18,7 @@ if (window.innerWidth >= 1024) {
 }
 
 
-//calcul de la durée totale en secondes
+// //calcul de la durée totale en secondes
 const duration = totalWidth / speed;
 
 let containerWidth = totalWidth - 100
@@ -55,6 +55,9 @@ const cantonsFinalNumber = 394
 const prefecturesNumber = document.getElementById("prefectures-number")
 const prefecturesFinalNumber = 39
 
+const daglNumber = document.getElementById("dagl-number")
+const daglFinalNumber = 1
+
 const updateCompteur = (elementToBeCount, finalNumber) => {
     const rect = elementToBeCount.getBoundingClientRect();
 
@@ -74,11 +77,12 @@ updateCompteur(communesNumber, communesFinalNumber)
 updateCompteur(regionsNumber, regionsFinalNumber)
 updateCompteur(cantonsNumber, cantonsFinalNumber)
 updateCompteur(prefecturesNumber, prefecturesFinalNumber)
+updateCompteur(daglNumber, daglFinalNumber)
 
 window.addEventListener('scroll', () => {
     updateCompteur(prefecturesNumber, prefecturesFinalNumber)
     updateCompteur(cantonsNumber, cantonsFinalNumber)
     updateCompteur(regionsNumber, regionsFinalNumber)
     updateCompteur(communesNumber, communesFinalNumber)
-
+    updateCompteur(daglNumber, daglFinalNumber)
 })

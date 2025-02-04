@@ -23,7 +23,8 @@ class QuotationRequest extends FormRequest
     {
         return [
             "body" => "required|string",
-            "filepath" => "nullable|mimes:pdf|file"
+            "filepath" => "nullable|mimes:pdf|file",
+            "show_file" => "nullable|boolean"
         ];
     }
 
@@ -34,6 +35,7 @@ class QuotationRequest extends FormRequest
             "body.string" => "Le contenu de la demande de devis est invalide.",
             "filepath.file" => "Le format du fichier doit être un fichier.",
             "filepath.mimes" => "Le fichier doit être un PDF.",
+            "show_file.boolean" => "Erreur de type de données envoyées.",
         ];
     }
 }

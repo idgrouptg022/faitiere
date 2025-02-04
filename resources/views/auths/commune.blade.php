@@ -9,9 +9,9 @@
 
     <div class="container">
          @include('includes.auths.flash')
-        <div class="pager-subheader">
+        {{-- <div class="pager-subheader">
             <a href="#!" class="page-subheader-btn" onclick="modalOpener(this)" data-target="#addBanner"><i class="fas fa-plus-circle"></i> Ajouter une commune</a>
-        </div>
+        </div> --}}
 
 
 

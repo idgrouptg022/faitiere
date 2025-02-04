@@ -59,7 +59,7 @@ class AnnuaireResponsableController extends Controller
         if($fields['adjoint1']) {
 
             if ($request->hasFile('image_adjoint1')) {
-                $adjoint1File = $request->file('image_maire')->store('AnnuaireResponsables', 'public');
+                $adjoint1File = $request->file('image_adjoint1')->store('AnnuaireResponsables', 'public');
                 $fields["file"] = $adjoint1File;
             } else {
                 unset($fields["file"]);
@@ -80,7 +80,7 @@ class AnnuaireResponsableController extends Controller
         if($fields['adjoint2']) {
 
             if ($request->hasFile('image_adjoint2')) {
-                $adjoint2File = $request->file('image_maire')->store('AnnuaireResponsables', 'public');
+                $adjoint2File = $request->file('image_adjoint2')->store('AnnuaireResponsables', 'public');
                 $fields["file"] = $adjoint2File;
             } else {
                 unset($fields["file"]);

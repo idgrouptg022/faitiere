@@ -11,7 +11,7 @@ use App\Enums\AnnuaireFileType;
 use App\Models\AnnuaireResponsable;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
-use App\Enums\AnnuaireResponsabletypes;
+use App\Enums\AnnuaireResponsableTypes;
 
 class PlaquetteController extends Controller
 {
@@ -77,7 +77,7 @@ class PlaquetteController extends Controller
 
             $annuaireResponsableMaire = AnnuaireResponsable::where([
                 ["annuaire_id", $annuaire->id],
-                ["type", AnnuaireResponsabletypes::Maire]
+                ["type", AnnuaireResponsableTypes::Maire]
             ])->first();
 
             $annuaireResponsableAdjoint1 = AnnuaireResponsable::where([
