@@ -96,8 +96,6 @@ Route::prefix("/")->as("guests:")->group(function () {
         Route::get("realises", [GuestProjectController::class, "projetsRealises"])->name("projetsRealises");
 
         Route::get("download-file/{project}", [GuestProjectController::class, "downloadFile"])->name("downloadFile");
-
-
     });
 
     Route::prefix("mediatheque/")->as("mediatheque:")->group(function () {
@@ -109,12 +107,10 @@ Route::prefix("/")->as("guests:")->group(function () {
         Route::get("rapports-annuels", [MediathequeController::class, "rapportsAnnuels"])->name("rapportsAnnuels");
 
         Route::get("download-file/{rapport}", [MediathequeController::class, "downloadFile"])->name("downloadFile");
-
-
     });
 
     Route::prefix("localisation/{region}")->as("carte:")->group(function () {
-        Route::get('', [MapLocalisationController::class,'index'])->name('index');
+        Route::get('', [MapLocalisationController::class, 'index'])->name('index');
     });
 
     Route::prefix("evenement/{eventType}")->as("events:")->group(function () {
@@ -123,14 +119,14 @@ Route::prefix("/")->as("guests:")->group(function () {
         Route::get("{event}", [GuestEventController::class, "show"])->name("show");
     });
 
-    Route::prefix("actualites/")->as("actualites:")->group(function (){
+    Route::prefix("actualites/")->as("actualites:")->group(function () {
 
         Route::get("", [GuestActualiteController::class, "index"])->name("index");
 
         Route::get("{actualite}", [GuestActualiteController::class, "show"])->name("show");
     });
 
-    Route::prefix("thematiques/")->as("thematiques:")->group(function (){
+    Route::prefix("thematiques/")->as("thematiques:")->group(function () {
 
         Route::get("", [GuestThematiqueController::class, "index"])->name("index");
 
@@ -140,7 +136,6 @@ Route::prefix("/")->as("guests:")->group(function () {
     Route::get("actu-videos", [GuestActuVideoController::class, "index"])->name("actuvideos:index");
 
     Route::post("store-newsletter-contact", [NewsletterContactController::class, "storeContactMail"])->name("newsletter:storeContactMail");
-
 });
 
 // Auth's routes
@@ -174,7 +169,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::post("store", [ContentController::class, "presidentWordStore"])->name("store");
     });
 
-    Route::prefix("actu-videos/")->as("actuVideo:")->group(function() {
+    Route::prefix("actu-videos/")->as("actuVideo:")->group(function () {
 
         Route::get("", [ActuVideoController::class, "index"])->name("index");
 
@@ -208,7 +203,6 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::patch("{event}/update", [EventController::class, "update"])->name("update");
 
         Route::delete("{event}/destroy", [EventController::class, "destroy"])->name("destroy");
-
     });
 
     Route::prefix("rapports-ag/")->as("rapports-ag:")->group(function () {
@@ -219,7 +213,6 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::patch("{rapport}/update", [RapportController::class, "update"])->name("update");
 
         Route::delete("{rapport}/destroy", [RapportController::class, "destroy"])->name("destroy");
-
     });
 
     Route::prefix("rapports-activites/")->as("rapports-activites:")->group(function () {
@@ -242,7 +235,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::delete("{magazine}/destroy", [MagazineController::class, "destroy"])->name("destroy");
     });
 
-    Route::prefix("activites_annuelles/")->as("activites_annuelles:")->group(function() {
+    Route::prefix("activites_annuelles/")->as("activites_annuelles:")->group(function () {
 
         Route::get("", [RapportController::class, "activitesAnnuellesView"])->name("view");
 
@@ -254,7 +247,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
     });
 
 
-    Route::prefix("ressources/")->as("ressources:")->group(function() {
+    Route::prefix("ressources/")->as("ressources:")->group(function () {
 
         Route::get("", [RapportController::class, "ressourcesView"])->name("view");
 
@@ -265,7 +258,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::delete("{id}/destroy", [RapportController::class, "rapportDestroy"])->name("destroy");
     });
 
-    Route::prefix("prefectures/")->as("prefectures:")->group(function() {
+    Route::prefix("prefectures/")->as("prefectures:")->group(function () {
 
         Route::get("", [PrefectureController::class, "index"])->name("index");
 
@@ -276,7 +269,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::delete("{prefecture}/destroy", [PrefectureController::class, "Destroy"])->name("destroy");
     });
 
-    Route::prefix("communes/")->as("communes:")->group(function() {
+    Route::prefix("communes/")->as("communes:")->group(function () {
 
         Route::get("", [CommuneController::class, "index"])->name("index");
 
@@ -380,7 +373,7 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
         Route::delete("{publicite}/destroy", [PubliciteController::class, "destroy"])->name("destroy");
     });
 
-    Route::prefix("annuaires/")->as("annuaires:")->group(function (){
+    Route::prefix("annuaires/")->as("annuaires:")->group(function () {
 
 
         Route::prefix("files")->group(function () {
@@ -408,6 +401,8 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
 
         Route::post("{commune}/store-responsable", [AnnuaireResponsableController::class, "createResponsables"])->name("store-responsable");
 
+        Route::delete('{commune}/responsables/{type}/image', [AnnuaireResponsableController::class, 'deleteResponsableImage'])->name("destroy-responsable-image");
+
         Route::prefix("annonces/")->as("annonces:")->group(function () {
 
             Route::get("", [AnnonceController::class, "index"])->name("index");
@@ -419,13 +414,12 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
             Route::delete("{annonce}/destroy", [AnnonceController::class, "destroy"])->name("destroy");
         });
 
-        Route::prefix("plaquettes")->as("plaquettes:")->group(function (){
+        Route::prefix("plaquettes")->as("plaquettes:")->group(function () {
             Route::get('', [PlaquetteController::class, "index"])->name("index");
 
             Route::get("{commune}/details", [PlaquetteController::class, "show"])->name("show");
 
             Route::post("{commune}/{atoutNum}/atout-proccessing-data", [AnnuaireAtoutController::class, "store"])->name("atout:store");
-
         });
     });
 
@@ -458,7 +452,4 @@ Route::middleware("check.auth.user")->prefix("auth/")->as("auth:")->group(functi
             ]);
         });
     });
-
-
-
 });
