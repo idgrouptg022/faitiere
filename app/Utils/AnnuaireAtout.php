@@ -19,7 +19,7 @@ class AnnuaireAtout
 
         $annuaireAtout = ModelsAnnuaireAtout::where([
             ["annuaire_id", "=", $annuaire->id],
-            ["id", "=", $atoutNum]
+            ["order_atout", "=", $atoutNum]
         ])->first();
 
         return $annuaireAtout;

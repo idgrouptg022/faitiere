@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-    <h1 class="page-title">Rôle et Mission</h1>
+    <h1 class="page-title">Valeurs et Mission</h1>
 
     <div class="container">
 
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form__button">
-                            <button type="submit" class="button__green">Enregistrer le rôle et la mission</button>
+                            <button type="submit" class="button__green">Enregistrer </button>
                         </div>
                     </form>
                 </div>
@@ -66,7 +66,7 @@
     <script>
         $(document).ready(function() {
             $('#content').summernote({
-                placeholder: "Contenu du rôle et mission...",
+                placeholder: "Contenu des valeurs et mission...",
                 lang: 'fr-FR',
                 height: 300,
                 toolbar: [

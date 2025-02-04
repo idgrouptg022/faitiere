@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\User;
 
 class AnnuaireRequest extends FormRequest
 {
@@ -11,7 +12,9 @@ class AnnuaireRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user =  User::where('login_token', session()->get("authenticate_token"))->first();
+        if ($user != null) return true;
+        return false;
     }
 
     /**
@@ -28,7 +31,7 @@ class AnnuaireRequest extends FormRequest
             "superficie" => "required|string",
             "population" => "required|string",
             "vision" => "required|string",
-            "presentation" => "required|string",
+            "presentation" => "required",
             "sante" => "required|string",
             "hotels" => "nullable|string",
             "prescolaires" => "nullable|string",
@@ -36,6 +39,8 @@ class AnnuaireRequest extends FormRequest
             "secondaires" => "nullable|string",
             "artisanaux" => "nullable|string",
             "agences_bancaires" => "nullable|string",
+            "barrages_hydrauliques" => "nullable|string",
+            "etablissements_scolaires" => "nullable|string",
             "commune_id" => "nullable"
         ];
     }
@@ -53,11 +58,8 @@ class AnnuaireRequest extends FormRequest
             "superficie.required" => "Les champs superficie, population, vision, présentation, santé sont requis",
             "population.required" => "Les champs superficie, population, vision, présentation, santé sont requis",
             "vision.required" => "Les champs superficie, population, vision, présentation, santé sont requis",
-            "presentation.required" => "Les champs superficie, population, vision, présentation, santé sont requis",
+            "presentation.required" => "Le champs présentation, est requis",
             "sante.required" => "Les champs superficie, population, vision, présentation, santé sont requis",
-
-
-
         ];
     }
 }

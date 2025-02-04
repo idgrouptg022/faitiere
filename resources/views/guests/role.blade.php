@@ -9,7 +9,7 @@
     <section class="section-container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('guests:home') }}">Accueil</a></li>
-            <li class="breadcrumb-item active">Rôle et Mission</li>
+            <li class="breadcrumb-item active">Valeurs et Mission</li>
         </ol>
     </section>
 

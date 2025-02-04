@@ -212,3 +212,6 @@ tspan {
     transform: translate(27rem, 120rem);
 }
 
+@media only screen and (max-width: 768px) {
+
+}

@@ -57,45 +57,39 @@
                 <div class="contact-social-container">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="https://www.facebook.com/FCT228">
                                 <i class="fab fa-facebook-f"></i>
                                 <span>@fct</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="https://x.com/fct228">
                                 <i class="fab fa-x-twitter"></i>
                                 <span>@fct</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/fa%C3%AEti%C3%A8re-des-communes-du-togo-268a57338/">
                                 <i class="fab fa-linkedin-in"></i>
                                 <span>@fct</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fab fa-instagram"></i>
-                                <span>@fct</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
+                            <a href="https://www.youtube.com/@fcttv5006/featured">
                                 <i class="fab fa-youtube"></i>
                                 <span>@fct</span>
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:">
+                            <a href="mailto:sefct2020@gmail.com">
                                 <i class="fa fa-envelope"></i>
-                                <span>contact@fct.com</span>
+                                <span>sefct2020@gmail.com</span>
                             </a>
                         </li>
                         <li>
-                            <a href="tel:">
+                            <a href="tel:+22893824362">
                                 <i class="fa fa-phone"></i>
-                                <span>(+228) 90 xx xx xx / 99 xx xx xx</span>
+                                <span>(+228) 93 82 43 62</span>
                             </a>
                         </li>
                     </ul>

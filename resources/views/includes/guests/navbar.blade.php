@@ -12,16 +12,17 @@
                 <ul class="nav-submenu">
                     <li class="nav-submenu-item"><a href="{{ route('guests:historique') }}">Historique</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:presentation') }}">Presentation</a></li>
-                    <li class="nav-submenu-item"><a href="{{ route('guests:role') }}">Rôle et Mission</a></li>
+                    <li class="nav-submenu-item"><a href="{{ route('guests:role') }}">Valeurs et Mission</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:statut') }}">Status et Réglements</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:organigramme') }}">Organigramme</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:presidentWord') }}">Mot de la présidente</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:partenaires') }}">Partenaires</a></li>
+                    <li class="nav-submenu-item"><a href="{{ route('guests:thematiques:index') }}">Nos thématiques</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:contact') }}">Contacts</a></li>
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a>Décentralisation</a>
             <div class="dropdown">
                 <ul class="nav-submenu">
@@ -29,9 +30,9 @@
                     <li class="nav-submenu-item"><a href="{{ route('guests:decentralisation:informations') }}">Informations</a></li>
                 </ul>
             </div>
-        </li>
+        </li> --}}
         <li class="nav-item">
-            <a href="https://communestogo.test">Communes</a>
+            <a href="https://communestogo.sogevo.com">Communes</a>
         </li>
         <li class="nav-item">
             <a>Projets</a>
@@ -47,6 +48,8 @@
             <a>Mediathèque</a>
             <div class="dropdown">
                 <ul class="nav-submenu">
+                    <li class="nav-submenu-item"><a href="{{ route('guests:decentralisation:lois') }}">Lois</a></li>
+                    <li class="nav-submenu-item"><a href="{{ route('guests:decentralisation:informations') }}">Informations</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:mediatheque:ressources') }}">Centre National de Ressources FCT</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:mediatheque:rapportsAG') }}">Rapports AG</a></li>
                     <li class="nav-submenu-item"><a href="{{ route('guests:mediatheque:rapportsAnnuels') }}">Rapport d'activités annuelles</a></li>

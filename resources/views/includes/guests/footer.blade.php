@@ -10,7 +10,7 @@
             </p>
             <p>
                 <span class="bold">Email:</span>
-                <span>efct2020@gmail.com</span>
+                <span>sefct2020@gmail.com</span>
             </p>
             <p>
                 <span class="bold">BP:</span>

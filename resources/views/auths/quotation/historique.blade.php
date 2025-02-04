@@ -30,6 +30,11 @@
                             </label>
                         </div>
 
+                        <div class="form__group" style="margin-block: 2rem;">
+                            <input id="showFile" class="custom-control-input" type="checkbox" name="show_file" value="{{ $quotation->show_file ?? 'false' }}" {{ $quotation !=null && $quotation->show_file ? 'checked' : '' }}>
+                            <label for="showFile" class="custom-control-label" style="font-family: montserrat-bold;">Afficher le fichier PDF</label>
+                        </div>
+
                         <div class="form__button">
                             <button type="submit" class="button__green">Enregistrer l'historique</button>
                         </div>
